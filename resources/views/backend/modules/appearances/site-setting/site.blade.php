@@ -1,0 +1,100 @@
+@php
+    $links = [
+        [
+            'title' => 'Site Settings',
+            'route' => '',
+            'active' => false,
+        ],
+        [
+            'title' => 'Site Settings',
+            'route' => '',
+            'active' => true,
+        ],
+    ];
+@endphp
+@extends('backend.layouts.dashboard_layout')
+@section('page-title')
+    {{ translation('Site Settings') }}
+@endsection
+@section('page-content')
+    <x-admin-page-header title="" :links="$links" />
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">{{ translation('Site Settings') }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5 col-sm-3">
+                                    @include('backend.modules.Appearances.site-setting.setting_tabs')
+                                </div>
+                                <div class="col-7 col-sm-9">
+                                    <div class="tab-content" id="vert-tabs-tabContent">
+                                        <div
+                                            class="tab-pane text-left fade {{ Request::routeIs(['admin.appearance.site.setting']) ? 'show active' : '' }}">
+                                            <h4>{{ translation('Site Settings') }}</h4>
+                                            <form method="POST"
+                                                action="{{ route('admin.appearance.site.setting.update') }}">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label>{{ translation('Site Name') }}</label>
+                                                    <input type="text" class="form-control" name="site_name"
+                                                        placeholder="Enter Site Name"
+                                                        value="{{ get_setting('site_name') }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ translation('Site Description') }}</label>
+                                                    <textarea class="form-control" name="site_description">{{ get_setting('site_description') }}</textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ translation('Site Slogan') }}</label>
+                                                    <input type="text" class="form-control" name="site_slogan"
+                                                        placeholder="Enter Site Slogan"
+                                                        value="{{ get_setting('site_slogan') }}">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ translation('Site Logo') }}</label>
+                                                    <x-media name="site_logo" :value="get_setting('site_logo')"></x-media>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ translation('Site Logo (Dark Background)') }}</label>
+                                                    <x-media name="site_dark_logo" :value="get_setting('site_dark_logo')"></x-media>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>{{ translation('Site Favicon') }}</label>
+                                                    <x-media name="site_favicon" :value="get_setting('site_favicon')"></x-media>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>{{ translation('Whats App Number') }}</label>
+                                                    <input type="text" class="form-control" name="site_whatsapp_number"
+                                                        placeholder="Enter Whats App Number"
+                                                        value="{{ get_setting('site_whatsapp_number') }}">
+                                                </div>
+
+                                                <div class="form-row justify-content-end">
+                                                    <button type="submit"
+                                                        class="btn btn-primary">{{ translation('Save Change') }}</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+@endsection
+@section('page-script')
+    <script>
+        (function($) {
+            "use strict";
+            initMediaManager();
+        })(jQuery);
+    </script>
+@endsection
