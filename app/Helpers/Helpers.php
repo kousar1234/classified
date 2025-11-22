@@ -26,7 +26,7 @@ if (! function_exists("saveFileInStorage")) {
         $file_name_with_out_extension = $file_name_array[0];
         $file_size = $file->getSize();
         $disk = 'public';
-        $destination_folder = "uploads";
+        $destination_folder = "uploaded";
         $path = $file->store($destination_folder, $disk);
 
         $media = new Media();
