@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\GalleryImage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -15,7 +14,7 @@ class SiteSettingController extends Controller
      */
     public function siteSetting(): View
     {
-        return view('backend.modules.Appearances.site-setting.site');
+        return view('backend.modules.appearances.site-setting.site');
     }
 
     /**
@@ -43,7 +42,7 @@ class SiteSettingController extends Controller
      */
     public function headerSetting(): View
     {
-        return view('backend.modules.Appearances.site-setting.header');
+        return view('backend.modules.appearances.site-setting.header');
     }
     /**
      * Will update header settings
@@ -69,8 +68,8 @@ class SiteSettingController extends Controller
      */
     public function footerSetting(): View
     {
-        $gallery_images = GalleryImage::orderBy('id', 'DESC')->get();
-        return view('backend.modules.Appearances.site-setting.footer', ['gallery_images' => $gallery_images]);
+       
+        return view('backend.modules.appearances.site-setting.footer');
     }
     /**
      * Will update footer settings
@@ -97,7 +96,7 @@ class SiteSettingController extends Controller
      */
     public function seoSetting(): View
     {
-        return view('backend.modules.Appearances.site-setting.seo');
+        return view('backend.modules.appearances.site-setting.seo');
     }
     /**
      * Will update seo settings
@@ -126,7 +125,7 @@ class SiteSettingController extends Controller
      */
     public function colorSetting(): View
     {
-        return view('backend.modules.Appearances.site-setting.colors');
+        return view('backend.modules.appearances.site-setting.colors');
     }
     /**
      * Will update colors settings
@@ -151,7 +150,7 @@ class SiteSettingController extends Controller
      */
     public function customCssSetting(): View
     {
-        return view('backend.modules.Appearances.site-setting.custom_css');
+        return view('backend.modules.appearances.site-setting.custom_css');
     }
     /**
      * Will update custom css settings

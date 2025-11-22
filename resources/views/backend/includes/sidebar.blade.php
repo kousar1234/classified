@@ -91,20 +91,6 @@
                     </li>
                 @endcan
 
-
-
-                @can('Manage Message')
-                    <li class="nav-item">
-                        <a href="{{ route('admin.contact.us.message.list') }}"
-                            class="nav-link {{ Request::routeIs(['admin.contact.us.message.list']) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-comment-alt"></i>
-                            <p>
-                                {{ translation('Messages') }}
-                            </p>
-                        </a>
-                    </li>
-                @endcan
-
                 <!--Pages Module-->
                 @can('Manage Pages')
                     <li
@@ -143,42 +129,7 @@
                 @endcan
                 <!--End Pages Module-->
 
-                @can('Manage Product')
-                    <li
-                        class="nav-item {{ Request::routeIs(['admin.product.brochure', 'admin.product.create', 'admin.product.category.list', 'admin.product.list', 'admin.product.edit']) ? 'menu-open ' : '' }}">
-                        <a href="#"
-                            class="nav-link {{ Request::routeIs(['admin.product.brochure', 'admin.product.create', 'admin.product.category.list', 'admin.product.list', 'admin.product.edit']) ? 'active ' : '' }}">
-                            <i class="nav-icon fas fa-file"></i>
-                            <p>
-                                {{ translation('Products') }}
-                                <i class="fas fa-angle-left right"></i>
-                            </p>
-                        </a>
-                        <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="{{ route('admin.product.list') }}"
-                                    class="nav-link {{ Request::routeIs(['admin.product.create', 'admin.product.list', 'admin.product.edit']) ? 'active' : '' }}">
-                                    <i class="fa fa-minus nav-icon"></i>
-                                    <p>
-                                        {{ translation('Products') }}
-                                    </p>
-                                </a>
-                            </li>
-                            @can('Create New Page')
-                                <li class="nav-item">
-                                    <a href="{{ route('admin.product.category.list') }}"
-                                        class="nav-link {{ Request::routeIs(['admin.product.category.list']) ? 'active' : '' }}">
-                                        <i class="fa fa-minus nav-icon"></i>
-                                        <p>
-                                            {{ translation('Categories') }}
-                                        </p>
-                                    </a>
-                                </li>
-                            @endcan
-                        </ul>
-                    </li>
-                @endcan
-                <!--Appearances Module-->
+              
                 @can('Manage Appearances')
                     <li
                         class="nav-item {{ Request::routeIs(['admin.appearance.video.add','admin.appearance.video.edit','admin.appearance.video.list','admin.appearance.team.add','admin.appearance.team.edit','admin.appearance.team.list','admin.appearance.faq.add','admin.appearance.faq.edit','admin.appearance.faq.list','admin.appearance.why.us.add','admin.appearance.why.us.edit','admin.appearance.why.us.list','admin.appearance.partner.add','admin.appearance.partner.edit','admin.appearance.partner.list','admin.appearance.product.application.add','admin.appearance.product.application.edit','admin.appearance.product.application.list','admin.appearance.slider.edit.slider.item','admin.appearance.slider.add.slider.item','admin.appearance.slider.list','admin.page.content.about','admin.page.content.contact','admin.page.content.home','admin.appearance.site.setting.banner','admin.appearance.site.setting.custom.css','admin.appearance.site.setting.page','admin.appearance.site.setting.social.account','admin.appearance.site.setting','admin.appearance.menu.builder'])? 'menu-open ': '' }}">
@@ -203,74 +154,7 @@
                                 </li>
                             @endcan
 
-                            <li class="nav-item">
-                                <a href="{{ route('admin.appearance.slider.list') }}"
-                                    class="nav-link {{ Request::routeIs(['admin.appearance.slider.edit.slider.item', 'admin.appearance.slider.add.slider.item', 'admin.appearance.slider.list']) ? 'active' : '' }}">
-                                    <i class="fa fa-minus nav-icon"></i>
-                                    <p>
-                                        {{ translation('Sliders') }}
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.appearance.faq.list') }}"
-                                    class="nav-link {{ Request::routeIs(['admin.appearance.faq.add', 'admin.appearance.faq.edit', 'admin.appearance.faq.list']) ? 'active' : '' }}">
-                                    <i class="fa fa-minus nav-icon"></i>
-                                    <p>
-                                        {{ translation('Faqs') }}
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('admin.appearance.team.list') }}"
-                                    class="nav-link {{ Request::routeIs(['admin.appearance.team.add', 'admin.appearance.team.edit', 'admin.appearance.team.list']) ? 'active' : '' }}">
-                                    <i class="fa fa-minus nav-icon"></i>
-                                    <p>
-                                        {{ translation('Team Members') }}
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('admin.appearance.partner.list') }}"
-                                    class="nav-link {{ Request::routeIs(['admin.appearance.partner.add', 'admin.appearance.partner.edit', 'admin.appearance.partner.list']) ? 'active' : '' }}">
-                                    <i class="fa fa-minus nav-icon"></i>
-                                    <p>
-                                        {{ translation('Partners') }}
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.appearance.video.list') }}"
-                                    class="nav-link {{ Request::routeIs(['admin.appearance.video.add', 'admin.appearance.video.edit', 'admin.appearance.video.list']) ? 'active' : '' }}">
-                                    <i class="fa fa-minus nav-icon"></i>
-                                    <p>
-                                        {{ translation('Videos') }}
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('admin.appearance.why.us.list') }}"
-                                    class="nav-link {{ Request::routeIs(['admin.appearance.why.us.add', 'admin.appearance.why.us.edit', 'admin.appearance.why.us.list']) ? 'active' : '' }}">
-                                    <i class="fa fa-minus nav-icon"></i>
-                                    <p>
-                                        {{ translation('Why Choose') }}
-                                    </p>
-                                </a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a href="{{ route('admin.appearance.product.application.list') }}"
-                                    class="nav-link {{ Request::routeIs(['admin.appearance.product.application.add', 'admin.appearance.product.application.edit', 'admin.appearance.product.application.list']) ? 'active' : '' }}">
-                                    <i class="fa fa-minus nav-icon"></i>
-                                    <p>
-                                        {{ translation('Product Applications') }}
-                                    </p>
-                                </a>
-                            </li>
-
+                         
                             <li class="nav-item">
                                 <a href="{{ route('admin.page.content.home', ['lang' => defaultLangCode()]) }}"
                                     class="nav-link {{ Request::routeIs(['admin.page.content.home']) ? 'active' : '' }}">

@@ -27,7 +27,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-5 col-sm-3">
-                                    @include('backend.modules.Appearances.site-setting.setting_tabs')
+                                    @include('backend.modules.appearances.site-setting.setting_tabs')
                                 </div>
                                 <div class="col-7 col-sm-9">
                                     <div class="tab-content">
