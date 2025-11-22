@@ -240,10 +240,13 @@
 
                     current_page = response.currentPage + 1;
                     if (!response.has_more_page) {
-                        $('.media-load-more-btn').addClass('btn-danger');
-                        $(".media-load-more-btn-text").text("No item to display");
+                        if(!$(".media-load-more-btn").hasClass(".d-none")) {
+                            $(".media-load-more-btn").addClass('d-none');
+                            
+                        }
                     }
                     if (response.has_more_page) {
+                        $(".media-load-more-btn").removeClass('d-none');
                         $('.media-load-more-btn').addClass('btn-primary');
                         $(".media-load-more-btn-text").text("Load More");
                     }
