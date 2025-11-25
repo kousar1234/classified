@@ -41,7 +41,7 @@
             </div>
             <!--End Media List-->
             <!--Media details-->
-            <div class="media-preview-sidebar col-lg-2 border border-bottom-0 border-top-0 p-0" id="media-preview-section">
+            <div class="media-preview-sidebar col-lg-2 border border-bottom-0 border-top-0 p-0 d-none d-lg-block" id="media-preview-section">
                 <h6 class="media-attachments-filter-heading mb-2">
                     {{ translation('Media Details') }}
                 </h6>
