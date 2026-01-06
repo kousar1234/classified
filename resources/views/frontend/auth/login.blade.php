@@ -14,7 +14,7 @@
                                 buyers and sellers in just a few clicks.</p>
                         </div>
                         <div class="login-img">
-                            <img src="/public/uploads/media-uploader//login1708750583.png" alt="" />
+                            <img src="/public/uploads/media-uploader/login1708750583.png" alt="" />
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                                 </label>
                                 <!-- forgetPassword -->
                                 <div class="forgetPassword mb-25">
-                                    <a href="../../forget-password.html" class="forgetPass">Forgot Password?</a>
+                                    <a href="{{ route('member.forgot.password') }}" class="forgetPass">Forgot Password?</a>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +61,9 @@
                                 <a href="../../login/otp.html" class="cmn-btn-outline4 w-100 mb-20">Login In with OTP</a>
                                 <!--social login -->
 
-                                <p class="sinUp"><span>Don’t have an account?</span><a href="../../user-register.html"
-                                        class="singApp">Sign Up</a></p>
+                                <p class="sinUp"><span>Don’t have an account?</span>
+                                    <a href="{{ route('member.register') }}" class="singApp">Sign Up</a>
+                                </p>
                             </div>
                         </div>
 

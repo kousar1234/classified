@@ -12,4 +12,15 @@ class MemberAuthController extends Controller
     {
         return view('frontend.auth.login');
     }
+
+
+    public function memberRegisterPage()
+    {
+        return view('frontend.auth.register');
+    }
+
+    public function forgotPasswordPage()
+    {
+        return view('frontend.auth.forgot-password');
+    }
 }

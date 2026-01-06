@@ -11,6 +11,8 @@ Route::post('/member/login', [MemberAuthController::class, 'memberLogin'])->name
 Route::get('/member/register', [MemberAuthController::class, 'memberRegisterPage'])->name('member.register');
 Route::post('/member/register', [MemberAuthController::class, 'memberRegister'])->name('member.register.submit');
 Route::get('/member/logout', [MemberAuthController::class, 'memberLogout'])->name('member.logout');
+Route::get('forgot-password', [MemberAuthController::class, 'forgotPasswordPage'])->name('member.forgot.password');
+Route::post('forgot-password', [MemberAuthController::class, 'forgotPassword'])->name('member.forgot.password.submit');
 
 
 
