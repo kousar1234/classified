@@ -1,20 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AdsController;
+use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\PageContentController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\MediaController;
+use App\Http\Controllers\Backend\MemberController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UtilityController;
+use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\UserAuthController;
+use App\Http\Controllers\Backend\ConditionController;
 use App\Http\Controllers\Backend\ContactUsController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\CustomFieldController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\NotificationController;
+use App\Http\Controllers\Backend\ClassifiedSettingController;
 
 Route::prefix('admin')->group(function () {
     //Admin Auth
@@ -182,6 +189,110 @@ Route::prefix('admin')->group(function () {
          */
         Route::get('media-manage', [MediaController::class, 'mediaManager'])->name('admin.media.list')->middleware('can:Manage Media');
         Route::post('delete/media', [MediaController::class, 'deleteMedia'])->name('admin.media.delete')->middleware(['can:Delete Media']);
+
+
+        //Dashboard Routes
+        Route::post('business-stats', [DashboardController::class, 'businessStats'])->name('business.stats');
+        Route::post('ad--posting-stats', [DashboardController::class, 'adStats'])->name('reports.ad.chart');
+        Route::post('member-registration-stats', [DashboardController::class, 'memberStats'])->name('reports.member.chart');
+        /**
+         * Member Module
+         */
+        Route::group(['prefix' => 'members'], function () {
+            Route::get('/', [MemberController::class, 'memberList'])->name('members.list')->middleware(['can:Manage Members']);
+            Route::post('delete', [MemberController::class, 'memberDelete'])->name('members.delete')->middleware(['can:Delete Members'])->middleware('demo');
+            Route::post('reset/password', [MemberController::class, 'memberPasswordReset'])->name('members.password.reset')->middleware(['can:Edit Members'])->middleware('demo');
+            Route::post('edit', [MemberController::class, 'memberEdit'])->name('members.edit');
+            Route::post('update', [MemberController::class, 'memberUpdate'])->name('members.update')->middleware(['can:Edit Members'])->middleware('demo');
+            Route::post('store', [MemberController::class, 'memberStore'])->name('members.store')->middleware(['can:Create Members'])->middleware('demo');
+        });
+
+        /**
+         * Classified Settings module
+         */
+        Route::group(['prefix' => 'classified-settings'], function () {
+            Route::get('general', [ClassifiedSettingController::class, 'generalSettings'])->name('classified.settings.general')->middleware('can:Manage General Settings');
+            Route::get('currency', [ClassifiedSettingController::class, 'currencySettings'])->name('classified.settings.currency')->middleware(['can:Manage Currency Settings']);
+            Route::get('member', [ClassifiedSettingController::class, 'memberSettings'])->name('classified.settings.member')->middleware('can:Manage Member Settings');
+            Route::post('member/update', [ClassifiedSettingController::class, 'updateMemberSetting'])->name('classified.member.settings.update')->middleware(['can:Manage Member Settings', 'demo']);
+            Route::get('ads', [ClassifiedSettingController::class, 'adsSettings'])->name('classified.settings.ads')->middleware('can:Manage Ads Settings');
+            Route::get('map', [ClassifiedSettingController::class, 'mapSettings'])->name('classified.settings.map')->middleware(['can:Manage Map Settings']);
+            //Safety tips
+            Route::get('safety-tips', [ClassifiedSettingController::class, 'safetyTips'])->name('classified.settings.safety.tips.list')->middleware(['can:Manage Safety Tips']);
+            Route::post('store-safety-tips', [ClassifiedSettingController::class, 'storeSafetyTips'])->name('classified.settings.safety.tips.store')->middleware(['can:Manage Safety Tips', 'demo']);
+            Route::post('delete-safety-tips', [ClassifiedSettingController::class, 'deleteSafetyTips'])->name('classified.settings.safety.tips.delete')->middleware(['can:Manage Safety Tips', 'demo']);
+            Route::get('edit-safety-tips/{id}', [ClassifiedSettingController::class, 'editSafetyTips'])->name('classified.settings.safety.tips.edit')->middleware(['can:Manage Safety Tips']);
+            Route::post('update-safety-tips', [ClassifiedSettingController::class, 'updateSafetyTips'])->name('classified.settings.safety.tips.update')->middleware(['can:Manage Safety Tips', 'demo']);
+            //Quick Sell Tips
+            Route::get('quick-sell-tips', [ClassifiedSettingController::class, 'quickSellTips'])->name('classified.settings.quick.sell.tips.list')->middleware(['can:Manage Quick Sell Tips']);
+            Route::post('store-quick-sell-tips', [ClassifiedSettingController::class, 'storeQuickSellTips'])->name('classified.settings.quick.sell.tips.store')->middleware(['can:Manage Quick Sell Tips', 'demo']);
+            Route::post('delete-quick-sell-tips', [ClassifiedSettingController::class, 'deleteQuickSellTips'])->name('classified.settings.quick.sell.tips.delete')->middleware(['can:Manage Quick Sell Tips', 'demo']);
+            Route::get('edit-quick-sell-tips/{id}', [ClassifiedSettingController::class, 'editQuickSellTips'])->name('classified.settings.quick.sell.tips.edit')->middleware(['can:Manage Quick Sell Tips']);
+            Route::post('update-quick-sell-tips', [ClassifiedSettingController::class, 'updateQuickSellTips'])->name('classified.settings.quick.sell.tips.update')->middleware(['can:Manage Quick Sell Tips', 'demo']);
+            //Share options
+            Route::get('share-options', [ClassifiedSettingController::class, 'shareOptions'])->name('classified.settings.share.options.list')->middleware(['can:Manage Ad Share Options']);
+            Route::post('share-option-update-status', [ClassifiedSettingController::class, 'shareOptionUpdateStatus'])->name('classified.settings.share.options.status.update')->middleware(['can:Manage Ad Share Options', 'demo']);
+
+            Route::post('update', [ClassifiedSettingController::class, 'updateSetting'])->name('classified.settings.update')->middleware(['can:Manage Classified Settings', 'demo']);
+        });
+        /**
+         * Classified Ads
+         */
+        Route::group(['prefix' => 'ads'], function () {
+            Route::get('/', [AdsController::class, 'adListing'])->name('classified.ads.list')->middleware('can:Show All Ads');
+            Route::get('/featured', [AdsController::class, 'featuredAdListing'])->name('classified.ads.list.featured')->middleware('can:Manage Featured Ads');
+            Route::get('/edit/{id}', [AdsController::class, 'editAd'])->name('classified.ads.edit');
+            Route::post('/update', [AdsController::class, 'updateAd'])->name('classified.ads.update')->middleware(['can:Edit All Ads', 'demo']);
+            Route::post('/delete', [AdsController::class, 'deleteAd'])->name('classified.ads.delete')->middleware(['can:Delete All Ads', 'demo']);
+
+            //Category module
+            Route::group(['prefix' => 'categories'], function () {
+                Route::get('/', [CategoryController::class, 'categories'])->name('classified.ads.categories.list')->middleware('can:Manage Categories');
+                Route::post('store', [CategoryController::class, 'categoryStore'])->name('classified.ads.categories.store')->middleware(['can:Create Categories', 'demo']);
+                Route::post('delete', [CategoryController::class, 'categoryDelete'])->name('classified.ads.categories.delete')->middleware(['can:Delete Categories', 'demo']);
+                Route::get('edit/{id}', [CategoryController::class, 'categoryEdit'])->name('classified.ads.categories.edit');
+                Route::post('update', [CategoryController::class, 'categoryUpdate'])->name('classified.ads.categories.update')->middleware(['can:Edit Categories', 'demo']);
+                Route::get('options', [CategoryController::class, 'CategoryOption'])->name('classified.ads.categories.options');
+            });
+
+            //Condition module
+            Route::group(['prefix' => 'condition'], function () {
+                Route::get('/', [ConditionController::class, 'conditions'])->name('classified.ads.condition.list')->middleware(['can:Manage Conditions']);
+                Route::post('store', [ConditionController::class, 'storeCondition'])->name('classified.ads.condition.store')->middleware(['can:Create Conditions', 'demo']);
+                Route::post('delete', [ConditionController::class, 'deleteCondition'])->name('classified.ads.condition.delete')->middleware(['can:Delete Conditions', 'demo']);
+                Route::get('edit/{id}', [ConditionController::class, 'editCondition'])->name('classified.ads.condition.edit');
+                Route::post('update', [ConditionController::class, 'updateCondition'])->name('classified.ads.condition.update')->middleware(['can:Edit Conditions', 'demo']);
+            });
+
+            //Tags module
+            Route::group(['prefix' => 'tag'], function () {
+                Route::get('/', [TagController::class, 'tags'])->name('classified.ads.tag.list')->middleware('can:Manage Tags');
+                Route::post('store', [TagController::class, 'storeTag'])->name('classified.ads.tag.store')->middleware(['can:Create Tags', 'demo']);
+                Route::post('delete', [TagController::class, 'deleteTag'])->name('classified.ads.tag.delete')->middleware(['can:Delete Tags', 'demo']);
+                Route::get('edit/{id}', [TagController::class, 'editTag'])->name('classified.ads.tag.edit');
+                Route::post('update', [TagController::class, 'updateTag'])->name('classified.ads.tag.update')->middleware(['can:Edit Tags', 'demo']);
+                Route::post('bulk-action', [TagController::class, 'tagBulkAction'])->name('classified.ads.tag.bulk.action')->middleware(['can:Manage Tags', 'demo']);
+                Route::get('options', [TagController::class, 'tagOption'])->name('classified.ads.tag.options');
+            });
+
+            //Custom fields module
+            Route::group(['prefix' => 'custom-field'], function () {
+                Route::get('/', [CustomFieldController::class, 'customFields'])->name('classified.ads.custom.field.list')->middleware(['can:Manage Custom Field']);
+                Route::post('store', [CustomFieldController::class, 'storeCustomField'])->name('classified.ads.custom.field.store')->middleware(['can:Create Custom Field', 'demo']);
+                Route::post('delete', [CustomFieldController::class, 'deleteCustomField'])->name('classified.ads.custom.field.delete')->middleware(['can:Delete Custom Field', 'demo']);
+                Route::get('edit/{id}', [CustomFieldController::class, 'editCustomField'])->name('classified.ads.custom.field.edit')->middleware(['can:Edit Custom Field']);
+                Route::post('update', [CustomFieldController::class, 'updateCustomField'])->name('classified.ads.custom.field.update')->middleware(['can:Edit Custom Field', 'demo']);
+                Route::post('assign-category', [CustomFieldController::class, 'assignCategory'])->name('classified.ads.custom.field.assign.category')->middleware('demo');
+                Route::post('bulk-action', [CustomFieldController::class, 'customFieldBulkAction'])->name('classified.ads.custom.field.bulk.action')->middleware(['can:Manage Custom Field', 'demo']);
+
+                Route::get('options/{id}', [CustomFieldController::class, 'customFieldOptions'])->name('classified.ads.custom.field.options');
+                Route::post('options/store', [CustomFieldController::class, 'customFieldOptionStore'])->name('classified.ads.custom.field.options.store')->middleware(['can:Manage Custom Field', 'demo']);
+                Route::post('options/delete', [CustomFieldController::class, 'customFieldOptionDelete'])->name('classified.ads.custom.field.options.delete')->middleware(['can:Manage Custom Field', 'demo']);
+                Route::get('options/edit/{id}', [CustomFieldController::class, 'customFieldOptionEdit'])->name('classified.ads.custom.field.options.edit');
+                Route::post('options/update', [CustomFieldController::class, 'customFieldOptionUpdate'])->name('classified.ads.custom.field.options.update')->middleware(['can:Manage Custom Field', 'demo']);
+                Route::post('options/bulk-action', [CustomFieldController::class, 'customFieldOptionBulkAction'])->name('classified.ads.custom.field.options.bulk.action')->middleware(['can:Manage Custom Field', 'demo']);
+            });
+        });
     });
 });
 

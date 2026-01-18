@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\ConditionRequest;
+use App\Repositories\ConditionRepository;
+
+class ConditionController extends Controller
+{
+    public function __construct(public ConditionRepository $condition_repository) {}
+
+    /**
+     * Will return all condition list
+     */
+    public function conditions(Request $request): View
+    {
+        $status = $request->has('status') && $request['status'] != null ? [$request['status']] : [config('settings.general_status.active'), config('settings.general_status.in_active')];
+        $conditions = $this->condition_repository->adsConditionList($request, $status);
+
+        return view('backend.modules.ads.condition.list', ['conditions' => $conditions]);
+    }
+    /**
+     * Will store condition
+     */
+    public function storeCondition(ConditionRequest $request): JsonResponse
+    {
+        $res = $this->condition_repository->storeNewCondition($request);
+
+        if ($res) {
+            return response()->json(
+                [
+                    'success' => true,
+                ]
+            );
+        }
+        return response()->json(
+            [
+                'success' => false,
+            ]
+        );
+    }
+    /**
+     * Will delete condition
+     */
+    public function deleteCondition(Request $request): RedirectResponse
+    {
+        $res = $this->condition_repository->deleteAdsCondition($request['id']);
+
+        if ($res) {
+            toastNotification('success', 'Condition deleted successfully', 'Success');
+            return to_route('classified.ads.condition.list');
+        } else {
+            toastNotification('error', 'Condition delete failed');
+            return redirect()->back();
+        }
+    }
+
+    /**
+     * Will redirect category edit page
+     */
+    public function editCondition($id): View
+    {
+        $condition = $this->condition_repository->conditionDetails($id);
+        return view('backend.modules.ads.condition.edit', ['condition' => $condition]);
+    }
+    /**
+     * Will update Condition
+     */
+    public function updateCondition(ConditionRequest $request): RedirectResponse
+    {
+        $res = $this->condition_repository->updateAdsCondition($request);
+        if ($res) {
+            toastNotification('success', 'Condition updated successfully', 'Success');
+        } else {
+            toastNotification('error', 'Condition update failed', 'Error');
+        }
+
+        return to_route('classified.ads.condition.edit', ['id' => $request['id'], 'lang' => $request['lang'] != null ? $request['lang'] : getDefaultLang()]);
+    }
+}
