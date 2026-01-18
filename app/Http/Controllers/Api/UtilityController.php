@@ -4,12 +4,17 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Core\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiController;
 use App\Models\SafetyTips;
 use App\Models\QuickSellTip;
 use App\Models\AdShareOption;
-use Plugin\ClassiLooksCore\Http\ApiResource\TipsCollection;
-use Plugin\ClassiLooksCore\Http\ApiResource\ShareOptionsCollection;
+use App\Http\ApiResource;
+
+\TipsCollection;
+
+use App\Http\ApiResource;
+
+\ShareOptionsCollection;
 
 class UtilityController extends ApiController
 {

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use App\Models\Ad;
-use Core\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiController;
 use App\Models\SavedAd;
 
 class DashboardController extends ApiController

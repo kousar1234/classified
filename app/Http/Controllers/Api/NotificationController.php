@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use Core\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Notifications\DatabaseNotification;
-use Plugin\ClassiLooksCore\Http\ApiResource\CustomerNotificationCollection;
+use App\Http\ApiResource;
+
+\CustomerNotificationCollection;
 
 class NotificationController extends ApiController
 {

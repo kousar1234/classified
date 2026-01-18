@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugin\ClassiLooksCore\Http\ApiResource;
+namespace App\Http\ApiResource;;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Resources\Json\ResourceCollection;

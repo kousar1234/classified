@@ -9,28 +9,52 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Ad;
 use App\Models\AdsTag;
 use App\Models\SavedAd;
-use Core\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiController;
 use App\Models\AdsCategory;
 use App\Models\AdsCondition;
 use App\Models\AdsCustomField;
 use App\Repositories\AdRepository;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdCollection;
+use App\Http\ApiResource;
+
+\AdCollection;
+
 use App\Http\Requests\AdPostingRequest;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdsTagCollection;
-use Plugin\ClassiLooksCore\Http\ApiResource\SingleAdResource;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdCategoryResource;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdCategoryCollection;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdsConditionCollection;
-use Plugin\ClassiLooksCore\Http\ApiResource\MegaCategoryCollection;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdsCustomFieldCollection;
-use Plugin\ClassiLooksCore\Http\ApiResource\CustomerEditableAdResource;
+use App\Http\ApiResource;
+
+\AdsTagCollection;
+
+use App\Http\ApiResource;
+
+\SingleAdResource;
+
+use App\Http\ApiResource;
+
+\AdCategoryResource;
+
+use App\Http\ApiResource;
+
+\AdCategoryCollection;
+
+use App\Http\ApiResource;
+
+\AdsConditionCollection;
+
+use App\Http\ApiResource;
+
+\MegaCategoryCollection;
+
+use App\Http\ApiResource;
+
+\AdsCustomFieldCollection;
+
+use App\Http\ApiResource;
+
+\CustomerEditableAdResource;
 
 class AdsController extends ApiController
 {
 
-    public function __construct(public AdRepository $adRepository)
-    {
-    }
+    public function __construct(public AdRepository $adRepository) {}
     /**
      * Will return categories list
      */

@@ -1,10 +1,12 @@
 <?php
 
-namespace Plugin\ClassiLooksCore\Http\ApiResource;
+namespace App\Http\ApiResource;;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdAdditionalInfoCollection;
+use App\Http\ApiResource;
+
+\AdAdditionalInfoCollection;
 
 class SingleAdResource extends JsonResource
 {

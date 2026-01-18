@@ -1,16 +1,16 @@
 <?php
 
-namespace Plugin\Location\Http\Controllers\Api;
+namespace App\Http\Controllers\Api;
 
-use Plugin\Location\Models\Country;
-use Core\Http\Controllers\Api\ApiController;
+use App\Models\Country;
+use App\Http\Controllers\Api\ApiController;
 use Illuminate\Http\Request;
-use Plugin\Location\Http\ApiResource\CityResource;
-use Plugin\Location\Http\ApiResource\CountryResource;
-use Plugin\Location\Http\ApiResource\SingleCityResource;
-use Plugin\Location\Http\ApiResource\StateResource;
-use Plugin\Location\Models\City;
-use Plugin\Location\Models\State;
+use App\Http\ApiResource\CityResource;
+use App\Http\ApiResource\CountryResource;
+use App\Http\ApiResource\SingleCityResource;
+use App\Http\ApiResource\StateResource;
+use App\Models\City;
+use App\Models\State;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LocationController extends ApiController
@@ -54,7 +54,7 @@ class LocationController extends ApiController
     /**
      * Will return city Details
      */
-     public function cityDetails(Request $request): JsonResource | SingleCityResource
+    public function cityDetails(Request $request): JsonResource | SingleCityResource
     {
         $city = City::with(['state'])
             ->where('id', $request['city_id'])

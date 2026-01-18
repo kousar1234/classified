@@ -1,9 +1,11 @@
 <?php
 
-namespace Plugin\ClassiLooksCore\Http\ApiResource;
+namespace App\Http\ApiResource;;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdsCustomFieldOptionCollection;
+use App\Http\ApiResource;
+
+\AdsCustomFieldOptionCollection;
 
 class AdsCustomFieldCollection extends ResourceCollection
 {

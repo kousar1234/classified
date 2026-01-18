@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugin\Location\Http\ApiResource;
+namespace App\Http\ApiResource;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 

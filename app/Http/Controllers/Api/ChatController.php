@@ -7,11 +7,16 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use App\Models\Ad;
 use App\Models\Chat;
-use Core\Http\Controllers\Api\ApiController;
+use App\Http\Controllers\Api\ApiController;
 use App\Models\ChatMessage;
-use Plugin\ClassiLooksCore\Http\ApiResource\ChatCollection;
+use App\Http\ApiResource;
+
+\ChatCollection;
+
 use Plugin\ClassiLooksCore\Notifications\NotificationHandler;
-use Plugin\ClassiLooksCore\Http\ApiResource\SingleChatResource;
+use App\Http\ApiResource;
+
+\SingleChatResource;
 
 class ChatController extends ApiController
 {

@@ -1,10 +1,12 @@
 <?php
 
-namespace Plugin\ClassiLooksCore\Http\ApiResource;
+namespace App\Http\ApiResource;;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Plugin\ClassiLooksCore\Http\ApiResource\ChatMessageCollection;
+use App\Http\ApiResource;
+
+\ChatMessageCollection;
 
 class SingleChatResource extends JsonResource
 {

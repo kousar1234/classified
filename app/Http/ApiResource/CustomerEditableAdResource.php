@@ -1,10 +1,13 @@
 <?php
 
-namespace Plugin\ClassiLooksCore\Http\ApiResource;
+namespace App\Http\ApiResource;;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\AdsCustomField;
-use Plugin\ClassiLooksCore\Http\ApiResource\AdsCustomFieldOptionCollection;
+use App\Http\ApiResource;
+
+\AdsCustomFieldOptionCollection;
+
 use App\Models\AdsCustomFieldOption;
 
 class CustomerEditableAdResource extends JsonResource
@@ -57,13 +60,13 @@ class CustomerEditableAdResource extends JsonResource
             $field = AdsCustomField::find($item['flied_id']);
 
             if ($field != null) {
-                $temp=[];
+                $temp = [];
                 $temp['id'] = $field->id;
                 $temp['title'] = $field->translation('title', session()->get('api_locale'));
                 $temp['is_required'] = $field->is_required;
                 $temp['type'] = $field->type;
                 $temp['options'] = new AdsCustomFieldOptionCollection($field->options);
-                
+
                 if ($field->type == config('settings.input_types.file') && $item['value'] != null) {
                     $temp['value']['image_id'] = $item['value'];
                     $temp['value']['image'] = getFilePath($item['value']);
@@ -79,7 +82,7 @@ class CustomerEditableAdResource extends JsonResource
                 } else {
                     $temp['value'] = $item['value'];
                 }
-               
+
 
                 array_push($final_custom_filed_options, $temp);
             }
