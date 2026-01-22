@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\AdsTag;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Http\Requests\TagRequest;
 use Illuminate\Http\JsonResponse;
+use App\Repository\TagRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\Models\AdsTag;
-use App\Http\Requests\TagRequest;
-use App\Repositories\TagRepository;
 use App\Http\Requests\TagUpdateRequest;
 
 class TagController extends Controller

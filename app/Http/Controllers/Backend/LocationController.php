@@ -10,7 +10,7 @@ use App\Http\Requests\StateRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CountryRequest;
 use Illuminate\Http\RedirectResponse;
-use App\Repositories\LocationRepository;
+use App\Repository\LocationRepository;
 
 class LocationController extends Controller
 {

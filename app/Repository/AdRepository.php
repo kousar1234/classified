@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repository;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -125,7 +125,7 @@ class AdRepository
             return [
                 'success' => false,
             ];
-        }catch (\Error $e) {
+        } catch (\Error $e) {
             DB::rollBack();
             dd($e);
             return [

@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\CustomFieldRequest;
-use App\Repositories\CustomFieldRepository;
+use App\Repository\CustomFieldRepository;
 use App\Http\Requests\CustomFieldOptionRequest;
 
 class CustomFieldController extends Controller

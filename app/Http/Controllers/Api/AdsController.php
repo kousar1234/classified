@@ -13,7 +13,7 @@ use App\Http\Controllers\Api\ApiController;
 use App\Models\AdsCategory;
 use App\Models\AdsCondition;
 use App\Models\AdsCustomField;
-use App\Repositories\AdRepository;
+use App\Repository\AdRepository;
 use App\Http\ApiResource;
 
 \AdCollection;

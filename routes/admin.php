@@ -269,7 +269,7 @@ Route::prefix('admin')->group(function () {
                 Route::get('/', [TagController::class, 'tags'])->name('classified.ads.tag.list');
                 Route::post('store', [TagController::class, 'storeTag'])->name('classified.ads.tag.store');
                 Route::post('delete', [TagController::class, 'deleteTag'])->name('classified.ads.tag.delete');
-                Route::get('edit/{id}', [TagController::class, 'editTag'])->name('classified.ads.tag.edit');
+                Route::post('edit', [TagController::class, 'editTag'])->name('classified.ads.tag.edit');
                 Route::post('update', [TagController::class, 'updateTag'])->name('classified.ads.tag.update');
                 Route::post('bulk-action', [TagController::class, 'tagBulkAction'])->name('classified.ads.tag.bulk.action');
                 Route::get('options', [TagController::class, 'tagOption'])->name('classified.ads.tag.options');

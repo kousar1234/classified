@@ -6,8 +6,8 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\Repositories\AdRepository;
-use App\Repositories\ConditionRepository;
+use App\Repository\AdRepository;
+use App\Repository\ConditionRepository;
 use App\Http\Requests\AdminAdUpdateRequest;
 
 class AdsController extends Controller

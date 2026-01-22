@@ -17,11 +17,4 @@ class TagRequest extends FormRequest
             'tags' => 'required|max:250',
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'tags.required' => translate('Tag field is required'),
-        ];
-    }
 }
