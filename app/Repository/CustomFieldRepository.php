@@ -80,20 +80,14 @@ class CustomFieldRepository
     {
         try {
             DB::beginTransaction();
-            if ($request['lang'] != null && $request['lang'] != getDefaultLang()) {
-                $field_translation = AdsCustomFieldTranslation::firstOrNew(['custom_field_id' => $request['id'], 'lang' => $request['lang']]);
-                $field_translation->title = $request['title'];
-                $field_translation->save();
-            } else {
-                $field = AdsCustomField::findOrFail($request['id']);
-                $field->title = xss_clean($request['title']);
-                $field->type = $request['type'];
-                $field->is_required = $request->has('is_required') ? config('settings.general_status.active') : config('settings.general_status.in_active');
-                $field->is_filterable = $request->has('is_filterable') ? config('settings.general_status.active') : config('settings.general_status.in_active');
-                $field->default_value = xss_clean($request['default_value']);
-                $field->status = $request['status'];
-                $field->save();
-            }
+            $field = AdsCustomField::findOrFail($request['id']);
+            $field->title = xss_clean($request['title']);
+            $field->type = $request['type'];
+            $field->is_required = $request->has('is_required') ? config('settings.general_status.active') : config('settings.general_status.in_active');
+            $field->is_filterable = $request->has('is_filterable') ? config('settings.general_status.active') : config('settings.general_status.in_active');
+            $field->default_value = xss_clean($request['default_value']);
+            $field->status = $request['status'];
+            $field->save();
             DB::commit();
             return true;
         } catch (\Exception $e) {

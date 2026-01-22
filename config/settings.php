@@ -67,4 +67,14 @@ return [
         'fleet' => 'fleet',
         'brochures' => 'brochures',
     ],
+    'input_types' => [
+        'text' => 1,
+        'number' => 2,
+        'select' => 3,
+        'text_area' => 4,
+        'checkbox' => 5,
+        'radio' => 6,
+        'file' => 7,
+        'date' => 8,
+    ],
 ];

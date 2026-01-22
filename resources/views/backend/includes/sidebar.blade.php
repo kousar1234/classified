@@ -129,9 +129,9 @@
                 @endcan
                 <!--End Pages Module-->
                 <li
-                    class="nav-item {{ Request::routeIs(['classified.ads.tag.list', 'classified.ads.condition.list', 'classified.ads.categories.list']) ? 'menu-open ' : '' }}">
+                    class="nav-item {{ Request::routeIs(['classified.ads.custom.field.options', 'classified.ads.custom.field.list', 'classified.ads.tag.list', 'classified.ads.condition.list', 'classified.ads.categories.list']) ? 'menu-open ' : '' }}">
                     <a href="#"
-                        class="nav-link {{ Request::routeIs(['classified.ads.tag.list', 'classified.ads.condition.list', 'classified.ads.categories.list']) ? 'active ' : '' }}">
+                        class="nav-link {{ Request::routeIs(['classified.ads.custom.field.options', 'classified.ads.custom.field.list', 'classified.ads.tag.list', 'classified.ads.condition.list', 'classified.ads.categories.list']) ? 'active ' : '' }}">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                             {{ translation('Listings') }}
@@ -167,8 +167,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.page.create') }}"
-                                class="nav-link {{ Request::routeIs(['admin.page.create']) ? 'active' : '' }}">
+                            <a href="{{ route('classified.ads.custom.field.list') }}"
+                                class="nav-link {{ Request::routeIs(['classified.ads.custom.field.list']) ? 'active' : '' }}">
                                 <i class="fa fa-minus nav-icon"></i>
                                 <p>
                                     {{ translation('Custom Fields') }}

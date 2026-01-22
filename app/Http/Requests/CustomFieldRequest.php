@@ -21,12 +21,4 @@ class CustomFieldRequest extends FormRequest
             'default_value' => 'nullable|max:250',
         ];
     }
-
-
-    public function messages()
-    {
-        return [
-            'title.required' => translate('Title is required'),
-        ];
-    }
 }

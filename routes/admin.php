@@ -277,20 +277,20 @@ Route::prefix('admin')->group(function () {
 
             //Custom fields module
             Route::group(['prefix' => 'custom-field'], function () {
-                Route::get('/', [CustomFieldController::class, 'customFields'])->name('classified.ads.custom.field.list')->middleware(['can:Manage Custom Field']);
-                Route::post('store', [CustomFieldController::class, 'storeCustomField'])->name('classified.ads.custom.field.store')->middleware(['can:Create Custom Field', 'demo']);
-                Route::post('delete', [CustomFieldController::class, 'deleteCustomField'])->name('classified.ads.custom.field.delete')->middleware(['can:Delete Custom Field', 'demo']);
-                Route::get('edit/{id}', [CustomFieldController::class, 'editCustomField'])->name('classified.ads.custom.field.edit')->middleware(['can:Edit Custom Field']);
-                Route::post('update', [CustomFieldController::class, 'updateCustomField'])->name('classified.ads.custom.field.update')->middleware(['can:Edit Custom Field', 'demo']);
-                Route::post('assign-category', [CustomFieldController::class, 'assignCategory'])->name('classified.ads.custom.field.assign.category')->middleware('demo');
-                Route::post('bulk-action', [CustomFieldController::class, 'customFieldBulkAction'])->name('classified.ads.custom.field.bulk.action')->middleware(['can:Manage Custom Field', 'demo']);
+                Route::get('/', [CustomFieldController::class, 'customFields'])->name('classified.ads.custom.field.list');
+                Route::post('store', [CustomFieldController::class, 'storeCustomField'])->name('classified.ads.custom.field.store');
+                Route::post('delete', [CustomFieldController::class, 'deleteCustomField'])->name('classified.ads.custom.field.delete');
+                Route::post('edit}', [CustomFieldController::class, 'editCustomField'])->name('classified.ads.custom.field.edit');
+                Route::post('update', [CustomFieldController::class, 'updateCustomField'])->name('classified.ads.custom.field.update');
+                Route::post('assign-category', [CustomFieldController::class, 'assignCategory'])->name('classified.ads.custom.field.assign.category');
+                Route::post('bulk-action', [CustomFieldController::class, 'customFieldBulkAction'])->name('classified.ads.custom.field.bulk.action');
 
                 Route::get('options/{id}', [CustomFieldController::class, 'customFieldOptions'])->name('classified.ads.custom.field.options');
-                Route::post('options/store', [CustomFieldController::class, 'customFieldOptionStore'])->name('classified.ads.custom.field.options.store')->middleware(['can:Manage Custom Field', 'demo']);
-                Route::post('options/delete', [CustomFieldController::class, 'customFieldOptionDelete'])->name('classified.ads.custom.field.options.delete')->middleware(['can:Manage Custom Field', 'demo']);
-                Route::get('options/edit/{id}', [CustomFieldController::class, 'customFieldOptionEdit'])->name('classified.ads.custom.field.options.edit');
-                Route::post('options/update', [CustomFieldController::class, 'customFieldOptionUpdate'])->name('classified.ads.custom.field.options.update')->middleware(['can:Manage Custom Field', 'demo']);
-                Route::post('options/bulk-action', [CustomFieldController::class, 'customFieldOptionBulkAction'])->name('classified.ads.custom.field.options.bulk.action')->middleware(['can:Manage Custom Field', 'demo']);
+                Route::post('options/store', [CustomFieldController::class, 'customFieldOptionStore'])->name('classified.ads.custom.field.options.store');
+                Route::post('options/delete', [CustomFieldController::class, 'customFieldOptionDelete'])->name('classified.ads.custom.field.options.delete');
+                Route::post('options/edit', [CustomFieldController::class, 'customFieldOptionEdit'])->name('classified.ads.custom.field.options.edit');
+                Route::post('options/update', [CustomFieldController::class, 'customFieldOptionUpdate'])->name('classified.ads.custom.field.options.update');
+                Route::post('options/bulk-action', [CustomFieldController::class, 'customFieldOptionBulkAction'])->name('classified.ads.custom.field.options.bulk.action');
             });
         });
     });

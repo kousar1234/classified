@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\CustomFieldRequest;
 use App\Repository\CustomFieldRepository;
 use App\Http\Requests\CustomFieldOptionRequest;
+use BeyondCode\QueryDetector\Outputs\Json;
 
 class CustomFieldController extends Controller
 {
@@ -59,26 +60,32 @@ class CustomFieldController extends Controller
     /**
      * Will redirect edit page
      */
-    public function editCustomField($id): View
+    public function editCustomField(Request $request): JsonResponse
     {
-        $field = $this->customFieldRepository->fieldDetails($id);
-
-        return view('backend.modules.ads.custom-field.edit', ['field' => $field]);
+        $field = $this->customFieldRepository->fieldDetails($request['id']);
+        return response()->json([
+            'success' => true,
+            'html' => view('backend.modules.ads.custom-field.edit', ['field' => $field])->render(),
+        ]);
     }
     /**
      * Will update custom field
      */
-    public function updateCustomField(CustomFieldRequest $request): RedirectResponse
+    public function updateCustomField(CustomFieldRequest $request): JsonResponse
     {
         $res = $this->customFieldRepository->updateAField($request);
 
         if ($res) {
-            toastNotification('success', 'Custom field updated successfully', 'Success');
-            return to_route('classified.ads.custom.field.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
-        } else {
-            toastNotification('error', 'Field updated failed', 'Error');
-            return redirect()->back();
+            return response()->json([
+                'success' => true,
+                'message' => 'Custom field updated successfully',
+            ]);
         }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Field update failed',
+        ]);
     }
     /**
      * Will apply bulk action

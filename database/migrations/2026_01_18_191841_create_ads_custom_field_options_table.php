@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('ads_custom_field_options', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('field_id')->nullable()->constrained('ads_custom_fields')->onDelete('cascade')->onUpdate('cascade');
+            $table->string('value', 250)->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
