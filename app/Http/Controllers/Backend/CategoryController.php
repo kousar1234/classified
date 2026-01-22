@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Models\AdsCategory;
 use App\Repository\CategoryRepository;
 use App\Http\Requests\AdsCategoryRequest;
+use BeyondCode\QueryDetector\Outputs\Json;
 
 class CategoryController extends Controller
 {
@@ -57,25 +58,34 @@ class CategoryController extends Controller
     /**
      * Will redirect category edit page
      */
-    public function categoryEdit($id): View
+    public function categoryEdit(Request $request): JsonResponse|View
     {
+        $id = $request['id'];
         $category = $this->category_repository->categoryDetails($id);
-        return view('backend.modules.ads.categories.edit', ['category' => $category]);
+
+        return response()->json([
+            'success' => true,
+            'html' => view('backend.modules.ads.categories.edit', ['category' => $category])->render()
+        ]);
     }
 
     /**
      * Will category update
      */
-    public function categoryUpdate(AdsCategoryRequest $request): RedirectResponse
+    public function categoryUpdate(AdsCategoryRequest $request): JsonResponse
     {
         $res = $this->category_repository->updateCategory($request);
         if ($res) {
-            toastNotification('success', 'Category updated successfully', 'Success');
+            return response()->json([
+                'success' => true,
+                'message' => translation('Category updated successfully'),
+            ]);
         } else {
-            toastNotification('error', 'Category update failed', 'Error');
+            return response()->json([
+                'success' => false,
+                'message' => translation('Category update failed'),
+            ]);
         }
-
-        return to_route('classified.ads.categories.edit', ['id' => $request['id'], 'lang' => $request['lang'] != null ? $request['lang'] : getDefaultLang()]);
     }
 
     /**
@@ -86,7 +96,7 @@ class CategoryController extends Controller
         $query = AdsCategory::with(['child' => function ($q) {
             $q->where('status', config('settings.general_status.active'))
                 ->select('id', 'title', 'parent');
-        }, 'category_translations'])
+        }])
             ->select('id', 'title', 'parent')
             ->where('status', config('settings.general_status.active'));
 
@@ -101,19 +111,19 @@ class CategoryController extends Controller
 
         foreach ($categories->items() as $category) {
             $item['id'] = $category->id;
-            $item['text'] = $category->translation('title', getLocale());
+            $item['text'] = $category->title;
             array_push($output, $item);
 
             if ($category->child != null) {
                 foreach ($category->child as $child) {
                     $sub_item['id'] = $child->id;
-                    $sub_item['text'] = '-- ' . $child->translation('title', getLocale());
+                    $sub_item['text'] = '-- ' . $child->title;
                     array_push($output, $sub_item);
 
                     if ($child->child != null) {
                         foreach ($child->child as $pro_child) {
                             $sub_sub_item['id'] = $pro_child->id;
-                            $sub_sub_item['text'] = '--- ' . $pro_child->translation('title', getLocale());
+                            $sub_sub_item['text'] = '--- ' . $pro_child->title;
                             array_push($output, $sub_sub_item);
                         }
                     }

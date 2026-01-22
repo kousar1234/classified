@@ -22,9 +22,18 @@
      *Initinalization media Manager
      * 
      **/
+
     function initMediaManager() {
         "use strict";
+
         let file_limit = 0
+        let $dropzoneElement = $("#media-upload");
+
+        // Destroy existing instance if present
+        if ($dropzoneElement[0] && $dropzoneElement[0].dropzone) {
+            $dropzoneElement[0].dropzone.destroy();
+        }
+
         Dropzone.autoDiscover = false;
         $("#media-upload").dropzone({
             url: '{{ route('upload.media.file') }}',
@@ -240,9 +249,9 @@
 
                     current_page = response.currentPage + 1;
                     if (!response.has_more_page) {
-                        if(!$(".media-load-more-btn").hasClass(".d-none")) {
+                        if (!$(".media-load-more-btn").hasClass(".d-none")) {
                             $(".media-load-more-btn").addClass('d-none');
-                            
+
                         }
                     }
                     if (response.has_more_page) {

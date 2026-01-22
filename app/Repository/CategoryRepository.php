@@ -80,20 +80,13 @@ class CategoryRepository
     {
         try {
             DB::beginTransaction();
-            if ($request['lang'] != null && $request['lang'] != getDefaultLang()) {
-                $category_translation = AdsCategoryTranslation::firstOrNew(['category_id' => $request['id'], 'lang' => $request['lang']]);
-                $category_translation->title = $request['title'];
-                $category_translation->save();
-            } else {
-                $category = AdsCategory::findOrFail($request['id']);
-                $category->title = $request['title'];
-                $category->permalink = $request['permalink'];
-                $category->icon = $request['icon'];
-                $category->image = $request['image'];
-                $category->parent = $request['parent'];
-                $category->status = $request['status'];
-                $category->save();
-            }
+            $category = AdsCategory::findOrFail($request['id']);
+            $category->title = $request['title'];
+            $category->icon = $request['icon_edit'];
+            $category->image = $request['image_edit'];
+            $category->parent = $request['parent'];
+            $category->status = $request['status'];
+            $category->save();
             DB::commit();
             return true;
         } catch (\Exception $e) {

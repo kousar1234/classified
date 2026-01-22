@@ -24,8 +24,6 @@ class AdsCategoryRequest extends FormRequest
 
         return [
             'title.required' => translation('Title is required'),
-            'permalink.required' => translation('Permalink is required'),
-            'permalink.unique' => translation('Permalink is already exists'),
             'parent.exists' => translation('Selected parent does not exists'),
 
         ];

@@ -18,6 +18,8 @@
 @endsection
 @section('page-style')
     <link rel="stylesheet" href="{{ asset('/public/web-assets/backend/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('/public/web-assets/backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 @endsection
 @section('page-content')
     <x-admin-page-header title="Listing Categories" :links="$links" />
@@ -87,10 +89,10 @@
                                                         data-toggle="dropdown" aria-expanded="false">
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
-                                                        <a href="{{ route('classified.ads.categories.edit', $category->id) }}"
-                                                            class="dropdown-item" data-id="{{ $category->id }}">
+                                                        <button class="dropdown-item edit-item"
+                                                            data-id="{{ $category->id }}">
                                                             {{ translation('Edit') }}
-                                                        </a>
+                                                        </button>
                                                         <div class="dropdown-divider"></div>
                                                         <button class="dropdown-item delete-item"
                                                             data-id="{{ $category->id }}">
@@ -187,10 +189,10 @@
         <!--End New  Modal-->
         <!-- Edit Modal-->
         <div class="modal fade" id="edit-item-modal">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">{{ translation('Notice Information') }}</h5>
+                        <h5 class="modal-title">{{ translation('Category Information') }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -214,7 +216,7 @@
                     </div>
                     <div class="modal-body text-center">
                         <h4 class="mt-1 h6 my-2">{{ translation('Are you sure to delete ?') }}</h4>
-                        <form method="POST" action="#">
+                        <form method="POST" action="{{ route('classified.ads.categories.delete') }}">
                             @csrf
                             <input type="hidden" id="delete-item-id" name="id">
                             <button type="button" class="btn mt-2 btn-danger"
@@ -234,29 +236,8 @@
         (function($) {
             "use strict";
             initMediaManager();
-            /**
-             *  Parent Select
-             * 
-             */
-            $('.parent-options').select2({
-                theme: "classic",
-                placeholder: '{{ translation('Select parent category') }}',
-                closeOnSelect: true,
-                width: '100%',
-                ajax: {
-                    url: '{{ route('classified.ads.categories.options') }}',
-                    dataType: 'json',
-                    method: "GET",
-                    delay: 250,
-                    data: function(params) {
-                        return {
-                            term: params.term || '',
-                            page: params.page || 1
-                        }
-                    },
-                    cache: true
-                }
-            });
+            initParentSelect();
+
             //Create new 
             $('#new-category-form').submit(function(e) {
                 e.preventDefault();
@@ -298,6 +279,75 @@
                     }
                 });
             });
+
+            //Visible user edit modal
+            $('.edit-item').on('click', function(e) {
+                e.preventDefault();
+                let category_id = $(this).data('id');
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    type: "POST",
+                    url: '{{ route('classified.ads.categories.edit') }}',
+                    data: {
+                        id: category_id
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $('.item-edit-content').html(response.html);
+                            $('#edit-item-modal').modal('show');
+                            initParentSelect();
+                        } else {
+                            toastr.error('Category fetch failed', 'Error')
+                        }
+                    },
+                    error: function(response) {
+                        toastr.error('Category fetch failed', 'Error')
+                    }
+                });
+            });
+
+
+            //update category
+            $(document).on('submit', '#editForm', function(e) {
+                e.preventDefault();
+                $(document).find(".invalid-input").remove();
+                $(document).find(".form-control").removeClass('is-invalid');
+                var formData = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    data: formData,
+                    url: '{{ route('classified.ads.categories.update') }}',
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success('Category updated successfully', 'Success');
+                            location.reload();
+                        } else {
+                            toastr.error(response.message, 'Error');
+                        }
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            $.each(response.responseJSON.errors, function(field_name,
+                                error) {
+                                $(document).find('[name=' + field_name + ']')
+                                    .addClass('is-invalid');
+                                $(document).find('[name=' + field_name + ']')
+                                    .after(
+                                        '<div class="error text-danger mb-0 invalid-input">' +
+                                        error + '</div>');
+                            })
+                        } else {
+                            toastr.error('Category update failed', 'Error')
+                        }
+                    }
+                });
+            });
+
+
             //Visible user delete modal
             $('.delete-item').on('click', function(e) {
                 e.preventDefault();
@@ -305,6 +355,28 @@
                 $('#delete-item-id').val(user_id);
                 $('#user-delete-modal').modal('show');
             });
+
+            function initParentSelect() {
+                $('.parent-options').select2({
+                    theme: "bootstrap4",
+                    placeholder: '{{ translation('Select parent category') }}',
+                    closeOnSelect: true,
+                    width: '100%',
+                    ajax: {
+                        url: '{{ route('classified.ads.categories.options') }}',
+                        dataType: 'json',
+                        method: "GET",
+                        delay: 250,
+                        data: function(params) {
+                            return {
+                                term: params.term || '',
+                                page: params.page || 1
+                            }
+                        },
+                        cache: true
+                    }
+                });
+            }
         })(jQuery);
     </script>
 @endsection
