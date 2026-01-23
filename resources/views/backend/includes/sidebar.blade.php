@@ -129,9 +129,9 @@
                 @endcan
                 <!--End Pages Module-->
                 <li
-                    class="nav-item {{ Request::routeIs(['classified.ads.custom.field.options', 'classified.ads.custom.field.list', 'classified.ads.tag.list', 'classified.ads.condition.list', 'classified.ads.categories.list']) ? 'menu-open ' : '' }}">
+                    class="nav-item {{ Request::routeIs(['classified.ads.list.featured', 'classified.ads.list', 'classified.ads.custom.field.options', 'classified.ads.custom.field.list', 'classified.ads.tag.list', 'classified.ads.condition.list', 'classified.ads.categories.list']) ? 'menu-open ' : '' }}">
                     <a href="#"
-                        class="nav-link {{ Request::routeIs(['classified.ads.custom.field.options', 'classified.ads.custom.field.list', 'classified.ads.tag.list', 'classified.ads.condition.list', 'classified.ads.categories.list']) ? 'active ' : '' }}">
+                        class="nav-link {{ Request::routeIs(['classified.ads.list.featured', 'classified.ads.list', 'classified.ads.custom.field.options', 'classified.ads.custom.field.list', 'classified.ads.tag.list', 'classified.ads.condition.list', 'classified.ads.categories.list']) ? 'active ' : '' }}">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
                             {{ translation('Listings') }}
@@ -140,8 +140,8 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('admin.page.list') }}"
-                                class="nav-link {{ Request::routeIs(['admin.page.list']) ? 'active' : '' }}">
+                            <a href="{{ route('classified.ads.list') }}"
+                                class="nav-link {{ Request::routeIs(['classified.ads.list']) ? 'active' : '' }}">
                                 <i class="fa fa-minus nav-icon"></i>
                                 <p>
                                     {{ translation('All Listing') }}
@@ -149,8 +149,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('admin.page.list') }}"
-                                class="nav-link {{ Request::routeIs(['admin.page.list']) ? 'active' : '' }}">
+                            <a href="{{ route('classified.ads.list.featured') }}"
+                                class="nav-link {{ Request::routeIs(['classified.ads.list.featured']) ? 'active' : '' }}">
                                 <i class="fa fa-minus nav-icon"></i>
                                 <p>
                                     {{ translation('Featured Listing') }}

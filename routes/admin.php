@@ -238,12 +238,12 @@ Route::prefix('admin')->group(function () {
         /**
          * Classified Ads
          */
-        Route::group(['prefix' => 'ads'], function () {
-            Route::get('/', [AdsController::class, 'adListing'])->name('classified.ads.list')->middleware('can:Show All Ads');
-            Route::get('/featured', [AdsController::class, 'featuredAdListing'])->name('classified.ads.list.featured')->middleware('can:Manage Featured Ads');
+        Route::group(['prefix' => 'listing'], function () {
+            Route::get('/', [AdsController::class, 'adListing'])->name('classified.ads.list');
+            Route::get('/featured', [AdsController::class, 'featuredAdListing'])->name('classified.ads.list.featured');
             Route::get('/edit/{id}', [AdsController::class, 'editAd'])->name('classified.ads.edit');
-            Route::post('/update', [AdsController::class, 'updateAd'])->name('classified.ads.update')->middleware(['can:Edit All Ads', 'demo']);
-            Route::post('/delete', [AdsController::class, 'deleteAd'])->name('classified.ads.delete')->middleware(['can:Delete All Ads', 'demo']);
+            Route::post('/update', [AdsController::class, 'updateAd'])->name('classified.ads.update');
+            Route::post('/delete', [AdsController::class, 'deleteAd'])->name('classified.ads.delete');
 
             //Category module
             Route::group(['prefix' => 'categories'], function () {

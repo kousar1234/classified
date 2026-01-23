@@ -169,25 +169,33 @@ class CustomFieldController extends Controller
     /**
      * Will redirect option edit page
      */
-    public function customFieldOptionEdit($id): View
+    public function customFieldOptionEdit(Request $request): JsonResponse|View
     {
-        $option = $this->customFieldRepository->optionDetails($id);
+        $option = $this->customFieldRepository->optionDetails($request['id']);
 
-        return view('backend.modules.ads.custom-field.option_edit', ['option' => $option]);
+        return response()->json([
+            'success' => true,
+            'html' => view('backend.modules.ads.custom-field.option_edit', ['option' => $option])->render(),
+        ]);
     }
     /**
      * Will update option
      */
-    public function customFieldOptionUpdate(CustomFieldOptionRequest $request): RedirectResponse
+    public function customFieldOptionUpdate(CustomFieldOptionRequest $request): JsonResponse
     {
         $res = $this->customFieldRepository->updateCustomFieldOption($request);
 
         if ($res) {
-            toastNotification('success', 'Option Updated Successfully', 'Success');
-        } else {
-            toastNotification('error', 'Option Update Failed', 'Error');
+            return response()->json([
+                'success' => true,
+                'message' => 'Option updated successfully',
+            ]);
         }
-        return to_route('classified.ads.custom.field.options.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Option update failed',
+        ]);
     }
     /**
      * Will apply bulk action

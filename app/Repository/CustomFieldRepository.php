@@ -144,8 +144,7 @@ class CustomFieldRepository
      */
     public function fieldOptions($field, $request, $status = [1, 2])
     {
-        $query = AdsCustomFieldOption::with(['option_translations'])
-            ->where('field_id', $field);
+        $query = AdsCustomFieldOption::with('field')->where('field_id', $field);
 
         if ($request->has('search') && $request['search'] != null) {
             $query = $query->where('value', 'like', '%' . $request['search'] . '%');
@@ -207,16 +206,10 @@ class CustomFieldRepository
     {
         try {
             DB::beginTransaction();
-            if ($request['lang'] != null && $request['lang'] != getDefaultLang()) {
-                $option_translation = AdsCustomFieldOptionTranslation::firstOrNew(['option_id' => $request['id'], 'lang' => $request['lang']]);
-                $option_translation->value = $request['value'];
-                $option_translation->save();
-            } else {
-                $option = AdsCustomFieldOption::findOrFail($request['id']);
-                $option->value = xss_clean($request['value']);
-                $option->status = $request['status'];
-                $option->save();
-            }
+            $option = AdsCustomFieldOption::findOrFail($request['id']);
+            $option->value = xss_clean($request['value']);
+            $option->status = $request['status'];
+            $option->save();
             DB::commit();
             return true;
         } catch (\Exception $e) {

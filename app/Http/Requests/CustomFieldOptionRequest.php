@@ -18,11 +18,4 @@ class CustomFieldOptionRequest extends FormRequest
             'value' => 'required|max:250'
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'value.required' => translate('Value is required'),
-        ];
-    }
 }

@@ -66,15 +66,13 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                @if (auth()->user()->can('Manage Custom Field'))
-                                                    @if ($field->has_options() == config('settings.general_status.active'))
-                                                        <a
-                                                            href="{{ route('classified.ads.custom.field.options', ['id' => $field->id]) }}">
-                                                            <i class="icofont-ui-settings"></i>
-                                                            {{ translation('Options') }}</a>
-                                                    @else
-                                                        -
-                                                    @endif
+                                                @if ($field->has_options() == config('settings.general_status.active'))
+                                                    <a
+                                                        href="{{ route('classified.ads.custom.field.options', ['id' => $field->id]) }}">
+                                                        <i class="icofont-ui-settings"></i>
+                                                        {{ translation('Options') }}</a>
+                                                @else
+                                                    -
                                                 @endif
                                             </td>
                                             <td>
@@ -108,6 +106,12 @@
                                                         data-toggle="dropdown" aria-expanded="false">
                                                     </button>
                                                     <div class="dropdown-menu" role="menu">
+                                                        @if ($field->has_options() == config('settings.general_status.active'))
+                                                            <a class="dropdown-item edit-item"
+                                                                href="{{ route('classified.ads.custom.field.options', ['id' => $field->id]) }}">
+                                                                {{ translation('Options') }}</a>
+                                                            <div class="dropdown-divider"></div>
+                                                        @endif
                                                         <button class="dropdown-item edit-item"
                                                             data-id="{{ $field->id }}">
                                                             {{ translation('Edit') }}
