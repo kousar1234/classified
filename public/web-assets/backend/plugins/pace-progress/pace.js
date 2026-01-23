@@ -286,7 +286,7 @@
         return false;
       }
       el = this.getElement();
-      transform = "translate3d(" + this.progress + "%, 0, 0)";
+      transform = "translation3d(" + this.progress + "%, 0, 0)";
       ref1 = ['webkitTransform', 'msTransform', 'transform'];
       for (l = 0, len1 = ref1.length; l < len1; l++) {
         key = ref1[l];

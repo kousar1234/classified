@@ -290,7 +290,7 @@ class AdsController extends ApiController
             if ($ad != null) {
                 return response()->json([
                     'success' => false,
-                    'message' => translate('Already saved this add', session()->get('api_locale'))
+                    'message' => translation('Already saved this add', session()->get('api_locale'))
                 ]);
             } else {
                 $new_ad = new SavedAd();
@@ -299,13 +299,13 @@ class AdsController extends ApiController
                 $new_ad->save();
                 return response()->json([
                     'success' => true,
-                    'message' => translate('Ad saved successfully', session()->get('api_locale'))
+                    'message' => translation('Ad saved successfully', session()->get('api_locale'))
                 ]);
             }
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => translate('Ad saving failed', session()->get('api_locale'))
+                'message' => translation('Ad saving failed', session()->get('api_locale'))
             ]);
         }
     }
@@ -337,18 +337,18 @@ class AdsController extends ApiController
                 $ad->delete();
                 return response()->json([
                     'success' => true,
-                    'message' => translate('Ad remove successfully', session()->get('api_locale'))
+                    'message' => translation('Ad remove successfully', session()->get('api_locale'))
                 ]);
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => translate('Ad removing failed', session()->get('api_locale'))
+                    'message' => translation('Ad removing failed', session()->get('api_locale'))
                 ]);
             }
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => translate('Ad removing failed', session()->get('api_locale'))
+                'message' => translation('Ad removing failed', session()->get('api_locale'))
             ]);
         }
     }
@@ -365,18 +365,18 @@ class AdsController extends ApiController
                 $ad->delete();
                 return response()->json([
                     'success' => true,
-                    'message' => translate('Ad deleted successfully', session()->get('api_locale'))
+                    'message' => translation('Ad deleted successfully', session()->get('api_locale'))
                 ]);
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => translate('Ad deleting failed', session()->get('api_locale'))
+                    'message' => translation('Ad deleting failed', session()->get('api_locale'))
                 ]);
             }
         } catch (\Exception $e) {
             return response()->json([
                 'success' => false,
-                'message' => translate('Ad deleting failed', session()->get('api_locale'))
+                'message' => translation('Ad deleting failed', session()->get('api_locale'))
             ]);
         }
     }

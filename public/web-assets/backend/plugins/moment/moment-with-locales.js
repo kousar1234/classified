@@ -3154,7 +3154,7 @@
         // Because of dateAddRemove treats 24 hours as different from a
         // day when working around DST, we need to store them separately
         this._days = +days + weeks * 7;
-        // It is impossible to translate months into days without knowing
+        // It is impossible to translation months into days without knowing
         // which months you are are talking about, so we have to store
         // it separately.
         this._months = +months + quarters * 3 + years * 12;
@@ -7371,7 +7371,7 @@
 
     //! moment.js locale configuration
 
-    function translate(number, withoutSuffix, key) {
+    function translation(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
             case 'ss':
@@ -7494,17 +7494,17 @@
             future: 'za %s',
             past: 'prije %s',
             s: 'par sekundi',
-            ss: translate,
-            m: translate,
-            mm: translate,
-            h: translate,
-            hh: translate,
+            ss: translation,
+            m: translation,
+            mm: translation,
+            h: translation,
+            hh: translation,
             d: 'dan',
-            dd: translate,
+            dd: translation,
             M: 'mjesec',
-            MM: translate,
+            MM: translation,
             y: 'godinu',
-            yy: translate,
+            yy: translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -7635,7 +7635,7 @@
     function plural$1(n) {
         return n > 1 && n < 5 && ~~(n / 10) !== 1;
     }
-    function translate$1(number, withoutSuffix, key, isFuture) {
+    function translation$1(number, withoutSuffix, key, isFuture) {
         var result = number + ' ';
         switch (key) {
             case 's': // a few seconds / in a few seconds / a few seconds ago
@@ -7755,18 +7755,18 @@
         relativeTime: {
             future: 'za %s',
             past: 'před %s',
-            s: translate$1,
-            ss: translate$1,
-            m: translate$1,
-            mm: translate$1,
-            h: translate$1,
-            hh: translate$1,
-            d: translate$1,
-            dd: translate$1,
-            M: translate$1,
-            MM: translate$1,
-            y: translate$1,
-            yy: translate$1,
+            s: translation$1,
+            ss: translation$1,
+            m: translation$1,
+            mm: translation$1,
+            h: translation$1,
+            hh: translation$1,
+            d: translation$1,
+            dd: translation$1,
+            M: translation$1,
+            MM: translation$1,
+            y: translation$1,
+            yy: translation$1,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -9627,7 +9627,7 @@
             numbersPast[8],
             numbersPast[9],
         ];
-    function translate$2(number, withoutSuffix, key, isFuture) {
+    function translation$2(number, withoutSuffix, key, isFuture) {
         var result = '';
         switch (key) {
             case 's':
@@ -9707,18 +9707,18 @@
         relativeTime: {
             future: '%s päästä',
             past: '%s sitten',
-            s: translate$2,
-            ss: translate$2,
-            m: translate$2,
-            mm: translate$2,
-            h: translate$2,
-            hh: translate$2,
-            d: translate$2,
-            dd: translate$2,
-            M: translate$2,
-            MM: translate$2,
-            y: translate$2,
-            yy: translate$2,
+            s: translation$2,
+            ss: translation$2,
+            m: translation$2,
+            mm: translation$2,
+            h: translation$2,
+            hh: translation$2,
+            d: translation$2,
+            dd: translation$2,
+            M: translation$2,
+            MM: translation$2,
+            y: translation$2,
+            yy: translation$2,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -11012,7 +11012,7 @@
 
     //! moment.js locale configuration
 
-    function translate$3(number, withoutSuffix, key) {
+    function translation$3(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
             case 'ss':
@@ -11141,17 +11141,17 @@
             future: 'za %s',
             past: 'prije %s',
             s: 'par sekundi',
-            ss: translate$3,
-            m: translate$3,
-            mm: translate$3,
-            h: translate$3,
-            hh: translate$3,
+            ss: translation$3,
+            m: translation$3,
+            mm: translation$3,
+            h: translation$3,
+            hh: translation$3,
             d: 'dan',
-            dd: translate$3,
+            dd: translation$3,
             M: 'mjesec',
-            MM: translate$3,
+            MM: translation$3,
             y: 'godinu',
-            yy: translate$3,
+            yy: translation$3,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -11166,7 +11166,7 @@
     var weekEndings = 'vasárnap hétfőn kedden szerdán csütörtökön pénteken szombaton'.split(
         ' '
     );
-    function translate$4(number, withoutSuffix, key, isFuture) {
+    function translation$4(number, withoutSuffix, key, isFuture) {
         var num = number;
         switch (key) {
             case 's':
@@ -11254,18 +11254,18 @@
         relativeTime: {
             future: '%s múlva',
             past: '%s',
-            s: translate$4,
-            ss: translate$4,
-            m: translate$4,
-            mm: translate$4,
-            h: translate$4,
-            hh: translate$4,
-            d: translate$4,
-            dd: translate$4,
-            M: translate$4,
-            MM: translate$4,
-            y: translate$4,
-            yy: translate$4,
+            s: translation$4,
+            ss: translation$4,
+            m: translation$4,
+            mm: translation$4,
+            h: translation$4,
+            hh: translation$4,
+            d: translation$4,
+            dd: translation$4,
+            M: translation$4,
+            MM: translation$4,
+            y: translation$4,
+            yy: translation$4,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -11446,7 +11446,7 @@
         }
         return true;
     }
-    function translate$5(number, withoutSuffix, key, isFuture) {
+    function translation$5(number, withoutSuffix, key, isFuture) {
         var result = number + ' ';
         switch (key) {
             case 's':
@@ -11551,18 +11551,18 @@
         relativeTime: {
             future: 'eftir %s',
             past: 'fyrir %s síðan',
-            s: translate$5,
-            ss: translate$5,
-            m: translate$5,
-            mm: translate$5,
+            s: translation$5,
+            ss: translation$5,
+            m: translation$5,
+            mm: translation$5,
             h: 'klukkustund',
-            hh: translate$5,
-            d: translate$5,
-            dd: translate$5,
-            M: translate$5,
-            MM: translate$5,
-            y: translate$5,
-            yy: translate$5,
+            hh: translation$5,
+            d: translation$5,
+            dd: translation$5,
+            M: translation$5,
+            MM: translation$5,
+            y: translation$5,
+            yy: translation$5,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -12813,14 +12813,14 @@
         y: 'metai_metų_metus',
         yy: 'metai_metų_metus',
     };
-    function translateSeconds(number, withoutSuffix, key, isFuture) {
+    function translationSeconds(number, withoutSuffix, key, isFuture) {
         if (withoutSuffix) {
             return 'kelios sekundės';
         } else {
             return isFuture ? 'kelių sekundžių' : 'kelias sekundes';
         }
     }
-    function translateSingular(number, withoutSuffix, key, isFuture) {
+    function translationSingular(number, withoutSuffix, key, isFuture) {
         return withoutSuffix
             ? forms(key)[0]
             : isFuture
@@ -12833,11 +12833,11 @@
     function forms(key) {
         return units[key].split('_');
     }
-    function translate$6(number, withoutSuffix, key, isFuture) {
+    function translation$6(number, withoutSuffix, key, isFuture) {
         var result = number + ' ';
         if (number === 1) {
             return (
-                result + translateSingular(number, withoutSuffix, key[0], isFuture)
+                result + translationSingular(number, withoutSuffix, key[0], isFuture)
             );
         } else if (withoutSuffix) {
             return result + (special(number) ? forms(key)[1] : forms(key)[0]);
@@ -12895,18 +12895,18 @@
         relativeTime: {
             future: 'po %s',
             past: 'prieš %s',
-            s: translateSeconds,
-            ss: translate$6,
-            m: translateSingular,
-            mm: translate$6,
-            h: translateSingular,
-            hh: translate$6,
-            d: translateSingular,
-            dd: translate$6,
-            M: translateSingular,
-            MM: translate$6,
-            y: translateSingular,
-            yy: translate$6,
+            s: translationSeconds,
+            ss: translation$6,
+            m: translationSingular,
+            mm: translation$6,
+            h: translationSingular,
+            hh: translation$6,
+            d: translationSingular,
+            dd: translation$6,
+            M: translationSingular,
+            MM: translation$6,
+            y: translationSingular,
+            yy: translation$6,
         },
         dayOfMonthOrdinalParse: /\d{1,2}-oji/,
         ordinal: function (number) {
@@ -13028,7 +13028,7 @@
                 ? wordKey[1]
                 : wordKey[2];
         },
-        translate: function (number, withoutSuffix, key) {
+        translation: function (number, withoutSuffix, key) {
             var wordKey = translator.words[key];
             if (key.length === 1) {
                 return withoutSuffix ? wordKey[0] : wordKey[1];
@@ -13102,17 +13102,17 @@
             future: 'za %s',
             past: 'prije %s',
             s: 'nekoliko sekundi',
-            ss: translator.translate,
-            m: translator.translate,
-            mm: translator.translate,
-            h: translator.translate,
-            hh: translator.translate,
+            ss: translator.translation,
+            m: translator.translation,
+            mm: translator.translation,
+            h: translator.translation,
+            hh: translator.translation,
             d: 'dan',
-            dd: translator.translate,
+            dd: translator.translation,
             M: 'mjesec',
-            MM: translator.translate,
+            MM: translator.translation,
             y: 'godinu',
-            yy: translator.translate,
+            yy: translator.translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -13339,7 +13339,7 @@
 
     //! moment.js locale configuration
 
-    function translate$7(number, withoutSuffix, key, isFuture) {
+    function translation$7(number, withoutSuffix, key, isFuture) {
         switch (key) {
             case 's':
                 return withoutSuffix ? 'хэдхэн секунд' : 'хэдхэн секундын';
@@ -13407,18 +13407,18 @@
         relativeTime: {
             future: '%s дараа',
             past: '%s өмнө',
-            s: translate$7,
-            ss: translate$7,
-            m: translate$7,
-            mm: translate$7,
-            h: translate$7,
-            hh: translate$7,
-            d: translate$7,
-            dd: translate$7,
-            M: translate$7,
-            MM: translate$7,
-            y: translate$7,
-            yy: translate$7,
+            s: translation$7,
+            ss: translation$7,
+            m: translation$7,
+            mm: translation$7,
+            h: translation$7,
+            hh: translation$7,
+            d: translation$7,
+            dd: translation$7,
+            M: translation$7,
+            MM: translation$7,
+            y: translation$7,
+            yy: translation$7,
         },
         dayOfMonthOrdinalParse: /\d{1,2} өдөр/,
         ordinal: function (number, period) {
@@ -14563,7 +14563,7 @@
     function plural$3(n) {
         return n % 10 < 5 && n % 10 > 1 && ~~(n / 10) % 10 !== 1;
     }
-    function translate$8(number, withoutSuffix, key) {
+    function translation$8(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
             case 'ss':
@@ -14652,19 +14652,19 @@
             future: 'za %s',
             past: '%s temu',
             s: 'kilka sekund',
-            ss: translate$8,
-            m: translate$8,
-            mm: translate$8,
-            h: translate$8,
-            hh: translate$8,
+            ss: translation$8,
+            m: translation$8,
+            mm: translation$8,
+            h: translation$8,
+            hh: translation$8,
             d: '1 dzień',
             dd: '%d dni',
             w: 'tydzień',
-            ww: translate$8,
+            ww: translation$8,
             M: 'miesiąc',
-            MM: translate$8,
+            MM: translation$8,
             y: 'rok',
-            yy: translate$8,
+            yy: translation$8,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -15264,7 +15264,7 @@
     function plural$5(n) {
         return n > 1 && n < 5;
     }
-    function translate$9(number, withoutSuffix, key, isFuture) {
+    function translation$9(number, withoutSuffix, key, isFuture) {
         var result = number + ' ';
         switch (key) {
             case 's': // a few seconds / in a few seconds / a few seconds ago
@@ -15374,18 +15374,18 @@
         relativeTime: {
             future: 'za %s',
             past: 'pred %s',
-            s: translate$9,
-            ss: translate$9,
-            m: translate$9,
-            mm: translate$9,
-            h: translate$9,
-            hh: translate$9,
-            d: translate$9,
-            dd: translate$9,
-            M: translate$9,
-            MM: translate$9,
-            y: translate$9,
-            yy: translate$9,
+            s: translation$9,
+            ss: translation$9,
+            m: translation$9,
+            mm: translation$9,
+            h: translation$9,
+            hh: translation$9,
+            d: translation$9,
+            dd: translation$9,
+            M: translation$9,
+            MM: translation$9,
+            y: translation$9,
+            yy: translation$9,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -15643,7 +15643,7 @@
                 ? wordKey[1]
                 : wordKey[2];
         },
-        translate: function (number, withoutSuffix, key) {
+        translation: function (number, withoutSuffix, key) {
             var wordKey = translator$1.words[key];
             if (key.length === 1) {
                 return withoutSuffix ? wordKey[0] : wordKey[1];
@@ -15714,17 +15714,17 @@
             future: 'за %s',
             past: 'пре %s',
             s: 'неколико секунди',
-            ss: translator$1.translate,
-            m: translator$1.translate,
-            mm: translator$1.translate,
-            h: translator$1.translate,
-            hh: translator$1.translate,
+            ss: translator$1.translation,
+            m: translator$1.translation,
+            mm: translator$1.translation,
+            h: translator$1.translation,
+            hh: translator$1.translation,
             d: 'дан',
-            dd: translator$1.translate,
+            dd: translator$1.translation,
             M: 'месец',
-            MM: translator$1.translate,
+            MM: translator$1.translation,
             y: 'годину',
-            yy: translator$1.translate,
+            yy: translator$1.translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -15755,7 +15755,7 @@
                 ? wordKey[1]
                 : wordKey[2];
         },
-        translate: function (number, withoutSuffix, key) {
+        translation: function (number, withoutSuffix, key) {
             var wordKey = translator$2.words[key];
             if (key.length === 1) {
                 return withoutSuffix ? wordKey[0] : wordKey[1];
@@ -15828,17 +15828,17 @@
             future: 'za %s',
             past: 'pre %s',
             s: 'nekoliko sekundi',
-            ss: translator$2.translate,
-            m: translator$2.translate,
-            mm: translator$2.translate,
-            h: translator$2.translate,
-            hh: translator$2.translate,
+            ss: translator$2.translation,
+            m: translator$2.translation,
+            mm: translator$2.translation,
+            h: translator$2.translation,
+            hh: translator$2.translation,
             d: 'dan',
-            dd: translator$2.translate,
+            dd: translator$2.translation,
             M: 'mesec',
-            MM: translator$2.translate,
+            MM: translator$2.translation,
             y: 'godinu',
-            yy: translator$2.translate,
+            yy: translator$2.translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
@@ -16636,7 +16636,7 @@
 
     var numbersNouns = 'pagh_wa’_cha’_wej_loS_vagh_jav_Soch_chorgh_Hut'.split('_');
 
-    function translateFuture(output) {
+    function translationFuture(output) {
         var time = output;
         time =
             output.indexOf('jaj') !== -1
@@ -16649,7 +16649,7 @@
         return time;
     }
 
-    function translatePast(output) {
+    function translationPast(output) {
         var time = output;
         time =
             output.indexOf('jaj') !== -1
@@ -16662,7 +16662,7 @@
         return time;
     }
 
-    function translate$a(number, withoutSuffix, string, isFuture) {
+    function translation$a(number, withoutSuffix, string, isFuture) {
         var numberNoun = numberAsNoun(number);
         switch (string) {
             case 'ss':
@@ -16731,20 +16731,20 @@
             sameElse: 'L',
         },
         relativeTime: {
-            future: translateFuture,
-            past: translatePast,
+            future: translationFuture,
+            past: translationPast,
             s: 'puS lup',
-            ss: translate$a,
+            ss: translation$a,
             m: 'wa’ tup',
-            mm: translate$a,
+            mm: translation$a,
             h: 'wa’ rep',
-            hh: translate$a,
+            hh: translation$a,
             d: 'wa’ jaj',
-            dd: translate$a,
+            dd: translation$a,
             M: 'wa’ jar',
-            MM: translate$a,
+            MM: translation$a,
             y: 'wa’ DIS',
-            yy: translate$a,
+            yy: translation$a,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',

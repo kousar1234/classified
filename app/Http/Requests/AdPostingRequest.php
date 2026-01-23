@@ -30,14 +30,14 @@ class AdPostingRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => translate('Title is required', session()->get('api_local')),
-            'price.required' => translate('Price is required', session()->get('api_local')),
-            'description.required' => translate('Description is required', session()->get('api_local')),
-            'city.required' => translate('Please select a city', session()->get('api_local')),
-            'category.required' => translate('Please select a category', session()->get('api_local')),
-            'thumbnail_image.required' => translate('Thumbnail image is required', session()->get('api_local')),
-            'contact_email.required' => translate('Email is required', session()->get('api_local')),
-            'contact_phone.required' => translate('Phone is required', session()->get('api_local')),
+            'title.required' => translation('Title is required', session()->get('api_local')),
+            'price.required' => translation('Price is required', session()->get('api_local')),
+            'description.required' => translation('Description is required', session()->get('api_local')),
+            'city.required' => translation('Please select a city', session()->get('api_local')),
+            'category.required' => translation('Please select a category', session()->get('api_local')),
+            'thumbnail_image.required' => translation('Thumbnail image is required', session()->get('api_local')),
+            'contact_email.required' => translation('Email is required', session()->get('api_local')),
+            'contact_phone.required' => translation('Phone is required', session()->get('api_local')),
         ];
     }
 }

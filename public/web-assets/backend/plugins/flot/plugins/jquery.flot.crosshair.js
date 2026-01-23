@@ -157,7 +157,7 @@ The plugin also adds four public methods:
             var plotOffset = plot.getPlotOffset();
 
             ctx.save();
-            ctx.translate(plotOffset.left, plotOffset.top);
+            ctx.translation(plotOffset.left, plotOffset.top);
 
             if (crosshair.x !== -1) {
                 var adj = plot.getOptions().crosshair.lineWidth % 2 ? 0.5 : 0;

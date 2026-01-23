@@ -1,6 +1,6 @@
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Ads') }}
+    {{ translation('Ads') }}
 @endsection
 @section('page-style')
     <!--Select2-->
@@ -28,44 +28,44 @@
         <div class="col-12">
             <div class="card mb-30">
                 <div class="bg-white card-header py-3">
-                    <h4 class="font-20">{{ translate('Ads') }}</h4>
+                    <h4 class="font-20">{{ translation('Ads') }}</h4>
                 </div>
                 <div class="card-body">
 
                     <div class="px-2 filter-area d-flex align-items-center">
                         <form method="get" action="{{ route('classified.ads.list') }}">
                             <select class="form-control mb-10" name="per_page">
-                                <option value="">{{ translate('Per page') }}</option>
+                                <option value="">{{ translation('Per page') }}</option>
                                 <option value="20" @selected(request()->has('per_page') && request()->get('per_page') == '20')>20</option>
                                 <option value="50" @selected(request()->has('per_page') && request()->get('per_page') == '50')>50</option>
                                 <option value="all" @selected(request()->has('per_page') && request()->get('per_page') == 'all')>All</option>
                             </select>
                             <select class="form-control mb-10" name="status">
-                                <option value="">{{ translate('Status') }}</option>
+                                <option value="">{{ translation('Status') }}</option>
                                 <option value="{{ config('settings.general_status.active') }}" @selected(request()->has('status') && request()->get('status') == config('settings.general_status.active'))>
-                                    {{ translate('Active') }}</option>
+                                    {{ translation('Active') }}</option>
                                 <option value="{{ config('settings.general_status.in_active') }}"
                                     @selected(request()->has('status') && request()->get('status') == config('settings.general_status.in_active'))>
-                                    {{ translate('Inactive') }}</option>
+                                    {{ translation('Inactive') }}</option>
                             </select>
                             <select class="form-control mb-10" name="payment_status">
-                                <option value="">{{ translate('Payment Status') }}</option>
+                                <option value="">{{ translation('Payment Status') }}</option>
                                 <option value="{{ config('settings.general_status.active') }}"
                                     @selected(request()->has('payment_status') && request()->get('payment_status') == config('settings.general_status.active'))>
-                                    {{ translate('Paid') }}
+                                    {{ translation('Paid') }}
                                 </option>
                                 <option value="{{ config('settings.general_status.in_active') }}"
                                     @selected(request()->has('payment_status') && request()->get('payment_status') == config('settings.general_status.in_active'))>
-                                    {{ translate('Pending') }}
+                                    {{ translation('Pending') }}
                                 </option>
                             </select>
                             <input type="text" name="search" class="form-control mb-10"
                                 value="{{ request()->has('search') ? request()->get('search') : '' }}"
                                 placeholder="Enter title">
-                            <button type="submit" class="btn long mb-1">{{ translate('Filter') }}</button>
+                            <button type="submit" class="btn long mb-1">{{ translation('Filter') }}</button>
                         </form>
                         <a class="btn btn-danger long mb-2"
-                            href="{{ route('classified.ads.list') }}">{{ translate('Clear Filter') }}</a>
+                            href="{{ route('classified.ads.list') }}">{{ translation('Clear Filter') }}</a>
                     </div>
                     <div class="table-responsive">
                         <table class="hoverable border-top2">
@@ -74,14 +74,14 @@
                                     <th>
                                         #
                                     </th>
-                                    <th>{{ translate('Image') }}</th>
-                                    <th>{{ translate('Name') }}</th>
-                                    <th>{{ translate('Info') }}</th>
-                                    <th>{{ translate('PayAble Amount') }}</th>
-                                    <th>{{ translate('Payment Status') }}</th>
-                                    <th>{{ translate('Post Date') }}</th>
-                                    <th>{{ translate('Status') }}</th>
-                                    <th class="text-center">{{ translate('Actions') }}</th>
+                                    <th>{{ translation('Image') }}</th>
+                                    <th>{{ translation('Name') }}</th>
+                                    <th>{{ translation('Info') }}</th>
+                                    <th>{{ translation('PayAble Amount') }}</th>
+                                    <th>{{ translation('Payment Status') }}</th>
+                                    <th>{{ translation('Post Date') }}</th>
+                                    <th>{{ translation('Status') }}</th>
+                                    <th class="text-center">{{ translation('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -100,17 +100,18 @@
                                             </td>
                                             <td>
                                                 <p class="mb-0"><span
-                                                        class="bold">{{ translate('Posted By :') }}</span>
+                                                        class="bold">{{ translation('Posted By :') }}</span>
                                                     {{ $ad->userInfo->name }}
                                                 </p>
-                                                <p class="mb-0"><span class="bold">{{ translate('Category :') }}</span>
+                                                <p class="mb-0"><span
+                                                        class="bold">{{ translation('Category :') }}</span>
                                                     @if ($ad->categoryInfo != null)
                                                         {{ $ad->categoryInfo->translation('title') }}
                                                     @else
                                                         --
                                                     @endif
                                                 </p>
-                                                <p class="mb-0"><span class="bold">{{ translate('Price :') }}</span>
+                                                <p class="mb-0"><span class="bold">{{ translation('Price :') }}</span>
                                                     {!! currencyExchange($ad->price) !!}
                                                 </p>
                                             </td>
@@ -121,9 +122,9 @@
                                             <td>
                                                 @if ($ad->cost > 0)
                                                     @if ($ad->payment_status == config('settings.general_status.active'))
-                                                        <p class="badge badge-success">{{ translate('Paid') }}</p>
+                                                        <p class="badge badge-success">{{ translation('Paid') }}</p>
                                                     @else
-                                                        <p class="badge badge-danger">{{ translate('Pending') }}</p>
+                                                        <p class="badge badge-danger">{{ translation('Pending') }}</p>
                                                     @endif
                                                 @else
                                                     -
@@ -136,9 +137,9 @@
 
                                             <td>
                                                 @if ($ad->status == config('settings.general_status.active'))
-                                                    <p class="badge badge-success">{{ translate('Active') }}</p>
+                                                    <p class="badge badge-success">{{ translation('Active') }}</p>
                                                 @else
-                                                    <p class="badge badge-danger">{{ translate('Inactive') }}</p>
+                                                    <p class="badge badge-danger">{{ translation('Inactive') }}</p>
                                                 @endif
                                             </td>
                                             <td>
@@ -155,12 +156,12 @@
                                                         @if (auth()->user()->can('Edit All Ads'))
                                                             <a
                                                                 href="{{ route('classified.ads.edit', ['id' => $ad->id, 'lang' => getDefaultLang()]) }}">
-                                                                {{ translate('Edit') }}
+                                                                {{ translation('Edit') }}
                                                             </a>
                                                         @endif
                                                         @if (auth()->user()->can('Delete All Ads'))
                                                             <a href="#" class="delete-ad"
-                                                                data-ad="{{ $ad->id }}">{{ translate('Delete') }}
+                                                                data-ad="{{ $ad->id }}">{{ translation('Delete') }}
                                                             </a>
                                                         @endif
                                                     </div>
@@ -171,7 +172,8 @@
                                 @else
                                     <tr>
                                         <td colspan="9">
-                                            <p class="alert alert-danger text-center">{{ translate('Nothing Found') }}</p>
+                                            <p class="alert alert-danger text-center">{{ translation('Nothing Found') }}
+                                            </p>
                                         </td>
                                     </tr>
                                 @endif
@@ -191,20 +193,20 @@
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title h6">{{ translate('Delete Confirmation') }}</h4>
+                    <h4 class="modal-title h6">{{ translation('Delete Confirmation') }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <p class="mt-1">{{ translate('Are you sure to delete this category') }}?</p>
+                    <p class="mt-1">{{ translation('Are you sure to delete this category') }}?</p>
                     <form method="POST" action="{{ route('classified.ads.delete') }}">
                         @csrf
                         <input type="hidden" id="delete-id" name="id">
                         <div class="form-row d-flex justify-content-between">
                             <button type="button" class="btn long mt-2 btn-danger"
-                                data-dismiss="modal">{{ translate('cancel') }}</button>
-                            <button type="submit" class="btn long mt-2">{{ translate('Delete') }}</button>
+                                data-dismiss="modal">{{ translation('cancel') }}</button>
+                            <button type="submit" class="btn long mt-2">{{ translation('Delete') }}</button>
                         </div>
                     </form>
                 </div>

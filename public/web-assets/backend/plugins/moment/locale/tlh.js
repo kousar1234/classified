@@ -13,7 +13,7 @@
 
     var numbersNouns = 'pagh_wa’_cha’_wej_loS_vagh_jav_Soch_chorgh_Hut'.split('_');
 
-    function translateFuture(output) {
+    function translationFuture(output) {
         var time = output;
         time =
             output.indexOf('jaj') !== -1
@@ -26,7 +26,7 @@
         return time;
     }
 
-    function translatePast(output) {
+    function translationPast(output) {
         var time = output;
         time =
             output.indexOf('jaj') !== -1
@@ -39,7 +39,7 @@
         return time;
     }
 
-    function translate(number, withoutSuffix, string, isFuture) {
+    function translation(number, withoutSuffix, string, isFuture) {
         var numberNoun = numberAsNoun(number);
         switch (string) {
             case 'ss':
@@ -108,20 +108,20 @@
             sameElse: 'L',
         },
         relativeTime: {
-            future: translateFuture,
-            past: translatePast,
+            future: translationFuture,
+            past: translationPast,
             s: 'puS lup',
-            ss: translate,
+            ss: translation,
             m: 'wa’ tup',
-            mm: translate,
+            mm: translation,
             h: 'wa’ rep',
-            hh: translate,
+            hh: translation,
             d: 'wa’ jaj',
-            dd: translate,
+            dd: translation,
             M: 'wa’ jar',
-            MM: translate,
+            MM: translation,
             y: 'wa’ DIS',
-            yy: translate,
+            yy: translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',

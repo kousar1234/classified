@@ -4,7 +4,7 @@
 
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Edit Country') }}
+    {{ translation('Edit Country') }}
 @endsection
 @section('page-content')
     <div class="row">
@@ -16,7 +16,7 @@
             </div>
             <div class="card mb-30">
                 <div class="card-header bg-white border-bottom2 py-3">
-                    <h4>{{ translate('Country Information') }}</h4>
+                    <h4>{{ translation('Country Information') }}</h4>
                 </div>
                 <div class="card-body">
                     <!--Language Switcher-->
@@ -37,14 +37,14 @@
                         @csrf
                         <div class="form-row mb-20">
                             <div class="col-sm-4">
-                                <label class="font-14 bold black">{{ translate('Name') }} </label>
+                                <label class="font-14 bold black">{{ translation('Name') }} </label>
                             </div>
                             <div class="col-sm-8">
                                 <input type="hidden" name="id" value="{{ $countryDetails->id }}">
                                 <input type="hidden" name="lang" value="{{ $lang }}">
                                 <input type="text" name="name" class="form-control"
                                     value="{{ $countryDetails->translation('name', $lang) }}"
-                                    placeholder="{{ translate('Type Name') }}">
+                                    placeholder="{{ translation('Type Name') }}">
                                 @if ($errors->has('name'))
                                     <div class="invalid-input">{{ $errors->first('name') }}</div>
                                 @endif
@@ -54,11 +54,11 @@
                         <div
                             class="form-row mb-20 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                             <div class="col-sm-4">
-                                <label class="font-14 bold black">{{ translate('Code') }}</label>
+                                <label class="font-14 bold black">{{ translation('Code') }}</label>
                             </div>
                             <div class="col-sm-8">
                                 <input type="text" name="code" class="form-control"
-                                    value="{{ $countryDetails->code }}" placeholder="{{ translate('Enter Code') }}">
+                                    value="{{ $countryDetails->code }}" placeholder="{{ translation('Enter Code') }}">
                                 @if ($errors->has('code'))
                                     <div class="invalid-input">{{ $errors->first('code') }}</div>
                                 @endif
@@ -66,7 +66,7 @@
                         </div>
                         <div class="form-row">
                             <div class="col-12 text-right">
-                                <button type="submit" class="btn long">{{ translate('Save Changes') }}</button>
+                                <button type="submit" class="btn long">{{ translation('Save Changes') }}</button>
                             </div>
                         </div>
                     </form>

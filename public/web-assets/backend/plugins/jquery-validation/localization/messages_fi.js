@@ -9,7 +9,7 @@
 }(function( $ ) {
 
 /*
- * Translated default messages for the jQuery validation plugin.
+ * translationd default messages for the jQuery validation plugin.
  * Locale: FI (Finnish; suomi, suomen kieli)
  */
 $.extend( $.validator.messages, {

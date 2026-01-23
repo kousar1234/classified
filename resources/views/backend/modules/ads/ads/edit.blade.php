@@ -4,7 +4,7 @@
 
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Edit Ad') }}
+    {{ translation('Edit Ad') }}
 @endsection
 @section('page-style')
     <link rel="stylesheet" href="{{ asset('/public/web-assets/backend/plugins/select2/select2.min.css') }}">
@@ -36,7 +36,7 @@
 
             <div class="card mb-30">
                 <div class="card-header bg-white border-bottom2 py-3">
-                    <h4>{{ translate('Ad Information') }}</h4>
+                    <h4>{{ translation('Ad Information') }}</h4>
                 </div>
                 <div class="card-body">
                     <input type="hidden" name="id" value="{{ $ad_details->id }}">
@@ -44,12 +44,12 @@
 
                     <div class="form-row mb-20">
                         <div class="col-sm-3">
-                            <label class="font-14 bold black">{{ translate('Title') }} </label>
+                            <label class="font-14 bold black">{{ translation('Title') }} </label>
                         </div>
                         <div class="col-sm-9">
                             <input type="text" name="title" class="form-control"
                                 value="{{ $ad_details->translation('title', $lang) }}"
-                                placeholder="{{ translate('Type Enter') }}">
+                                placeholder="{{ translation('Type Enter') }}">
                             @if ($errors->has('title'))
                                 <div class="invalid-input">{{ $errors->first('title') }}</div>
                             @endif
@@ -58,7 +58,7 @@
 
                     <div class="form-row mb-20 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                         <div class="col-sm-3">
-                            <label class="font-14 bold black ">{{ translate('Category') }} </label>
+                            <label class="font-14 bold black ">{{ translation('Category') }} </label>
                         </div>
                         <div class="col-sm-9">
                             <select class="category form-control" name="category">
@@ -76,7 +76,7 @@
 
                     <div class="form-row mb-20 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                         <div class="col-sm-3">
-                            <label class="font-14 bold black">{{ translate('Condition') }} </label>
+                            <label class="font-14 bold black">{{ translation('Condition') }} </label>
                         </div>
                         <div class="col-sm-9">
                             <select class="form-control" name="condition">
@@ -94,7 +94,7 @@
 
                     <div class="form-row mb-20 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                         <div class="col-sm-3">
-                            <label class="font-14 bold black">{{ translate('Price') }} </label>
+                            <label class="font-14 bold black">{{ translation('Price') }} </label>
                         </div>
                         <div class="col-sm-9">
                             <div class="input-group addon">
@@ -104,7 +104,7 @@
                                     <span class="input-group-text black">
                                         <input id="negotiable" name="is_negotiable" @checked($ad_details->is_negotiable == config('settings.general_status.active'))
                                             type="checkbox" />
-                                        <small>{{ translate('Negotiable') }}</small>
+                                        <small>{{ translation('Negotiable') }}</small>
                                     </span>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
 
             <div class="card mb-30">
                 <div class="card-header bg-white border-bottom2 py-3">
-                    <h4>{{ translate('Ad Description') }}</h4>
+                    <h4>{{ translation('Ad Description') }}</h4>
                 </div>
                 <div class="card-body">
                     <div class="form-row mb-20">
@@ -135,12 +135,12 @@
 
             <div class="card mb-30 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                 <div class="card-header bg-white border-bottom2 py-3">
-                    <h4>{{ translate('Images') }}</h4>
+                    <h4>{{ translation('Images') }}</h4>
                 </div>
                 <div class="card-body">
                     <div class="form-row mb-20">
                         <div class="col-sm-3">
-                            <label class="font-14 bold black mb-0">{{ translate('Thumbnail Image') }} </label>
+                            <label class="font-14 bold black mb-0">{{ translation('Thumbnail Image') }} </label>
                             <p>240x160</p>
                         </div>
                         <div class="col-sm-">
@@ -155,7 +155,7 @@
                     </div>
                     <div class="form-row mb-20 product-gallery-images">
                         <div class="col-sm-3">
-                            <label class="font-14 bold black mb-0">{{ translate('Gallery Images') }} </label>
+                            <label class="font-14 bold black mb-0">{{ translation('Gallery Images') }} </label>
                             <p>825x550</p>
                         </div>
                         <div class="col-sm-9">
@@ -179,7 +179,7 @@
 
             <div class="card mb-30 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                 <div class="card-header bg-white border-bottom2 py-3">
-                    <h4>{{ translate('Custom Fields') }}</h4>
+                    <h4>{{ translation('Custom Fields') }}</h4>
                 </div>
                 <div class="card-body">
                     @foreach ($ad_details->customFields() as $cf)
@@ -198,12 +198,12 @@
                                     @if ($cf['type'] == config('settings.input_types.text'))
                                         <input type="text" name="custom_field[{{ $field->id }}]" class="form-control"
                                             value="{{ $cf['value'] }}"
-                                            placeholder="{{ translate('Type ') }} {{ $field->translation('title', $lang) }}">
+                                            placeholder="{{ translation('Type ') }} {{ $field->translation('title', $lang) }}">
                                     @endif
                                     @if ($cf['type'] == config('settings.input_types.number'))
                                         <input type="number" name="custom_field[{{ $field->id }}]"
                                             class="form-control" value="{{ $cf['value'] }}"
-                                            placeholder="{{ translate('Type ') }} {{ $field->translation('title', $lang) }}">
+                                            placeholder="{{ translation('Type ') }} {{ $field->translation('title', $lang) }}">
                                     @endif
                                     @if ($cf['type'] == config('settings.input_types.text_area'))
                                         <textarea name="custom_field[{{ $field->id }}]" class="form-control">{{ $cf['value'] }}</textarea>
@@ -211,7 +211,7 @@
                                     @if ($cf['type'] == config('settings.input_types.date'))
                                         <input type="date" name="custom_field[{{ $field->id }}]"
                                             class="form-control" value="{{ $cf['value'] }}"
-                                            placeholder="{{ translate('Type ') }} {{ $field->translation('title', $lang) }}">
+                                            placeholder="{{ translation('Type ') }} {{ $field->translation('title', $lang) }}">
                                     @endif
                                     @if ($cf['type'] == config('settings.input_types.select'))
                                         <select name="custom_field[{{ $field->id }}]" class="form-control">
@@ -264,13 +264,13 @@
             <div class="card mb-30 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                 <div class="card-header bg-white border-bottom2 py-3">
                     <div class="d-sm-flex justify-content-between align-items-center">
-                        <h4>{{ translate('Featured') }}</h4>
+                        <h4>{{ translation('Featured') }}</h4>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="form-row mb-20">
                         <div class="col-sm-6">
-                            <label class="font-14 bold black ">{{ translate('Status') }} </label>
+                            <label class="font-14 bold black ">{{ translation('Status') }} </label>
                         </div>
                         <div class="col-sm-6">
                             <label class="switch glow primary medium">
@@ -285,7 +285,7 @@
             <div class="card mb-30 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                 <div class="card-header bg-white border-bottom2 py-3">
                     <div class="d-sm-flex justify-content-between align-items-center">
-                        <h4>{{ translate('Tags') }}</h4>
+                        <h4>{{ translation('Tags') }}</h4>
                     </div>
                 </div>
                 <div class="card-body">
@@ -307,23 +307,23 @@
             </div>
             <div class="card mb-30 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                 <div class="card-header bg-white border-bottom2 py-3">
-                    <h4>{{ translate('Contact Info') }}</h4>
+                    <h4>{{ translation('Contact Info') }}</h4>
                 </div>
                 <div class="card-body">
                     <div class="contact-card">
                         <img src="{{ asset(getFilePath($ad_details->userInfo->image)) }}" class="img-80 img-thumbnail"
                             alt="{{ $ad_details->userInfo->name }}">
-                        <p class="black h6 mb-0 mb-1 mt-2"><span class="bold">{{ translate('Name') }}:</span>
+                        <p class="black h6 mb-0 mb-1 mt-2"><span class="bold">{{ translation('Name') }}:</span>
                             {{ $ad_details->userInfo->name }}</p>
-                        <p class="black h6 mb-0 mb-1"><span class="bold">{{ translate('Email') }}:</span>
+                        <p class="black h6 mb-0 mb-1"><span class="bold">{{ translation('Email') }}:</span>
                             {{ $ad_details->contact_email }}
                         </p>
-                        <p class="black h6 mb-0 mb-1"><span class="bold">{{ translate('Phone') }}:</span>
+                        <p class="black h6 mb-0 mb-1"><span class="bold">{{ translation('Phone') }}:</span>
                             {{ $ad_details->contact_phone }}</p>
                     </div>
                     <div class="form-row mb-20">
                         <div class="col-sm-6">
-                            <label class="font-14 bold black ">{{ translate('Phone Visible') }} </label>
+                            <label class="font-14 bold black ">{{ translation('Phone Visible') }} </label>
                         </div>
                         <div class="col-sm-6">
                             <label class="switch glow primary medium">
@@ -337,7 +337,7 @@
             </div>
             <div class="card mb-30 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                 <div class="card-header bg-white border-bottom2 py-3">
-                    <h4>{{ translate('Location') }}</h4>
+                    <h4>{{ translation('Location') }}</h4>
                 </div>
                 <div class="card-body p-0">
                     @if ($ad_details->cityInfo != null)
@@ -355,11 +355,11 @@
             class="bottom-button d-flex align-items-center justify-content-sm-end gap-10 flex-wrap justify-content-center">
             <button type="submit" name="status" value="{{ config('settings.general_status.in_active') }}"
                 class="btn btn-dark btn-outline-info" tabindex="4">
-                {{ translate('Update & Pending') }}
+                {{ translation('Update & Pending') }}
             </button>
             <button type="submit" name="status" value="{{ config('settings.general_status.active') }}"
                 class="btn btn-outline-primary" tabindex="4">
-                {{ translate('Update & Publish') }}
+                {{ translation('Update & Publish') }}
             </button>
         </div>
         <!--End Form submit area-->
@@ -381,7 +381,7 @@
              */
             $('.category').select2({
                 theme: "classic",
-                placeholder: '{{ translate('Select category') }}',
+                placeholder: '{{ translation('Select category') }}',
                 closeOnSelect: true,
                 ajax: {
                     url: '{{ route('classified.ads.categories.options') }}',
@@ -405,7 +405,7 @@
             $('.tags').select2({
                 theme: "classic",
                 tags: true,
-                placeholder: '{{ translate('Select or insert  tags') }}',
+                placeholder: '{{ translation('Select or insert  tags') }}',
                 closeOnSelect: true,
                 ajax: {
                     url: '{{ route('classified.ads.tag.options') }}',

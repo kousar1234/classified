@@ -30,7 +30,7 @@
                 ? wordKey[1]
                 : wordKey[2];
         },
-        translate: function (number, withoutSuffix, key) {
+        translation: function (number, withoutSuffix, key) {
             var wordKey = translator.words[key];
             if (key.length === 1) {
                 return withoutSuffix ? wordKey[0] : wordKey[1];
@@ -104,17 +104,17 @@
             future: 'za %s',
             past: 'prije %s',
             s: 'nekoliko sekundi',
-            ss: translator.translate,
-            m: translator.translate,
-            mm: translator.translate,
-            h: translator.translate,
-            hh: translator.translate,
+            ss: translator.translation,
+            m: translator.translation,
+            mm: translator.translation,
+            h: translator.translation,
+            hh: translator.translation,
             d: 'dan',
-            dd: translator.translate,
+            dd: translator.translation,
             M: 'mjesec',
-            MM: translator.translate,
+            MM: translator.translation,
             y: 'godinu',
-            yy: translator.translate,
+            yy: translator.translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',

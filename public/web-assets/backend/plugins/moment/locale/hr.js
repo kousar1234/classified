@@ -11,7 +11,7 @@
 
     //! moment.js locale configuration
 
-    function translate(number, withoutSuffix, key) {
+    function translation(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
             case 'ss':
@@ -140,17 +140,17 @@
             future: 'za %s',
             past: 'prije %s',
             s: 'par sekundi',
-            ss: translate,
-            m: translate,
-            mm: translate,
-            h: translate,
-            hh: translate,
+            ss: translation,
+            m: translation,
+            mm: translation,
+            h: translation,
+            hh: translation,
             d: 'dan',
-            dd: translate,
+            dd: translation,
             M: 'mjesec',
-            MM: translate,
+            MM: translation,
             y: 'godinu',
-            yy: translate,
+            yy: translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',

@@ -339,7 +339,7 @@ This plugin is used by flot for drawing lines, plots, bars or area.
         */
         function drawSeriesLines(series, ctx, plotOffset, plotWidth, plotHeight, drawSymbol, getColorOrGradient) {
             ctx.save();
-            ctx.translate(plotOffset.left, plotOffset.top);
+            ctx.translation(plotOffset.left, plotOffset.top);
             ctx.lineJoin = "round";
 
             if (series.lines.dashes && ctx.setLineDash) {
@@ -413,7 +413,7 @@ This plugin is used by flot for drawing lines, plots, bars or area.
             }
 
             ctx.save();
-            ctx.translate(plotOffset.left, plotOffset.top);
+            ctx.translation(plotOffset.left, plotOffset.top);
 
             var datapoints = {
                 format: series.datapoints.format,
@@ -600,7 +600,7 @@ This plugin is used by flot for drawing lines, plots, bars or area.
             }
 
             ctx.save();
-            ctx.translate(plotOffset.left, plotOffset.top);
+            ctx.translation(plotOffset.left, plotOffset.top);
 
             var datapoints = {
                 format: series.datapoints.format,

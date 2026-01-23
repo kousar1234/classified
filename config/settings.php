@@ -6,7 +6,7 @@ return [
     ],
     'user_type' => [
         'admin'   => 1,
-        'customer' => 2,
+        'member' => 2,
     ],
     'blog_status' => [
         'publish'   => 1,

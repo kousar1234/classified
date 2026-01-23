@@ -24,14 +24,14 @@
         y: 'metai_metų_metus',
         yy: 'metai_metų_metus',
     };
-    function translateSeconds(number, withoutSuffix, key, isFuture) {
+    function translationSeconds(number, withoutSuffix, key, isFuture) {
         if (withoutSuffix) {
             return 'kelios sekundės';
         } else {
             return isFuture ? 'kelių sekundžių' : 'kelias sekundes';
         }
     }
-    function translateSingular(number, withoutSuffix, key, isFuture) {
+    function translationSingular(number, withoutSuffix, key, isFuture) {
         return withoutSuffix
             ? forms(key)[0]
             : isFuture
@@ -44,11 +44,11 @@
     function forms(key) {
         return units[key].split('_');
     }
-    function translate(number, withoutSuffix, key, isFuture) {
+    function translation(number, withoutSuffix, key, isFuture) {
         var result = number + ' ';
         if (number === 1) {
             return (
-                result + translateSingular(number, withoutSuffix, key[0], isFuture)
+                result + translationSingular(number, withoutSuffix, key[0], isFuture)
             );
         } else if (withoutSuffix) {
             return result + (special(number) ? forms(key)[1] : forms(key)[0]);
@@ -106,18 +106,18 @@
         relativeTime: {
             future: 'po %s',
             past: 'prieš %s',
-            s: translateSeconds,
-            ss: translate,
-            m: translateSingular,
-            mm: translate,
-            h: translateSingular,
-            hh: translate,
-            d: translateSingular,
-            dd: translate,
-            M: translateSingular,
-            MM: translate,
-            y: translateSingular,
-            yy: translate,
+            s: translationSeconds,
+            ss: translation,
+            m: translationSingular,
+            mm: translation,
+            h: translationSingular,
+            hh: translation,
+            d: translationSingular,
+            dd: translation,
+            M: translationSingular,
+            MM: translation,
+            y: translationSingular,
+            yy: translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}-oji/,
         ordinal: function (number) {

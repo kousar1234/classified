@@ -1,6 +1,6 @@
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Ad Share Options') }}
+    {{ translation('Ad Share Options') }}
 @endsection
 @section('page-content')
     <div class="theme-option-container">
@@ -11,7 +11,7 @@
                 <div class="tab-pane fade show active">
                     <div class="card">
                         <div class="card-header align-items-center bg-white d-flex justify-content-between">
-                            <h4>{{ translate('Ad Share Options') }}</h4>
+                            <h4>{{ translation('Ad Share Options') }}</h4>
                         </div>
                         <div class="card-body pt-0">
                             <div class="table-responsive">
@@ -19,8 +19,8 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>{{ translate('Title') }}</th>
-                                            <th>{{ translate('Status') }}</th>
+                                            <th>{{ translation('Title') }}</th>
+                                            <th>{{ translation('Status') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -78,14 +78,14 @@
                     url: '{{ route('plugin.classilookscore.classified.settings.share.options.status.update') }}',
                     success: function(response) {
                         if (response.success) {
-                            toastr.success('{{ translate('Status updated successfully') }}');
+                            toastr.success('{{ translation('Status updated successfully') }}');
                             location.reload();
                         } else {
-                            toastr.error('{{ translate('Status update failed') }}');
+                            toastr.error('{{ translation('Status update failed') }}');
                         }
                     },
                     error: function(response) {
-                        toastr.error('{{ translate('Status update failed') }}');
+                        toastr.error('{{ translation('Status update failed') }}');
                     }
                 });
             });

@@ -455,7 +455,7 @@ $.extend( AutoFill.prototype, {
 					var dataSrc = col.mData;
 
 					// dataSrc is the `field.data` property, but we need to set
-					// using the field name, so we need to translate from the
+					// using the field name, so we need to translation from the
 					// data to the name
 					for ( var k=0, ken=fields.length ; k<ken ; k++ ) {
 						var field = editor.field( fields[k] );

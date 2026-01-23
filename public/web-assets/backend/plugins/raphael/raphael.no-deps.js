@@ -2389,9 +2389,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                             y1 = inver.y(0, 0);
                             x2 = inver.x(t[1], t[2]);
                             y2 = inver.y(t[1], t[2]);
-                            m.translate(x2 - x1, y2 - y1);
+                            m.translation(x2 - x1, y2 - y1);
                         } else {
-                            m.translate(t[1], t[2]);
+                            m.translation(t[1], t[2]);
                         }
                     } else if (command == "r") {
                         if (tlen == 2) {
@@ -2658,15 +2658,15 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             return new Matrix(this.a, this.b, this.c, this.d, this.e, this.f);
         };
         /*\
-         * Matrix.translate
+         * Matrix.translation
          [ method ]
          **
-         * Translate the matrix
+         * translation the matrix
          > Parameters
          - x (number)
          - y (number)
         \*/
-        matrixproto.translate = function (x, y) {
+        matrixproto.translation = function (x, y) {
             this.add(1, 0, 0, 1, x, y);
         };
         /*\
@@ -3947,7 +3947,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
                 opacity: +(s.opacity / c).toFixed(3)
             }));
         }
-        return out.insertBefore(this).translate(s.offsetx, s.offsety);
+        return out.insertBefore(this).translation(s.offsetx, s.offsety);
     };
     var curveslengths = {},
     getPointAtSegmentLength = function (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y, length) {
@@ -5708,7 +5708,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
     },
     updatePosition = function (o) {
         var bbox = o.getBBox(1);
-        $(o.pattern, {patternTransform: o.matrix.invert() + " translate(" + bbox.x + "," + bbox.y + ")"});
+        $(o.pattern, {patternTransform: o.matrix.invert() + " translation(" + bbox.x + "," + bbox.y + ")"});
     },
     addArrow = function (o, value, isEnd) {
         if (o.type == "path") {
@@ -6357,7 +6357,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         return this;
     };
     /*\
-     * Element.translate
+     * Element.translation
      [ method ]
      **
      * Deprecated! Use @Element.transform instead.
@@ -6367,7 +6367,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      - dy (number) vertical shift
      = (object) @Element
     \*/
-    elproto.translate = function (dx, dy) {
+    elproto.translation = function (dx, dy) {
         if (this.removed) {
             return this;
         }
@@ -6388,18 +6388,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
      * i.e. translation doesn’t change `x` or `y` of the rectange. The format
      * of transformation string is similar to the path string syntax:
      | "t100,100r30,100,100s2,2,100,100r45s1.5"
-     * Each letter is a command. There are four commands: `t` is for translate, `r` is for rotate, `s` is for
+     * Each letter is a command. There are four commands: `t` is for translation, `r` is for rotate, `s` is for
      * scale and `m` is for matrix.
      *
      * There are also alternative “absolute” translation, rotation and scale: `T`, `R` and `S`. They will not take previous transformation into account. For example, `...T100,0` will always move element 100 px horisontally, while `...t100,0` could move it vertically if there is `r90` before. Just compare results of `r90t100,0` and `r90T100,0`.
      *
-     * So, the example line above could be read like “translate by 100, 100; rotate 30° around 100, 100; scale twice around 100, 100;
+     * So, the example line above could be read like “translation by 100, 100; rotate 30° around 100, 100; scale twice around 100, 100;
      * rotate 45° around centre; scale 1.5 times relative to centre”. As you can see rotate and scale commands have origin
      * coordinates as optional parameters, the default is the centre point of the element.
      * Matrix accepts six parameters.
      > Usage
      | var el = paper.rect(10, 20, 300, 200);
-     | // translate 100, 100, rotate 45°, translate -100, 0
+     | // translation 100, 100, rotate 45°, translation -100, 0
      | el.transform("t100,100r45t-100,0");
      | // if you want you can append or prepend transformations
      | el.transform("...t50,50");
@@ -7462,7 +7462,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
             split,
             isGrad = ~Str(this.attrs.fill).indexOf("-"),
             isPatt = !Str(this.attrs.fill).indexOf("url(");
-        matrix.translate(1, 1);
+        matrix.translation(1, 1);
         if (isPatt || isGrad || this.type == "image") {
             skew.matrix = "1 0 0 1";
             skew.offset = "0 0";
@@ -7513,7 +7513,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_
         this.transform(this._.transform.concat([["r", deg, cx, cy]]));
         return this;
     };
-    elproto.translate = function (dx, dy) {
+    elproto.translation = function (dx, dy) {
         if (this.removed) {
             return this;
         }

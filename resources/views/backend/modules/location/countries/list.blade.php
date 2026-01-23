@@ -1,6 +1,6 @@
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Countries') }}
+    {{ translation('Countries') }}
 @endsection
 @section('page-style')
 @endsection
@@ -10,11 +10,11 @@
             <div class="card mb-30">
                 <div class="card-body border-bottom2 mb-20">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h4 class="font-20">{{ translate('Countries') }}</h4>
+                        <h4 class="font-20">{{ translation('Countries') }}</h4>
                         <div class="d-flex flex-wrap">
                             @if (auth()->user()->can('Create Countries'))
                                 <a href="{{ route('plugin.location.country.add') }}"
-                                    class="btn long">{{ translate('Add New Country') }}
+                                    class="btn long">{{ translation('Add New Country') }}
                                 </a>
                             @endif
                         </div>
@@ -24,32 +24,32 @@
                     <!--Filter area-->
                     <form method="get" action="{{ route('plugin.location.country.list') }}">
                         <select class="form-control mb-2" name="per_page">
-                            <option value="">{{ translate('Per page') }}</option>
+                            <option value="">{{ translation('Per page') }}</option>
                             <option value="10" @selected(request()->has('per_page') && request()->get('per_page') == '10')>10</option>
                             <option value="20" @selected(request()->has('per_page') && request()->get('per_page') == '20')>20</option>
                             <option value="50" @selected(request()->has('per_page') && request()->get('per_page') == '50')>50</option>
-                            <option value="all" @selected(request()->has('per_page') && request()->get('per_page') == 'all')>{{ translate('All') }}</option>
+                            <option value="all" @selected(request()->has('per_page') && request()->get('per_page') == 'all')>{{ translation('All') }}</option>
                         </select>
                         <input type="text" name="search_key" class="form-control mb-2"
                             value="{{ request()->has('search_key') ? request()->get('search_key') : '' }}"
                             placeholder="Enter country name">
-                        <button type="submit" class="btn long">{{ translate('Filter') }}</button>
+                        <button type="submit" class="btn long">{{ translation('Filter') }}</button>
                     </form>
 
                     @if (request()->has('search_key'))
                         <a class="btn long btn-danger" href="{{ route('plugin.location.country.list') }}">
-                            {{ translate('Clear Filter') }}
+                            {{ translation('Clear Filter') }}
                         </a>
                     @endif
                     <!--End filter area-->
                     <!--Bulk actions-->
                     <select class="form-control bulk-action-selection">
-                        <option value="null">{{ translate('Bulk Action') }}</option>
-                        <option value="active">{{ translate('Make Active') }}</option>
-                        <option value="in_active">{{ translate('Make Inactive') }}</option>
-                        <option value="delete_all">{{ translate('Delete selection') }}</option>
+                        <option value="null">{{ translation('Bulk Action') }}</option>
+                        <option value="active">{{ translation('Make Active') }}</option>
+                        <option value="in_active">{{ translation('Make Inactive') }}</option>
+                        <option value="delete_all">{{ translation('Delete selection') }}</option>
                     </select>
-                    <button class="btn long btn-warning fire-bulk-action">{{ translate('Apply') }}
+                    <button class="btn long btn-warning fire-bulk-action">{{ translation('Apply') }}
                     </button>
                     <!--End bulk actions-->
                 </div>
@@ -65,10 +65,10 @@
                                         </label>
                                     </div>
                                 </th>
-                                <th>{{ translate('Name') }}</th>
-                                <th>{{ translate('Code') }}</th>
-                                <th>{{ translate('Status') }}</th>
-                                <th>{{ translate('Actions') }}</th>
+                                <th>{{ translation('Name') }}</th>
+                                <th>{{ translation('Code') }}</th>
+                                <th>{{ translation('Status') }}</th>
+                                <th>{{ translation('Actions') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,12 +107,12 @@
                                                     @if (auth()->user()->can('Edit Countries'))
                                                         <a
                                                             href="{{ route('plugin.location.country.edit', ['id' => $country->id, 'lang' => getDefaultLang()]) }}">
-                                                            {{ translate('Edit') }}
+                                                            {{ translation('Edit') }}
                                                         </a>
                                                     @endif
                                                     @if (auth()->user()->can('Edit Countries'))
                                                         <a href="#" class="delete-country"
-                                                            data-country="{{ $country->id }}">{{ translate('Delete') }}
+                                                            data-country="{{ $country->id }}">{{ translation('Delete') }}
                                                         </a>
                                                     @endif
                                                 </div>
@@ -123,7 +123,7 @@
                             @else
                                 <tr>
                                     <td colspan="8">
-                                        <p class="alert alert-danger text-center">{{ translate('Nothing found') }}</p>
+                                        <p class="alert alert-danger text-center">{{ translation('Nothing found') }}</p>
                                     </td>
                                 </tr>
                             @endif
@@ -142,16 +142,16 @@
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title h6">{{ translate('Delete Confirmation') }}</h4>
+                    <h4 class="modal-title h6">{{ translation('Delete Confirmation') }}</h4>
                 </div>
                 <div class="modal-body text-center">
-                    <p class="mt-1">{{ translate('Are you sure to delete this') }}?</p>
+                    <p class="mt-1">{{ translation('Are you sure to delete this') }}?</p>
                     <form method="POST" action="{{ route('plugin.location.country.delete') }}">
                         @csrf
                         <input type="hidden" id="delete-country-id" name="id">
                         <button type="button" class="btn long btn-danger mt-2"
-                            data-dismiss="modal">{{ translate('Cancel') }}</button>
-                        <button type="submit" class="btn long mt-2">{{ translate('Delete') }}</button>
+                            data-dismiss="modal">{{ translation('Cancel') }}</button>
+                        <button type="submit" class="btn long mt-2">{{ translation('Delete') }}</button>
                     </form>
                 </div>
             </div>
@@ -220,18 +220,18 @@
                             action: action
                         }, function(data) {
                             if (data.success) {
-                                toastr.success('{{ translate('Action Applied Successfully') }}');
+                                toastr.success('{{ translation('Action Applied Successfully') }}');
                                 location.reload();
                             }
                             if (!data.success) {
-                                toastr.error('{{ translate('Action Failed') }}');
+                                toastr.error('{{ translation('Action Failed') }}');
                             }
                         })
                     } else {
-                        toastr.error('{{ translate('No Item Selected') }}');
+                        toastr.error('{{ translation('No Item Selected') }}');
                     }
                 } else {
-                    toastr.error('{{ translate('No Action Selected') }}');
+                    toastr.error('{{ translation('No Action Selected') }}');
                 }
             });
         })(jQuery);

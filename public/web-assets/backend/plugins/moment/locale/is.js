@@ -19,7 +19,7 @@
         }
         return true;
     }
-    function translate(number, withoutSuffix, key, isFuture) {
+    function translation(number, withoutSuffix, key, isFuture) {
         var result = number + ' ';
         switch (key) {
             case 's':
@@ -124,18 +124,18 @@
         relativeTime: {
             future: 'eftir %s',
             past: 'fyrir %s síðan',
-            s: translate,
-            ss: translate,
-            m: translate,
-            mm: translate,
+            s: translation,
+            ss: translation,
+            m: translation,
+            mm: translation,
             h: 'klukkustund',
-            hh: translate,
-            d: translate,
-            dd: translate,
-            M: translate,
-            MM: translate,
-            y: translate,
-            yy: translate,
+            hh: translation,
+            d: translation,
+            dd: translation,
+            M: translation,
+            MM: translation,
+            y: translation,
+            yy: translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',

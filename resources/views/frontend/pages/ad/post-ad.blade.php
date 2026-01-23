@@ -120,7 +120,7 @@
             height: 100%;
             width: 100%;
             object-fit: cover;
-            transform: translate(-50%, -50%);
+            transform: translation(-50%, -50%);
         }
 
         .new_image_gallery_add_listing .attachment-preview {
@@ -134,7 +134,7 @@
             height: 100%;
             width: 100%;
             object-fit: cover;
-            transform: translate(-50%, -50%);
+            transform: translation(-50%, -50%);
         }
 
         .media-upload-btn-wrapper .img-wrap .rmv-span {

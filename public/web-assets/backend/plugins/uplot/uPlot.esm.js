@@ -599,7 +599,7 @@ function placeDiv(cls, targ) {
 const xformCache = new WeakMap();
 
 function elTrans(el, xPos, yPos, xMax, yMax) {
-	let xform = "translate(" + xPos + "px," + yPos + "px)";
+	let xform = "translation(" + xPos + "px," + yPos + "px)";
 	let xformOld = xformCache.get(el);
 
 	if (xform != xformOld) {
@@ -1695,7 +1695,7 @@ const arcV = (p, y, x, r, startAngle, endAngle) => { p.arc(x, y, r, startAngle, 
 const bezierCurveToH = (p, bp1x, bp1y, bp2x, bp2y, p2x, p2y) => { p.bezierCurveTo(bp1x, bp1y, bp2x, bp2y, p2x, p2y); };
 const bezierCurveToV = (p, bp1y, bp1x, bp2y, bp2x, p2y, p2x) => { p.bezierCurveTo(bp1x, bp1y, bp2x, bp2y, p2x, p2y); };
 
-// TODO: drawWrap(seriesIdx, drawPoints) (save, restore, translate, clip)
+// TODO: drawWrap(seriesIdx, drawPoints) (save, restore, translation, clip)
 function points(opts) {
 	return (u, seriesIdx, idx0, idx1, filtIdxs) => {
 	//	log("drawPoints()", arguments);
@@ -3584,7 +3584,7 @@ function uPlot(opts, data, then) {
 
 		let _pxAlign = s.pxAlign == 1;
 
-		_pxAlign && ctx.translate(offset, offset);
+		_pxAlign && ctx.translation(offset, offset);
 
 		if (!_points) {
 			let lft = plotLft,
@@ -3612,7 +3612,7 @@ function uPlot(opts, data, then) {
 		else
 			fillStroke(si, strokeStyle, width, s.dash, s.cap, fillStyle, stroke, fill, flags, boundsClip, gapsClip);
 
-		_pxAlign && ctx.translate(-offset, -offset);
+		_pxAlign && ctx.translation(-offset, -offset);
 	}
 
 	function fillStroke(si, strokeStyle, lineWidth, lineDash, lineCap, fillStyle, strokePath, fillPath, flags, boundsClip, gapsClip) {
@@ -3733,7 +3733,7 @@ function uPlot(opts, data, then) {
 	function drawOrthoLines(offs, filts, ori, side, pos0, len, width, stroke, dash, cap) {
 		let offset = (width % 2) / 2;
 
-		pxAlign == 1 && ctx.translate(offset, offset);
+		pxAlign == 1 && ctx.translation(offset, offset);
 
 		setCtxStyle(stroke, width, dash, cap, stroke);
 
@@ -3764,7 +3764,7 @@ function uPlot(opts, data, then) {
 
 		ctx.stroke();
 
-		pxAlign == 1 && ctx.translate(-offset, -offset);
+		pxAlign == 1 && ctx.translation(-offset, -offset);
 	}
 
 	function axesCalc(cycleNum) {
@@ -3873,7 +3873,7 @@ function uPlot(opts, data, then) {
 				if (ori == 1) {
 					x = y = 0;
 
-					ctx.translate(
+					ctx.translation(
 						baseLpos,
 						round(plotTop + plotHgt / 2),
 					);
@@ -3956,7 +3956,7 @@ function uPlot(opts, data, then) {
 
 						if (angle) {
 							ctx.save();
-							ctx.translate(x, y + j * lineHeight); // can this be replaced with position math?
+							ctx.translation(x, y + j * lineHeight); // can this be replaced with position math?
 							ctx.rotate(angle); // can this be done once?
 							ctx.fillText(text, 0, 0);
 							ctx.restore();

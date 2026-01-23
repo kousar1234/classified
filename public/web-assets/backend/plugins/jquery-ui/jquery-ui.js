@@ -2504,7 +2504,7 @@ $.extend( $.effects, {
 		return mode;
 	},
 
-	// Translates a [top,left] array into a baseline value
+	// translations a [top,left] array into a baseline value
 	getBaseline: function( origin, original ) {
 		var y, x;
 

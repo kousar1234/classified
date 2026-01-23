@@ -1,6 +1,6 @@
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Members') }}
+    {{ translation('Members') }}
 @endsection
 @section('page-style')
     <link rel="stylesheet" href="{{ asset('/public/web-assets/backend/plugins/daterangepicker/daterangepicker.css') }}">
@@ -10,9 +10,9 @@
         <div class="col-12">
             <div class="card mb-30">
                 <div class="align-items-center bg-white card-header d-sm-flex justify-content-between py-2">
-                    <h4 class="font-20">{{ translate('Members') }}</h4>
+                    <h4 class="font-20">{{ translation('Members') }}</h4>
                     <button class="btn long" data-toggle="modal"
-                        data-target="#new-member-modal">{{ translate('Add New Member') }}
+                        data-target="#new-member-modal">{{ translation('Add New Member') }}
                     </button>
                 </div>
                 <div class="card-body">
@@ -20,29 +20,29 @@
                     <div class="px-2 filter-area d-flex align-items-center">
                         <form method="get" action="{{ route('plugin.classilookscore.members.list') }}">
                             <select class="form-control mb-10" name="per_page">
-                                <option value="">{{ translate('Per page') }}</option>
+                                <option value="">{{ translation('Per page') }}</option>
                                 <option value="20" @selected(request()->has('per_page') && request()->get('per_page') == '20')>20</option>
                                 <option value="50" @selected(request()->has('per_page') && request()->get('per_page') == '50')>50</option>
                                 <option value="all" @selected(request()->has('per_page') && request()->get('per_page') == 'all')>All</option>
                             </select>
                             <select class="form-control mb-10" name="status">
-                                <option value="">{{ translate('Status') }}</option>
+                                <option value="">{{ translation('Status') }}</option>
                                 <option value="{{ config('settings.general_status.active') }}" @selected(request()->has('status') && request()->get('status') == config('settings.general_status.active'))>
-                                    {{ translate('Active') }}</option>
+                                    {{ translation('Active') }}</option>
                                 <option value="{{ config('settings.general_status.in_active') }}"
                                     @selected(request()->has('status') && request()->get('status') == config('settings.general_status.in_active'))>
-                                    {{ translate('Inactive') }}</option>
+                                    {{ translation('Inactive') }}</option>
                             </select>
                             <input type="text" class="form-control mb-10" id="joinDateRange"
                                 placeholder="Filter by join date" name="join_date" readonly>
                             <input type="text" name="search" class="form-control mb-10"
                                 value="{{ request()->has('search') ? request()->get('search') : '' }}"
                                 placeholder="Enter name, email, phone, uid">
-                            <button type="submit" class="btn long mb-1">{{ translate('Filter') }}</button>
+                            <button type="submit" class="btn long mb-1">{{ translation('Filter') }}</button>
                         </form>
                         @if (auth()->user()->can('Create Members'))
                             <a class="btn btn-danger long mb-2"
-                                href="{{ route('plugin.classilookscore.members.list') }}">{{ translate('Clear Filter') }}
+                                href="{{ route('plugin.classilookscore.members.list') }}">{{ translation('Clear Filter') }}
                             </a>
                         @endif
 
@@ -54,14 +54,14 @@
                                     <th>
                                         #
                                     </th>
-                                    <th>{{ translate('Image') }}</th>
-                                    <th>{{ translate('Name') }}</th>
-                                    <th>{{ translate('Email') }}</th>
-                                    <th>{{ translate('Email Verified') }}</th>
-                                    <th>{{ translate('Phone') }}</th>
-                                    <th>{{ translate('No. of Ads') }}</th>
-                                    <th>{{ translate('Status') }}</th>
-                                    <th class="text-center">{{ translate('Actions') }}</th>
+                                    <th>{{ translation('Image') }}</th>
+                                    <th>{{ translation('Name') }}</th>
+                                    <th>{{ translation('Email') }}</th>
+                                    <th>{{ translation('Email Verified') }}</th>
+                                    <th>{{ translation('Phone') }}</th>
+                                    <th>{{ translation('No. of Ads') }}</th>
+                                    <th>{{ translation('Status') }}</th>
+                                    <th class="text-center">{{ translation('Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -83,16 +83,16 @@
                                                 @if ($member->email_verified_at != null)
                                                     {{ $member->email_verified_at->format('d M Y') }}
                                                 @else
-                                                    <p class="badge badge-danger">{{ translate('Not Verified') }}</p>
+                                                    <p class="badge badge-danger">{{ translation('Not Verified') }}</p>
                                                 @endif
                                             </td>
                                             <td>{{ $member->phone }}</td>
                                             <td>{{ $member->ads->count() }}</td>
                                             <td>
                                                 @if ($member->status == config('settings.general_status.active'))
-                                                    <p class="badge badge-success">{{ translate('Active') }}</p>
+                                                    <p class="badge badge-success">{{ translation('Active') }}</p>
                                                 @else
-                                                    <p class="badge badge-danger">{{ translate('Inactive') }}</p>
+                                                    <p class="badge badge-danger">{{ translation('Inactive') }}</p>
                                                 @endif
                                             </td>
                                             <td>
@@ -109,18 +109,18 @@
                                                         @if (auth()->user()->can('Edit Members'))
                                                             <a href="#" data-id="{{ $member->id }}"
                                                                 class="edit-member-btn">
-                                                                {{ translate('Edit') }}
+                                                                {{ translation('Edit') }}
                                                             </a>
                                                         @endif
                                                         @if (auth()->user()->can('Edit Members'))
                                                             <a href="#" data-id="{{ $member->id }}"
                                                                 class="member-reset-password">
-                                                                {{ translate('Reset Password') }}
+                                                                {{ translation('Reset Password') }}
                                                             </a>
                                                         @endif
                                                         @if (auth()->user()->can('Delete Members'))
                                                             <a href="#" class="delete-member"
-                                                                data-member="{{ $member->id }}">{{ translate('Delete member') }}
+                                                                data-member="{{ $member->id }}">{{ translation('Delete member') }}
                                                             </a>
                                                         @endif
                                                     </div>
@@ -131,7 +131,8 @@
                                 @else
                                     <tr>
                                         <td colspan="9">
-                                            <p class="alert alert-danger text-center">{{ translate('Nothing Found') }}</p>
+                                            <p class="alert alert-danger text-center">{{ translation('Nothing Found') }}
+                                            </p>
                                         </td>
                                     </tr>
                                 @endif
@@ -152,7 +153,7 @@
             <div class="modal-content">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title bold h6">{{ translate('member information') }}</h4>
+                        <h4 class="modal-title bold h6">{{ translation('member information') }}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -160,7 +161,7 @@
                     <div class="modal-body">
                         <form id="new-member-form">
                             <div class="form-row mb-20">
-                                <label class="black font-14 col-12">{{ translate('Image') }}</label>
+                                <label class="black font-14 col-12">{{ translation('Image') }}</label>
                                 @include('core::base.includes.media.media_input', [
                                     'input' => 'image',
                                     'data' => '',
@@ -170,31 +171,31 @@
 
                             <div class="form-row">
                                 <div class="form-group col-lg-6">
-                                    <label class="black font-14">{{ translate('Name') }}</label>
+                                    <label class="black font-14">{{ translation('Name') }}</label>
                                     <input type="text" name="name" class="form-control"
-                                        placeholder="{{ translate('Enter Name') }}">
+                                        placeholder="{{ translation('Enter Name') }}">
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label class="black font-14">{{ translate('Email') }}</label>
+                                    <label class="black font-14">{{ translation('Email') }}</label>
                                     <input type="email" name="email" class="form-control"
-                                        placeholder="{{ translate('Enter Email') }}">
+                                        placeholder="{{ translation('Enter Email') }}">
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-lg-6">
-                                    <label class="black font-14">{{ translate('Phone') }}</label>
+                                    <label class="black font-14">{{ translation('Phone') }}</label>
                                     <input type="text" name="phone" class="form-control"
-                                        placeholder="{{ translate('Enter Phone') }}">
+                                        placeholder="{{ translation('Enter Phone') }}">
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label class="black font-14">{{ translate('Status') }}</label>
+                                    <label class="black font-14">{{ translation('Status') }}</label>
                                     <select name="status" class="form-control">
                                         <option value="{{ config('settings.general_status.active') }}">
-                                            {{ translate('Active') }}
+                                            {{ translation('Active') }}
                                         </option>
                                         <option value="{{ config('settings.general_status.in_active') }}">
-                                            {{ translate('Inactive') }}
+                                            {{ translation('Inactive') }}
                                         </option>
                                     </select>
                                 </div>
@@ -202,18 +203,18 @@
 
                             <div class="form-row">
                                 <div class="form-group col-lg-6">
-                                    <label>{{ translate('New password') }}</label>
+                                    <label>{{ translation('New password') }}</label>
                                     <input type="password" name="password" class="form-control"
-                                        placeholder="{{ translate('Enter new password') }}">
+                                        placeholder="{{ translation('Enter new password') }}">
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>{{ translate('Confirm password') }}</label>
+                                    <label>{{ translation('Confirm password') }}</label>
                                     <input type="password" name="password_confirmation" class="form-control"
-                                        placeholder="{{ translate('Confirm password') }}">
+                                        placeholder="{{ translation('Confirm password') }}">
                                 </div>
                             </div>
                             <div class="btn-area d-flex justify-content-between">
-                                <button class="btn long mt-2 store-member">{{ translate('Save') }}</button>
+                                <button class="btn long mt-2 store-member">{{ translation('Save') }}</button>
                             </div>
 
                         </form>
@@ -229,20 +230,20 @@
         <div class="modal-dialog modal-sm modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title h6">{{ translate('Delete Confirmation') }}</h4>
+                    <h4 class="modal-title h6">{{ translation('Delete Confirmation') }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body text-center">
-                    <p class="mt-1">{{ translate('Are you sure to delete this member') }}?</p>
+                    <p class="mt-1">{{ translation('Are you sure to delete this member') }}?</p>
                     <form method="POST" action="{{ route('plugin.classilookscore.members.delete') }}">
                         @csrf
                         <input type="hidden" id="delete-member-id" name="id">
                         <div class="form-row d-flex justify-content-between">
                             <button type="button" class="btn long mt-2 btn-danger"
-                                data-dismiss="modal">{{ translate('cancel') }}</button>
-                            <button type="submit" class="btn long mt-2">{{ translate('Delete') }}</button>
+                                data-dismiss="modal">{{ translation('cancel') }}</button>
+                            <button type="submit" class="btn long mt-2">{{ translation('Delete') }}</button>
                         </div>
                     </form>
                 </div>
@@ -255,7 +256,7 @@
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title bold h6">{{ translate('Reset Password') }}</h4>
+                    <h4 class="modal-title bold h6">{{ translation('Reset Password') }}</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -263,20 +264,20 @@
                 <div class="modal-body text-center">
                     <form id="reset-passwork-form">
                         <div class="form-row mb-20">
-                            <label>{{ translate('New password') }}</label>
+                            <label>{{ translation('New password') }}</label>
                             <input type="password" name="password" class="form-control"
-                                placeholder="{{ translate('Enter new password') }}">
+                                placeholder="{{ translation('Enter new password') }}">
                         </div>
                         <div class="form-row mb-20">
-                            <label>{{ translate('Confirm password') }}</label>
+                            <label>{{ translation('Confirm password') }}</label>
                             <input type="password" name="password_confirmation" class="form-control"
-                                placeholder="{{ translate('Confirm password') }}">
+                                placeholder="{{ translation('Confirm password') }}">
                         </div>
                         <input type="hidden" id="reset-password-member-id" name="id">
                         <div class="btn-area d-flex justify-content-between">
                             <button type="button" class="btn long mt-2 btn-danger"
-                                data-dismiss="modal">{{ translate('cancel') }}</button>
-                            <button class="btn long mt-2 reset-password-btn">{{ translate('Submit') }}</button>
+                                data-dismiss="modal">{{ translation('cancel') }}</button>
+                            <button class="btn long mt-2 reset-password-btn">{{ translation('Submit') }}</button>
                         </div>
 
                     </form>
@@ -291,7 +292,7 @@
             <div class="modal-content">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title bold h6">{{ translate('member information') }}</h4>
+                        <h4 class="modal-title bold h6">{{ translation('member information') }}</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
@@ -359,9 +360,9 @@
                             $("#reset-password-modal").modal('hide');
                             $(document).find('[name=password]').val('');
                             $(document).find('[name=password_confirmation').val('');
-                            toastr.success('{{ translate('Password updated successfully') }}');
+                            toastr.success('{{ translation('Password updated successfully') }}');
                         } else {
-                            toastr.error('{{ translate('Update Failed ') }}');
+                            toastr.error('{{ translation('Update Failed ') }}');
                         }
                     },
                     error: function(response) {
@@ -373,7 +374,7 @@
                                     '</div>')
                             })
                         } else {
-                            toastr.error('{{ translate('Update Failed ') }}');
+                            toastr.error('{{ translation('Update Failed ') }}');
                         }
                     }
                 });
@@ -400,11 +401,11 @@
                             $('.member-edit-form').html(response.data);
                             $("#edit-cutomer-modal").modal('show');
                         } else {
-                            toastr.error('{{ translate('Member not found') }}');
+                            toastr.error('{{ translation('Member not found') }}');
                         }
                     },
                     error: function(error) {
-                        toastr.error('{{ translate('Member not found') }}');
+                        toastr.error('{{ translation('Member not found') }}');
                     }
                 });
             });
@@ -425,10 +426,10 @@
                     success: function(response) {
                         if (response.success) {
                             $("#edit-cutomer-modal").modal('hide');
-                            toastr.success('{{ translate('Member updated successfully') }}');
+                            toastr.success('{{ translation('Member updated successfully') }}');
                             location.reload();
                         } else {
-                            toastr.error('{{ translate('Member Update Failed') }}');
+                            toastr.error('{{ translation('Member Update Failed') }}');
                         }
                     },
                     error: function(response) {
@@ -440,7 +441,7 @@
                                     '</div>')
                             })
                         } else {
-                            toastr.error('{{ translate('Member Update Failed') }}');
+                            toastr.error('{{ translation('Member Update Failed') }}');
                         }
                     }
                 });
@@ -459,10 +460,10 @@
                     success: function(response) {
                         if (response.success) {
                             $("#new-member-modal").modal('hide');
-                            toastr.success('{{ translate('Member Created successfully') }}');
+                            toastr.success('{{ translation('Member Created successfully') }}');
                             location.reload();
                         } else {
-                            toastr.error('{{ translate('Member Create Failed') }}');
+                            toastr.error('{{ translation('Member Create Failed') }}');
                         }
                     },
                     error: function(response) {
@@ -474,7 +475,7 @@
                                     '</div>')
                             })
                         } else {
-                            toastr.error('{{ translate('Member Create Failed') }}');
+                            toastr.error('{{ translation('Member Create Failed') }}');
                         }
                     }
                 });

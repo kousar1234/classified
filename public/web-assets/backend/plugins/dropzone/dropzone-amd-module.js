@@ -7354,7 +7354,7 @@ var defaultOptions = {
   dictMaxFilesExceeded: "You can not upload any more files.",
 
   /**
-   * Allows you to translate the different units. Starting with `tb` for terabytes and going down to
+   * Allows you to translation the different units. Starting with `tb` for terabytes and going down to
    * `b` for bytes.
    */
   dictFileSizeUnits: {
@@ -8953,19 +8953,19 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
           switch (orientation) {
             case 2:
               // horizontal flip
-              ctx.translate(canvas.width, 0);
+              ctx.translation(canvas.width, 0);
               ctx.scale(-1, 1);
               break;
 
             case 3:
               // 180° rotate left
-              ctx.translate(canvas.width, canvas.height);
+              ctx.translation(canvas.width, canvas.height);
               ctx.rotate(Math.PI);
               break;
 
             case 4:
               // vertical flip
-              ctx.translate(0, canvas.height);
+              ctx.translation(0, canvas.height);
               ctx.scale(1, -1);
               break;
 
@@ -8978,20 +8978,20 @@ var Dropzone = /*#__PURE__*/function (_Emitter) {
             case 6:
               // 90° rotate right
               ctx.rotate(0.5 * Math.PI);
-              ctx.translate(0, -canvas.width);
+              ctx.translation(0, -canvas.width);
               break;
 
             case 7:
               // horizontal flip + 90 rotate right
               ctx.rotate(0.5 * Math.PI);
-              ctx.translate(canvas.height, -canvas.width);
+              ctx.translation(canvas.height, -canvas.width);
               ctx.scale(-1, 1);
               break;
 
             case 8:
               // 90° rotate left
               ctx.rotate(-0.5 * Math.PI);
-              ctx.translate(-canvas.height, 0);
+              ctx.translation(-canvas.height, 0);
               break;
           } // This is a bugfix for iOS' scaling bug.
 

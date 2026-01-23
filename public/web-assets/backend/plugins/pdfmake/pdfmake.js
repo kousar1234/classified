@@ -17668,7 +17668,7 @@ var VectorMixin = {
     }).join(' ');
     return this.addContent("".concat(values, " cm"));
   },
-  translate: function translate(x, y) {
+  translation: function translation(x, y) {
     return this.transform(1, 0, 0, 1, x, y);
   },
   rotate: function rotate(angle) {
@@ -23395,9 +23395,9 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
 
       if (func === 'matrix' && nums.length === 6) {
         result = multiplyMatrix(result, [nums[0], nums[1], nums[2], nums[3], nums[4], nums[5]]);
-      } else if (func === 'translate' && nums.length === 2) {
+      } else if (func === 'translation' && nums.length === 2) {
         result = multiplyMatrix(result, [1, 0, 0, 1, nums[0], nums[1]]);
-      } else if (func === 'translate' && nums.length === 1) {
+      } else if (func === 'translation' && nums.length === 1) {
         result = multiplyMatrix(result, [1, 0, 0, 1, nums[0], 0]);
       } else if (func === 'scale' && nums.length === 2) {
         result = multiplyMatrix(result, [nums[0], 0, 0, nums[1], 0, 0]);
@@ -25154,7 +25154,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
 
       this.clip();
       this.mask();
-      doc.translate(x, y);
+      doc.translation(x, y);
       doc.transform.apply(doc, parseAspectRatio(this.attr('preserveAspectRatio'), width, height, image ? image.width : width, image ? image.height : height));
 
       if (!isClip) {
@@ -25712,7 +25712,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       }
 
       doc.transform.apply(doc, aspectRatioMatrix);
-      doc.translate(-refX, -refY);
+      doc.translation(-refX, -refY);
       var group;
 
       if (this.get('opacity') < 1 && !isClip) {
@@ -26442,7 +26442,7 @@ var SVGtoPDF = function SVGtoPDF(doc, svg, x, y, options) {
       }
 
       var savedFillColor = doc._fillColor;
-      doc.save().translate(x || 0, y || 0).scale(pxToPt);
+      doc.save().translation(x || 0, y || 0).scale(pxToPt);
       elem.drawInDocument();
 
       for (var _i8 = 0; _i8 < links.length; _i8++) {
@@ -27362,7 +27362,7 @@ function ReadBlockLength(table, index, br) {
   return Prefix.kBlockLengthPrefixCode[code].offset + br.readBits(nbits);
 }
 
-function TranslateShortCodes(code, ringbuffer, index) {
+function translationShortCodes(code, ringbuffer, index) {
   var val;
   if (code < NUM_DISTANCE_SHORT_CODES) {
     index += kDistanceShortCodeIndexOffset[code];
@@ -27874,7 +27874,7 @@ function BrotliDecompress(input, output) {
 
       /* Convert the distance code to the actual distance by possibly looking */
       /* up past distnaces from the ringbuffer. */
-      distance = TranslateShortCodes(distance_code, dist_rb, dist_rb_idx);
+      distance = translationShortCodes(distance_code, dist_rb, dist_rb_idx);
       if (distance < 0) {
         throw new Error('[BrotliDecompress] invalid distance');
       }
@@ -30226,7 +30226,7 @@ function longest_match(s, cur_match) {
  * IN assertion: lookahead < MIN_LOOKAHEAD
  * OUT assertions: strstart <= window_size-MIN_LOOKAHEAD
  *    At least one byte has been read, or avail_in == 0; reads are
- *    performed for at least two bytes (required for the zip translate_eol
+ *    performed for at least two bytes (required for the zip translation_eol
  *    option -- not supported here).
  */
 function fill_window(s) {
@@ -66775,11 +66775,11 @@ var Path = /*#__PURE__*/function () {
     });
   }
   /**
-   * Translates the path by the given offset.
+   * translations the path by the given offset.
    */
   ;
 
-  _proto31.translate = function translate(x, y) {
+  _proto31.translation = function translation(x, y) {
     return this.transform(1, 0, 0, 1, x, y);
   }
   /**

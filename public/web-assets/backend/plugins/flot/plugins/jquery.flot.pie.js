@@ -353,12 +353,12 @@ More detail and specific examples can be found in the included HTML file.
                 }
 
                 ctx.save();
-                ctx.translate(shadowLeft, shadowTop);
+                ctx.translation(shadowLeft, shadowTop);
                 ctx.globalAlpha = alpha;
                 ctx.fillStyle = "#000";
 
                 // center and rotate to starting position
-                ctx.translate(centerLeft, centerTop);
+                ctx.translation(centerLeft, centerTop);
                 ctx.scale(1, options.series.pie.tilt);
 
                 //radius -= edge;
@@ -379,7 +379,7 @@ More detail and specific examples can be found in the included HTML file.
                 // center and rotate to starting position
 
                 ctx.save();
-                ctx.translate(centerLeft, centerTop);
+                ctx.translation(centerLeft, centerTop);
                 ctx.scale(1, options.series.pie.tilt);
                 //ctx.rotate(startAngle); // start at top; -- This doesn't work properly in Opera
 
@@ -708,7 +708,7 @@ More detail and specific examples can be found in the included HTML file.
             var radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius;
 
             octx.save();
-            octx.translate(centerLeft, centerTop);
+            octx.translation(centerLeft, centerTop);
             octx.scale(1, options.series.pie.tilt);
 
             for (var i = 0; i < highlights.length; ++i) {

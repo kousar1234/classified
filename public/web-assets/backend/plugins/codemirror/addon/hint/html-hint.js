@@ -328,7 +328,7 @@
     style: null,
     tabindex: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
     title: null,
-    translate: ["yes", "no"],
+    translation: ["yes", "no"],
     onclick: null,
     rel: ["stylesheet", "alternate", "author", "bookmark", "help", "license", "next", "nofollow", "noreferrer", "prefetch", "prev", "search", "tag"]
   };

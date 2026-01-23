@@ -2798,7 +2798,7 @@ var exports$1 = {
 			type = style.toString();
 			if (type === '[object HTMLImageElement]' || type === '[object HTMLCanvasElement]') {
 				ctx.save();
-				ctx.translate(x, y);
+				ctx.translation(x, y);
 				ctx.rotate(rad);
 				ctx.drawImage(style, -style.width / 2, -style.height / 2, style.width, style.height);
 				ctx.restore();
@@ -12415,7 +12415,7 @@ var Scale = core_element.extend({
 
 			// Make sure we draw text in the correct color and font
 			ctx.save();
-			ctx.translate(item.x, item.y);
+			ctx.translation(item.x, item.y);
 			ctx.rotate(item.rotation);
 			ctx.font = tickFont.string;
 			ctx.fillStyle = tickFont.color;
@@ -12473,7 +12473,7 @@ var Scale = core_element.extend({
 		}
 
 		ctx.save();
-		ctx.translate(scaleLabelX, scaleLabelY);
+		ctx.translation(scaleLabelX, scaleLabelY);
 		ctx.rotate(rotation);
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
@@ -13902,7 +13902,7 @@ var scale_radialLinear = scale_linearbase.extend({
 
 		ctx.save();
 		ctx.font = tickFont.string;
-		ctx.translate(me.xCenter, me.yCenter);
+		ctx.translation(me.xCenter, me.yCenter);
 		ctx.rotate(startAngle);
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';
@@ -17478,7 +17478,7 @@ var moment = createCommonjsModule(function (module, exports) {
         // day when working around DST, we need to store them separately
         this._days = +days +
             weeks * 7;
-        // It is impossible to translate months into days without knowing
+        // It is impossible to translation months into days without knowing
         // which months you are are talking about, so we have to store
         // it separately.
         this._months = +months +
@@ -20540,7 +20540,7 @@ var Title = core_element.extend({
 		}
 
 		ctx.save();
-		ctx.translate(titleX, titleY);
+		ctx.translation(titleX, titleY);
 		ctx.rotate(rotation);
 		ctx.textAlign = 'center';
 		ctx.textBaseline = 'middle';

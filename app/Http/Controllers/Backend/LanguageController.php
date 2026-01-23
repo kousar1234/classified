@@ -150,16 +150,16 @@ class LanguageController extends Controller
             DB::beginTransaction();
             $language = Language::findOrFail($request->id);
             foreach ($request->values as $key => $value) {
-                $translate = Translation::where('lang_key', $key)->where('lang', $language->code)->latest()->first();
-                if ($translate == null) {
-                    $translate = new Translation;
-                    $translate->lang = $language->code;
-                    $translate->lang_key = x_clean($key);
-                    $translate->lang_value = x_clean($value);
-                    $translate->save();
+                $translation = Translation::where('lang_key', $key)->where('lang', $language->code)->latest()->first();
+                if ($translation == null) {
+                    $translation = new Translation;
+                    $translation->lang = $language->code;
+                    $translation->lang_key = x_clean($key);
+                    $translation->lang_value = x_clean($value);
+                    $translation->save();
                 } else {
-                    $translate->lang_value = x_clean($value);
-                    $translate->save();
+                    $translation->lang_value = x_clean($value);
+                    $translation->save();
                 }
             }
             DB::commit();

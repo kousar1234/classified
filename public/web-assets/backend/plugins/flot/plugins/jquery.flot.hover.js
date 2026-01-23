@@ -264,7 +264,7 @@ the tooltip from webcharts).
                 i, hi;
 
             octx.save();
-            octx.translate(plotOffset.left, plotOffset.top);
+            octx.translation(plotOffset.left, plotOffset.top);
             for (i = 0; i < highlights.length; ++i) {
                 hi = highlights[i];
 

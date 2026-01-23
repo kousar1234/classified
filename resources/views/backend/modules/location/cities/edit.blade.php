@@ -3,7 +3,7 @@
 @endphp
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Edit City') }}
+    {{ translation('Edit City') }}
 @endsection
 @section('page-style')
     <link rel="stylesheet" href="{{ asset('/public/web-assets/backend/plugins/select2/select2.min.css') }}">
@@ -18,7 +18,7 @@
             </div>
             <div class="card mb-30">
                 <div class="card-header bg-white py-3">
-                    <h4>{{ translate('City Information') }}</h4>
+                    <h4>{{ translation('City Information') }}</h4>
                 </div>
                 <div class="card-body">
                     <!--Language Switcher-->
@@ -39,12 +39,12 @@
                         @csrf
                         <div class="form-row mb-20">
                             <div class="col-sm-4">
-                                <label class="font-14 bold black">{{ translate('Name') }} </label>
+                                <label class="font-14 bold black">{{ translation('Name') }} </label>
                             </div>
                             <div class="col-sm-8">
                                 <input type="text" name="name" class="form-control"
                                     value="{{ $city_details->translation('name', $lang) }}"
-                                    placeholder="{{ translate('Type Name') }}">
+                                    placeholder="{{ translation('Type Name') }}">
                                 <input type="hidden" name="id" value="{{ $city_details->id }}">
                                 <input type="hidden" name="lang" value="{{ $lang }}">
                                 @if ($errors->has('name'))
@@ -55,11 +55,11 @@
                         <div
                             class="form-row mb-20 {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                             <div class="col-sm-4">
-                                <label class="font-14 bold black">{{ translate('State') }}</label>
+                                <label class="font-14 bold black">{{ translation('State') }}</label>
                             </div>
                             <div class="col-sm-8">
                                 <select class="stateSelect form-control" name="state"
-                                    placeholder="{{ translate('Select a State') }}">
+                                    placeholder="{{ translation('Select a State') }}">
                                     @foreach ($states as $state)
                                         <option value="{{ $state->id }}"
                                             {{ $city_details->state_id == $state->id ? 'selected' : '' }}>
@@ -74,7 +74,7 @@
                         </div>
                         <div class="form-row">
                             <div class="col-12 text-right">
-                                <button type="submit" class="btn long">{{ translate('Save Changes') }}</button>
+                                <button type="submit" class="btn long">{{ translation('Save Changes') }}</button>
                             </div>
                         </div>
                     </form>

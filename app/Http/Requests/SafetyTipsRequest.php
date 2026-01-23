@@ -22,7 +22,7 @@ class SafetyTipsRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => translate('Title is required')
+            'title.required' => translation('Title is required')
         ];
     }
 }

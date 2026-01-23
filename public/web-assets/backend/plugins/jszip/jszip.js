@@ -6207,7 +6207,7 @@ function longest_match(s, cur_match) {
  * IN assertion: lookahead < MIN_LOOKAHEAD
  * OUT assertions: strstart <= window_size-MIN_LOOKAHEAD
  *    At least one byte has been read, or avail_in == 0; reads are
- *    performed for at least two bytes (required for the zip translate_eol
+ *    performed for at least two bytes (required for the zip translation_eol
  *    option -- not supported here).
  */
 function fill_window(s) {

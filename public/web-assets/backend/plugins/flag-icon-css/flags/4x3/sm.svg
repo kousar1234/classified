@@ -62,28 +62,28 @@
     <path d="M317 329.3c-3.2-.6-4.4-.4-6.6-.6l-5.1 15.8c8 .7 15.3.7 15.3.7-4.8-1-3.7-15.8-3.6-15.9z"/>
   </g>
   <g font-family="Trebuchet MS" font-size="9" font-weight="bold">
-    <text x="448.6" y="344.3" transform="translate(-465 -233.3) scale(1.6657)">
+    <text x="448.6" y="344.3" transform="translation(-465 -233.3) scale(1.6657)">
       <tspan x="448.6" y="344.3">L</tspan>
     </text>
-    <text x="453.6" y="344.6" transform="translate(-465 -233.3) scale(1.6657)">
+    <text x="453.6" y="344.6" transform="translation(-465 -233.3) scale(1.6657)">
       <tspan x="453.6" y="344.6">I</tspan>
     </text>
-    <text x="456.7" y="345.1" transform="translate(-465 -233.3) scale(1.6657)">
+    <text x="456.7" y="345.1" transform="translation(-465 -233.3) scale(1.6657)">
       <tspan x="456.7" y="345.1">B</tspan>
     </text>
-    <text x="462.6" y="345.5" transform="translate(-465 -233.3) scale(1.6657)">
+    <text x="462.6" y="345.5" transform="translation(-465 -233.3) scale(1.6657)">
       <tspan x="462.6" y="345.5">E</tspan>
     </text>
-    <text x="468.3" y="345.6" transform="translate(-465 -233.3) scale(1.6657)">
+    <text x="468.3" y="345.6" transform="translation(-465 -233.3) scale(1.6657)">
       <tspan x="468.3" y="345.6">R</tspan>
     </text>
-    <text x="473.9" y="345.4" transform="translate(-465 -233.3) scale(1.6657)">
+    <text x="473.9" y="345.4" transform="translation(-465 -233.3) scale(1.6657)">
       <tspan x="473.9" y="345.4">T</tspan>
     </text>
-    <text x="479.3" y="344.5" transform="translate(-465 -233.3) scale(1.6657)">
+    <text x="479.3" y="344.5" transform="translation(-465 -233.3) scale(1.6657)">
       <tspan x="479.3" y="344.5">A</tspan>
     </text>
-    <text x="485.5" y="344.3" transform="translate(-465 -233.3) scale(1.6657)">
+    <text x="485.5" y="344.3" transform="translation(-465 -233.3) scale(1.6657)">
       <tspan x="485.5" y="344.3">S</tspan>
     </text>
   </g>

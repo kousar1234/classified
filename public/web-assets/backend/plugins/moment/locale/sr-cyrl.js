@@ -31,7 +31,7 @@
                 ? wordKey[1]
                 : wordKey[2];
         },
-        translate: function (number, withoutSuffix, key) {
+        translation: function (number, withoutSuffix, key) {
             var wordKey = translator.words[key];
             if (key.length === 1) {
                 return withoutSuffix ? wordKey[0] : wordKey[1];
@@ -102,17 +102,17 @@
             future: 'за %s',
             past: 'пре %s',
             s: 'неколико секунди',
-            ss: translator.translate,
-            m: translator.translate,
-            mm: translator.translate,
-            h: translator.translate,
-            hh: translator.translate,
+            ss: translator.translation,
+            m: translator.translation,
+            mm: translator.translation,
+            h: translator.translation,
+            hh: translator.translation,
             d: 'дан',
-            dd: translator.translate,
+            dd: translator.translation,
             M: 'месец',
-            MM: translator.translate,
+            MM: translator.translation,
             y: 'годину',
-            yy: translator.translate,
+            yy: translator.translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',

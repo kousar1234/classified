@@ -97,7 +97,7 @@
     'ir_filter', 'iplot', 'ipolygon', 'ipolyline', 'iputdata',
     'iregister', 'ireset', 'iresolve', 'irotate', 'isa',
     'isave', 'iscale', 'isetcurrent', 'isetproperty', 'ishft',
-    'isocontour', 'isosurface', 'isurface', 'itext', 'itranslate',
+    'isocontour', 'isosurface', 'isurface', 'itext', 'itranslation',
     'ivector', 'ivolume', 'izoom', 'journal', 'json_parse',
     'json_serialize', 'jul2greg', 'julday', 'keyword_set', 'krig2d',
     'kurtosis', 'kw_test', 'l64indgen', 'la_choldc', 'la_cholmprove',

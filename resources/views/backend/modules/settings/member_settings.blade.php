@@ -1,6 +1,6 @@
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Member Settings') }}
+    {{ translation('Member Settings') }}
 @endsection
 @section('page-content')
     <div class="theme-option-container">
@@ -11,7 +11,7 @@
                 <div class="tab-pane fade show active">
                     <div class="card">
                         <div class="card-header bg-white border-bottom2 py-3">
-                            <h4>{{ translate('Member Settings') }}</h4>
+                            <h4>{{ translation('Member Settings') }}</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('plugin.classilookscore.classified.member.settings.update') }}"
@@ -19,7 +19,7 @@
                                 @csrf
                                 <div class="align-items-center form-row mb-20">
                                     <div class="col-sm-6">
-                                        <label class="font-14 bold black">{{ translate('Member Auto Approval') }}
+                                        <label class="font-14 bold black">{{ translation('Member Auto Approval') }}
                                         </label>
                                     </div>
                                     <div class="col-sm-6">
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="align-items-center form-row mb-20">
                                     <div class="col-sm-6">
-                                        <label class="font-14 bold black">{{ translate('Member Email Verification') }}
+                                        <label class="font-14 bold black">{{ translation('Member Email Verification') }}
                                         </label>
                                     </div>
                                     <div class="col-sm-1">
@@ -43,14 +43,15 @@
                                     </div>
                                     <div class="col-sm-5">
                                         <p class="mt-0 font-13">
-                                            {{ translate('Enable member email verification you need to complete email configuration and Cron Job setup') }}
+                                            {{ translation('Enable member email verification you need to complete email configuration and Cron Job setup') }}
                                             <br>
                                             <a href="{{ route('core.email.smtp.configuration') }}"
-                                                class="btn-link">{{ translate('Configure Email') }}
+                                                class="btn-link">{{ translation('Configure Email') }}
                                             </a>
                                             <br>
                                             <a href="https://document-tlcommerce.themelooks.us/blog/cron-job-setup"
-                                                target="_blank" class="btn-link">{{ translate('How to setup cron job ?') }}
+                                                target="_blank"
+                                                class="btn-link">{{ translation('How to setup cron job ?') }}
                                             </a>
                                         </p>
                                     </div>
@@ -58,7 +59,7 @@
 
                                 <div class="form-row">
                                     <div class="col-md-12 text-right">
-                                        <button type="submit" class="btn long">{{ translate('Save Changes') }}</button>
+                                        <button type="submit" class="btn long">{{ translation('Save Changes') }}</button>
                                     </div>
                                 </div>
                             </form>

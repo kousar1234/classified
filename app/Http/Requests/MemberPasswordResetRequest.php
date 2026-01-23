@@ -36,8 +36,8 @@ class MemberPasswordResetRequest extends FormRequest
     public function messages()
     {
         return [
-            'password.required' => translate('Password is required'),
-            'password.confirmed' => translate('Password does not match'),
+            'password.required' => translation('Password is required'),
+            'password.confirmed' => translation('Password does not match'),
         ];
     }
 }

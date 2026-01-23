@@ -26,7 +26,7 @@
             numbersPast[8],
             numbersPast[9],
         ];
-    function translate(number, withoutSuffix, key, isFuture) {
+    function translation(number, withoutSuffix, key, isFuture) {
         var result = '';
         switch (key) {
             case 's':
@@ -106,18 +106,18 @@
         relativeTime: {
             future: '%s päästä',
             past: '%s sitten',
-            s: translate,
-            ss: translate,
-            m: translate,
-            mm: translate,
-            h: translate,
-            hh: translate,
-            d: translate,
-            dd: translate,
-            M: translate,
-            MM: translate,
-            y: translate,
-            yy: translate,
+            s: translation,
+            ss: translation,
+            m: translation,
+            mm: translation,
+            h: translation,
+            hh: translation,
+            d: translation,
+            dd: translation,
+            M: translation,
+            MM: translation,
+            y: translation,
+            yy: translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',

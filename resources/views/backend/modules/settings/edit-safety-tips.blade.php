@@ -3,7 +3,7 @@
 @endphp
 @extends('backend.layouts.dashboard_layout')
 @section('title')
-    {{ translate('Edit Safety Tips') }}
+    {{ translation('Edit Safety Tips') }}
 @endsection
 @section('page-content')
     <div class="theme-option-container">
@@ -14,9 +14,9 @@
                 <div class="tab-pane fade show active">
                     <div class="card">
                         <div class="card-header align-items-center bg-white d-flex justify-content-between">
-                            <h4>{{ translate('Edit Safety Tips') }}</h4>
+                            <h4>{{ translation('Edit Safety Tips') }}</h4>
                             <a class="btn long"
-                                href="{{ route('plugin.classilookscore.classified.settings.safety.tips.list') }}">{{ translate('Safety Tips List') }}
+                                href="{{ route('plugin.classilookscore.classified.settings.safety.tips.list') }}">{{ translation('Safety Tips List') }}
                             </a>
                         </div>
                         <div class="card-body">
@@ -39,14 +39,14 @@
                                 @csrf
                                 <div class="form-row mb-20">
                                     <div class="col-sm-12">
-                                        <label class="font-14 bold black">{{ translate('Title') }} </label>
+                                        <label class="font-14 bold black">{{ translation('Title') }} </label>
                                     </div>
                                     <div class="col-sm-12">
                                         <input type="hidden" name="id" value="{{ $tips->id }}">
                                         <input type="hidden" name="lang" value="{{ $lang }}">
                                         <input type="text" name="title" class="form-control"
                                             value="{{ $tips->translation('title', $lang) }}"
-                                            placeholder="{{ translate('Type Enter') }}">
+                                            placeholder="{{ translation('Type Enter') }}">
                                         @if ($errors->has('title'))
                                             <div class="invalid-input">{{ $errors->first('title') }}</div>
                                         @endif
@@ -56,15 +56,15 @@
                                 <div
                                     class="form-row {{ !empty($lang) && $lang != getdefaultlang() ? 'area-disabled' : '' }}">
                                     <div class="form-group col-lg-12">
-                                        <label class="black font-14">{{ translate('Status') }}</label>
+                                        <label class="black font-14">{{ translation('Status') }}</label>
                                         <select name="status" class="form-control">
                                             <option value="{{ config('settings.general_status.active') }}"
                                                 @selected($tips->status == config('settings.general_status.active'))>
-                                                {{ translate('Active') }}
+                                                {{ translation('Active') }}
                                             </option>
                                             <option value="{{ config('settings.general_status.in_active') }}"
                                                 @selected($tips->status == config('settings.general_status.in_active'))>
-                                                {{ translate('Inactive') }}
+                                                {{ translation('Inactive') }}
                                             </option>
                                         </select>
                                     </div>
@@ -73,7 +73,7 @@
 
                                 <div class="form-row">
                                     <div class="col-12 text-right">
-                                        <button type="submit" class="btn long">{{ translate('Save Changes') }}</button>
+                                        <button type="submit" class="btn long">{{ translation('Save Changes') }}</button>
                                     </div>
                                 </div>
                             </form>

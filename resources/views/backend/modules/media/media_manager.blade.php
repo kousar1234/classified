@@ -46,7 +46,7 @@
         }
 
         .media-item:hover {
-            transform: translateY(-5px);
+            transform: translationY(-5px);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
 
@@ -97,13 +97,13 @@
             gap: 8px;
             justify-content: flex-end;
             opacity: 0;
-            transform: translateY(10px);
+            transform: translationY(10px);
             transition: all 0.3s ease;
         }
 
         .media-item:hover .media-actions {
             opacity: 1;
-            transform: translateY(0);
+            transform: translationY(0);
         }
 
         .action-btn {
@@ -123,7 +123,7 @@
 
         .btn-download:hover {
             background: #218838;
-            transform: translateY(-1px);
+            transform: translationY(-1px);
         }
 
         .btn-delete {
@@ -133,7 +133,7 @@
 
         .btn-delete:hover {
             background: #c82333;
-            transform: translateY(-1px);
+            transform: translationY(-1px);
         }
 
         .btn-view {
@@ -143,7 +143,7 @@
 
         .btn-view:hover {
             background: #0056b3;
-            transform: translateY(-1px);
+            transform: translationY(-1px);
         }
 
         .list-view .media-item {
@@ -170,13 +170,13 @@
 
         .list-view .media-actions {
             opacity: 0;
-            transform: translateX(10px);
+            transform: translationX(10px);
             transition: all 0.3s ease;
         }
 
         .list-view .media-item:hover .media-actions {
             opacity: 1;
-            transform: translateX(0);
+            transform: translationX(0);
         }
 
         .list-view .media-details-container {

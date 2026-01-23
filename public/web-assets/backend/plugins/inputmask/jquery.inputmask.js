@@ -231,8 +231,8 @@
                             var e = n.caret.call(t, f);
                             n.caret.call(t, f, e.begin);
                         }), 0) : p === r.default.LEFT && setTimeout((function() {
-                            var e = n.translatePosition.call(t, f.inputmask.caretPos.begin);
-                            n.translatePosition.call(t, f.inputmask.caretPos.end);
+                            var e = n.translationPosition.call(t, f.inputmask.caretPos.begin);
+                            n.translationPosition.call(t, f.inputmask.caretPos.end);
                             t.isRTL ? n.caret.call(t, f, e + (e === c.maskLength ? 0 : 1)) : n.caret.call(t, f, e - (0 === e ? 0 : 1));
                         }), 0)) : s.isSelection.call(t, h) ? i.insertMode = !i.insertMode : (i.insertMode = !i.insertMode, 
                         n.caret.call(t, f, h.begin, h.begin));
@@ -269,7 +269,7 @@
                     },
                     pasteEvent: function(e) {
                         var t, i = this.inputmask, a = i.opts, r = i._valueGet(!0), o = n.caret.call(i, this);
-                        i.isRTL && (t = o.end, o.end = n.translatePosition.call(i, o.begin), o.begin = n.translatePosition.call(i, t));
+                        i.isRTL && (t = o.end, o.end = n.translationPosition.call(i, o.begin), o.begin = n.translationPosition.call(i, t));
                         var s = r.substr(0, o.begin), u = r.substr(o.end, r.length);
                         if (s == (i.isRTL ? n.getBufferTemplate.call(i).slice().reverse() : n.getBufferTemplate.call(i)).slice(0, o.begin).join("") && (s = ""), 
                         u == (i.isRTL ? n.getBufferTemplate.call(i).slice().reverse() : n.getBufferTemplate.call(i)).slice(o.end).join("") && (u = ""), 
@@ -319,7 +319,7 @@
                                 for (;f.length < m; ) f.unshift(k);
                                 for (;p.length < m; ) p.unshift(k);
                                 var y = c.concat(f), b = d.concat(p);
-                                for (s = 0, o = y.length; s < o; s++) switch (l = u.getPlaceholder.call(t, n.translatePosition.call(t, s)), 
+                                for (s = 0, o = y.length; s < o; s++) switch (l = u.getPlaceholder.call(t, n.translationPosition.call(t, s)), 
                                 v) {
                                   case "insertText":
                                     b[s - 1] === y[s] && r.begin == y.length - 1 && g.push(y[s]), s = o;
@@ -333,7 +333,7 @@
                                   default:
                                     y[s] !== b[s] && (y[s + 1] !== k && y[s + 1] !== l && void 0 !== y[s + 1] || (b[s] !== l || b[s + 1] !== k) && b[s] !== k ? b[s + 1] === k && b[s] === y[s + 1] ? (v = "insertText", 
                                     g.push(y[s]), r.begin--, r.end--) : y[s] !== l && y[s] !== k && (y[s + 1] === k || b[s] !== y[s] && b[s + 1] === y[s + 1]) ? (v = "insertReplacementText", 
-                                    g.push(y[s]), r.begin--) : y[s] === k ? (v = "deleteContentBackward", (n.isMask.call(t, n.translatePosition.call(t, s), !0) || b[s] === i.radixPoint) && r.end++) : s = o : (v = "insertText", 
+                                    g.push(y[s]), r.begin--) : y[s] === k ? (v = "deleteContentBackward", (n.isMask.call(t, n.translationPosition.call(t, s), !0) || b[s] === i.radixPoint) && r.end++) : s = o : (v = "insertText", 
                                     g.push(y[s]), r.begin--, r.end--));
                                 }
                                 return {
@@ -2369,7 +2369,7 @@
                     if (e <= 0) return 0;
                     for (;n > 0 && (!0 === t && (!0 !== a.getTest.call(i, n).match.newBlockMarker || !s.call(i, n, void 0, !0)) || !0 !== t && !s.call(i, n, void 0, !0)); ) n--;
                     return n;
-                }, t.translatePosition = u;
+                }, t.translationPosition = u;
                 var a = i(4713), n = i(7215);
                 function r(e) {
                     var t = this.maskset;

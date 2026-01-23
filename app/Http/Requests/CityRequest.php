@@ -36,9 +36,9 @@ class CityRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => translate('Name is required'),
-            'state.required' => translate('Please select a state'),
-            'state.exists' => translate('Invalid state'),
+            'name.required' => translation('Name is required'),
+            'state.required' => translation('Please select a state'),
+            'state.exists' => translation('Invalid state'),
         ];
     }
 }

@@ -69,11 +69,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     };
 
     AxisLabel.prototype.transforms = function(degrees, x, y, svgLayer) {
-        var transforms = [], translate, rotate;
+        var transforms = [], translation, rotate;
         if (x !== 0 || y !== 0) {
-            translate = svgLayer.createSVGTransform();
-            translate.setTranslate(x, y);
-            transforms.push(translate);
+            translation = svgLayer.createSVGTransform();
+            translation.settranslation(x, y);
+            transforms.push(translation);
         }
         if (degrees !== 0) {
             rotate = svgLayer.createSVGTransform();

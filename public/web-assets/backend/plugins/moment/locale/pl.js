@@ -34,7 +34,7 @@
     function plural(n) {
         return n % 10 < 5 && n % 10 > 1 && ~~(n / 10) % 10 !== 1;
     }
-    function translate(number, withoutSuffix, key) {
+    function translation(number, withoutSuffix, key) {
         var result = number + ' ';
         switch (key) {
             case 'ss':
@@ -123,19 +123,19 @@
             future: 'za %s',
             past: '%s temu',
             s: 'kilka sekund',
-            ss: translate,
-            m: translate,
-            mm: translate,
-            h: translate,
-            hh: translate,
+            ss: translation,
+            m: translation,
+            mm: translation,
+            h: translation,
+            hh: translation,
             d: '1 dzień',
             dd: '%d dni',
             w: 'tydzień',
-            ww: translate,
+            ww: translation,
             M: 'miesiąc',
-            MM: translate,
+            MM: translation,
             y: 'rok',
-            yy: translate,
+            yy: translation,
         },
         dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',

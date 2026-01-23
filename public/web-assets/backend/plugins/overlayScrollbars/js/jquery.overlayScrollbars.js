@@ -3804,7 +3804,7 @@
                     var isRTLisHorizontal = _isRTL && isHorizontal;
                     var scrollbarVars = getScrollbarVars(isHorizontal);
                     var scrollbarVarsInfo = scrollbarVars._info;
-                    var strTranslateBrace = 'translate(';
+                    var strtranslationBrace = 'translation(';
                     var strTransform = VENDORS._cssProperty('transform');
                     var strTransition = VENDORS._cssProperty('transition');
                     var nativeScroll = isHorizontal ? _viewportElement[_strScrollLeft]() : _viewportElement[_strScrollTop]();
@@ -3816,7 +3816,7 @@
                     var handleTrackDiff = trackLength - handleLength;
                     var handleCSS = {};
                     var transformOffset;
-                    var translateValue;
+                    var translationValue;
 
                     //DONT use the variable '_contentScrollSizeCache[scrollbarVars._w_h]' instead of '_viewportElement[0]['scroll' + scrollbarVars._Width_Height]'
                     // because its a bit behind during the small delay when content size updates
@@ -3844,9 +3844,9 @@
                     if (_supportTransform) {
                         transformOffset = isRTLisHorizontal ? -(trackLength - handleLength - handleOffset) : handleOffset; //in px
                         //transformOffset = (transformOffset / trackLength * 100) * (trackLength / handleLength); //in %
-                        translateValue = isHorizontal ? strTranslateBrace + transformOffset + 'px, 0)' : strTranslateBrace + '0, ' + transformOffset + 'px)';
+                        translationValue = isHorizontal ? strtranslationBrace + transformOffset + 'px, 0)' : strtranslationBrace + '0, ' + transformOffset + 'px)';
 
-                        handleCSS[strTransform] = translateValue;
+                        handleCSS[strTransform] = translationValue;
 
                         //apply or clear up transition
                         if (_supportTransition)

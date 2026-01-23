@@ -451,7 +451,7 @@ The plugin allso adds the following methods to the plot object:
                 var o = plot.getOptions();
 
                 ctx.save();
-                ctx.translate(plotOffset.left, plotOffset.top);
+                ctx.translation(plotOffset.left, plotOffset.top);
 
                 var c = $.color.parse(o.selection.color);
                 var visualization = o.selection.visualization;

@@ -7495,7 +7495,7 @@
 		return $(nodes)
 			.filter( selector )
 			.map( function (i) {
-				// Need to translate back from the table node to the settings
+				// Need to translation back from the table node to the settings
 				var idx = $.inArray( this, nodes );
 				return a[ idx ];
 			} )
@@ -8580,7 +8580,7 @@
 	 * Columns
 	 *
 	 * {integer}           - column index (>=0 count from left, <0 count from right)
-	 * "{integer}:visIdx"  - visible column index (i.e. translate to column index)  (>=0 count from left, <0 count from right)
+	 * "{integer}:visIdx"  - visible column index (i.e. translation to column index)  (>=0 count from left, <0 count from right)
 	 * "{integer}:visible" - alias for {integer}:visIdx  (>=0 count from left, <0 count from right)
 	 * "{string}:name"     - column name
 	 * "{string}"          - jQuery selector on column header nodes
@@ -10889,7 +10889,7 @@
 		 *    display array
 		 *  @param {int} end Index for the current display ending point in the
 		 *    display array
-		 *  @param {array int} display Index array to translate the visual position
+		 *  @param {array int} display Index array to translation the visual position
 		 *    to the full data array
 		 *
 		 *  @dtopt Callbacks
@@ -10953,7 +10953,7 @@
 		 *    display array
 		 *  @param {int} end Index for the current display ending point in the
 		 *    display array
-		 *  @param {array int} display Index array to translate the visual position
+		 *  @param {array int} display Index array to translation the visual position
 		 *    to the full data array
 		 *
 		 *  @dtopt Callbacks

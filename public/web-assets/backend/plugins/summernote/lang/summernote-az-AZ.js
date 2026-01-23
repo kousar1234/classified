@@ -28,7 +28,7 @@ var __webpack_exports__ = {};
 //Baki Azerbaycan
 //Website: https://ramilaliyev.com
 //Azerbaijan language for Summernote WYSIWYG 
-//Translated by: RAMIL ALIYEV
+//translationd by: RAMIL ALIYEV
 //Date: 20.07.2019
 //Baku Azerbaijan
 //Website: https://ramilaliyev.com

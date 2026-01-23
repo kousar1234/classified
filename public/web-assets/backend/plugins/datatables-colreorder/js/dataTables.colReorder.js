@@ -613,7 +613,7 @@ $.extend( ColReorder.prototype, {
 		}
 
 		// The order given is based on the original indexes, rather than the
-		// existing ones, so we need to translate from the original to current
+		// existing ones, so we need to translation from the original to current
 		// before then doing the order
 		if ( original ) {
 			var order = this.fnOrder();

@@ -4149,8 +4149,8 @@
       return slashes;
     }
 
-    // Translates a search string from ex (vim) syntax into javascript form.
-    function translateRegex(str) {
+    // translations a search string from ex (vim) syntax into javascript form.
+    function translationRegex(str) {
       // When these match, add a '\' if unescaped or remove one if escaped.
       var specials = '|(){';
       // Remove, but never add, a '\' for these.
@@ -4188,11 +4188,11 @@
       return out.join('');
     }
 
-    // Translates the replace part of a search and replace from ex (vim) syntax into
-    // javascript form.  Similar to translateRegex, but additionally fixes back references
-    // (translates '\[0..9]' to '$[0..9]') and follows different rules for escaping '$'.
+    // translations the replace part of a search and replace from ex (vim) syntax into
+    // javascript form.  Similar to translationRegex, but additionally fixes back references
+    // (translations '\[0..9]' to '$[0..9]') and follows different rules for escaping '$'.
     var charUnescapes = {'\\n': '\n', '\\r': '\r', '\\t': '\t'};
-    function translateRegexReplace(str) {
+    function translationRegexReplace(str) {
       var escapeNextChar = false;
       var out = [];
       for (var i = -1; i < str.length; i++) {
@@ -4289,7 +4289,7 @@
         return null;
       }
       if (!getOption('pcre')) {
-        regexPart = translateRegex(regexPart);
+        regexPart = translationRegex(regexPart);
       }
       if (smartCase) {
         ignoreCase = (/^[^A-Z]*$/).test(regexPart);
@@ -5115,7 +5115,7 @@
             if (getOption('pcre')) {
               replacePart = unescapeRegexReplace(replacePart.replace(/([^\\])&/g,"$1$$&"));
             } else {
-              replacePart = translateRegexReplace(replacePart);
+              replacePart = translationRegexReplace(replacePart);
             }
             vimGlobalState.lastSubstituteReplacePart = replacePart;
           }

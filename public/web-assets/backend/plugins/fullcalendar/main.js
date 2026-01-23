@@ -4361,7 +4361,7 @@ var FullCalendar = (function (exports) {
         }
         return false;
     }
-    function translateRect(rect, deltaX, deltaY) {
+    function translationRect(rect, deltaX, deltaY) {
         return {
             left: rect.left + deltaX,
             right: rect.right + deltaX,
@@ -14944,7 +14944,7 @@ var FullCalendar = (function (exports) {
     exports.sliceEvents = sliceEvents;
     exports.sortEventSegs = sortEventSegs;
     exports.startOfDay = startOfDay;
-    exports.translateRect = translateRect;
+    exports.translationRect = translationRect;
     exports.triggerDateSelect = triggerDateSelect;
     exports.unmountComponentAtNode = unmountComponentAtNode;
     exports.unpromisify = unpromisify;
