@@ -6,7 +6,7 @@
     <div class="loginArea section-padding2">
         <div class="container">
             <div class="row">
-                <div class="col-xl-5 col-lg-5 p-0 order-lg-1 order-1 loginLeft-img">
+                <div class="col-xl-7 col-lg-7 p-0 order-lg-1 order-1 loginLeft-img">
                     <div class="loginLeft-img">
                         <div class="login-cap">
                             <h3 class="tittle">Buy &amp; sell anything</h3>
@@ -18,54 +18,58 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-7 col-lg-7 order-lg-1 order-0 login-Wrapper">
-                    <div class="error-message"></div>
+                <div class="col-xl-5 col-lg-5 order-lg-1 order-0 login-Wrapper">
+                    <div class="header mb-3 text-center">
+                        <h2>Login</h2>
+                    </div>
                     <div class="row">
-                        <form method="post" action="add.html">
-                            <input type="hidden" name="_token" value="4qMgoof0CGXn76Y2Ovd5AWGkX891VOaiaqMZeUxn"
-                                autocomplete="off">
-                            <div class="col-md-12">
-                                <label class="infoTitle">Email Or User Name</label>
-                                <div class="input-form">
-                                    <input type="text" name="username" id="username" placeholder="Email Or User Name">
-                                    <div class="icon"><i class="las la-envelope icon"></i></div>
-                                </div>
+                        <form method="post" action="{{ route('member.login.attempt') }}">
+                            @if ($errors->has('login_error'))
+                                <p class="alert alert-danger text-center">{{ $errors->first('login_error') }}</p>
+                            @endif
+                            @csrf
+                            <div class="form-group mb-20">
+                                <label class="label_title">Email Or Phone</label>
+                                <input type="text" name="username" class="form-control" placeholder="Email Or Phone"
+                                    value="{{ old('username') }}">
+                                @if ($errors->has('username'))
+                                    <p class="d-block invalid-feedback text-danger">{{ $errors->first('username') }}</p>
+                                @endif
                             </div>
-                            <div class="col-md-12">
-                                <label class="infoTitle"> Password </label>
-                                <div class="input-form">
-                                    <input type="password" name="password" id="password" placeholder="Type Password">
-                                    <div class="icon"><i class="las la-lock icon"></i></div>
-                                    <div class="icon toggle-password">
-                                        <i class="las la-eye-slash"></i>
+                            <div class="form-group mb-20">
+                                <label class="label_title"> Password </label>
+                                <input type="password" name="password" class="form-control" placeholder="Enter Password">
+                                @if ($errors->has('password'))
+                                    <p class="d-block invalid-feedback text-danger">{{ $errors->first('password') }}</p>
+                                @endif
+                            </div>
+                            <div class="form-group mb-20">
+                                <div class="passRemember mt-20">
+                                    <label class="checkWrap2">Remember Me
+                                        <input class="effectBorder" name="remember" type="checkbox" id="check15">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <!-- forgetPassword -->
+                                    <div class="forgetPassword mb-25">
+                                        <a href="{{ route('member.forgot.password') }}" class="forgetPass">Forgot
+                                            Password?</a>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <div class="col-sm-12">
-                            <div class="passRemember mt-20">
-                                <label class="checkWrap2">Remember Me
-                                    <input class="effectBorder" name="remember" type="checkbox" id="check15">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <!-- forgetPassword -->
-                                <div class="forgetPassword mb-25">
-                                    <a href="{{ route('member.forgot.password') }}" class="forgetPass">Forgot Password?</a>
+                            <div class="form-group mb-20">
+                                <div class="btn-wrapper text-center">
+                                    <button type="submit" class="cmn-btn4 w-100">Login</button>
+                                    {{-- <p class="font-weight-bold text-center mt-2 mb-2">or</p>
+                                <a href="../../login/otp.html" class="cmn-btn-outline4 w-100 mb-20">Login In with OTP</a> --}}
+                                    <!--social login -->
+
+                                    <p class="sinUp"><span>Don’t have an account?</span>
+                                        <a href="{{ route('member.register') }}" class="singApp">Sign Up</a>
+                                    </p>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="btn-wrapper text-center">
-                                <button id="signin_form" class="cmn-btn4 w-100">Login</button>
-                                <p class="font-weight-bold text-center mt-2 mb-2">or</p>
-                                <a href="../../login/otp.html" class="cmn-btn-outline4 w-100 mb-20">Login In with OTP</a>
-                                <!--social login -->
+                        </form>
 
-                                <p class="sinUp"><span>Don’t have an account?</span>
-                                    <a href="{{ route('member.register') }}" class="singApp">Sign Up</a>
-                                </p>
-                            </div>
-                        </div>
 
                     </div>
                 </div>

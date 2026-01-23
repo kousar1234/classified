@@ -27,25 +27,28 @@
                         <div class="row">
                             <div class="form-group mb-20">
                                 <label class="label_title">Name</label>
-                                <input type="text" class="form-control" name="name" placeholder="Enter Name">
+                                <input type="text" class="form-control" name="name" placeholder="Enter Name"
+                                    value="{{ old('name') }}">
                                 @if ($errors->has('name'))
-                                    <p class="invalid-input">{{ $errors->first('name') }}</p>
+                                    <p class="d-block invalid-feedback text-danger">{{ $errors->first('name') }}</p>
                                 @endif
                             </div>
 
                             <div class="form-group mb-20">
                                 <label class="label_title">Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Enter Email">
+                                <input type="email" class="form-control" name="email" placeholder="Enter Email"
+                                    value="{{ old('email') }}">
                                 @if ($errors->has('email'))
-                                    <p class="invalid-input">{{ $errors->first('email') }}</p>
+                                    <p class="d-block invalid-feedback text-danger">{{ $errors->first('email') }}</p>
                                 @endif
                             </div>
 
                             <div class="form-group mb-20">
                                 <label class="label_title">Phone</label>
-                                <input type="text" class="form-control" name="phone" placeholder="Enter Phone">
+                                <input type="text" class="form-control" name="phone" placeholder="Enter Phone"
+                                    value="{{ old('phone') }}">
                                 @if ($errors->has('phone'))
-                                    <p class="invalid-input">{{ $errors->first('phone') }}</p>
+                                    <p class="d-block invalid-feedback text-danger">{{ $errors->first('phone') }}</p>
                                 @endif
                             </div>
 
@@ -53,7 +56,7 @@
                                 <label class="label_title">Password</label>
                                 <input type="password" class="form-control" name="password" placeholder="Enter Password">
                                 @if ($errors->has('password'))
-                                    <p class="invalid-input">{{ $errors->first('password') }}</p>
+                                    <p class="d-block invalid-feedback text-danger">{{ $errors->first('password') }}</p>
                                 @endif
                             </div>
 
@@ -65,14 +68,18 @@
                             </div>
 
                             <!-- Terms and Conditions -->
-                            <div class="col-lg-12 col-md-12">
-                                <label class="checkWrap2 terms-conditions"> I agree with the
+                            <div class="col-lg-12 col-md-12 mb-20">
+                                <label class="checkWrap2 mb-0 terms-conditions"> I agree with the
                                     <a href="terms-and-conditions.html" target="_blank" class="text-primary"> Terms and
                                         Conditions </a>
                                     <input class="effectBorder check-input" type="checkbox" name="terms_conditions"
-                                        id="terms_conditions" value="1">
+                                        id="terms_conditions">
                                     <span class="checkmark"></span>
                                 </label>
+                                @if ($errors->has('terms_conditions'))
+                                    <p class="d-block invalid-feedback text-danger">{{ $errors->first('terms_conditions') }}
+                                    </p>
+                                @endif
                             </div>
 
                             <div class="col-sm-12 mt-2">

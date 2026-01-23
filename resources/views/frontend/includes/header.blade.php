@@ -62,14 +62,32 @@
              <!-- Menu Right -->
              <div class="nav-right-content">
                  <ul class="header-cart">
-                     <li class="single userAccount">
+
+                     @if (auth()->user() == null)
                          <div class="btn-wrapper">
                              <a href="{{ route('member.login') }}" class="cmn-btn sign-in">
                                  Sign In
                              </a>
                          </div>
+                     @else
+                         <div class="btn-wrapper">
+                             <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" role="button"
+                                     data-bs-toggle="dropdown" aria-expanded="false">
+                                     {{ auth()->user()->name }}
+                                 </a>
+                                 <ul class="dropdown-menu">
+                                     <li>
+                                         <a class="dropdown-item" href="{{ route('member.dashboard') }}">Dashboard</a>
+                                     </li>
 
-
+                                     <li>
+                                         <a class="dropdown-item" href="{{ route('member.logout') }}">Logout</a>
+                                     </li>
+                                 </ul>
+                             </li>
+                         </div>
+                     @endif
                      </li>
                      <li class="single">
                          <div class="btn-wrapper">

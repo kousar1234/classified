@@ -27,15 +27,16 @@ class MemberRequest extends FormRequest
         if ($request->has('id') && $request['id'] != null) {
             return [
                 'name' => 'required|max:250',
-                'phone' => 'required|max:250|unique:Core\Models\User,phone,' . $request->id,
-                'email' => 'required|max:250|email|unique:Core\Models\User,email,' . $request->id
+                'phone' => 'required|max:250|unique:App\Models\User,phone:BD,' . $request->id,
+                'email' => 'required|max:250|email|unique:App\Models\User,email,' . $request->id
             ];
         } else {
             return [
                 'name' => 'required|max:250',
                 'password' => 'required|confirmed|min:6|max:250',
-                'phone' => 'required|max:250|unique:Core\Models\User,phone',
-                'email' => 'required|max:250|email|unique:Core\Models\User,email'
+                'phone' => 'required|phone:BD|max:250|unique:users,phone',
+                'email' => 'required|max:250|email|unique:App\Models\User,email',
+                'terms_conditions' => 'accepted'
             ];
         }
     }
@@ -47,15 +48,16 @@ class MemberRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => translate('Name is required'),
-            'password.required' => translate('Password is required'),
-            'password.confirmed' => translate('Password does not match'),
-            'password.min' => translate('Password is too short'),
-            'phone.required' => translate('Phone is required'),
-            'phone.unique' => translate('Phone is already used'),
-            'email.required' => translate('Email is required'),
-            'email.email' => translate('Incorrect email'),
-            'email.unique' => translate('Email is already used'),
+            'name.required' => translation('Name is required'),
+            'password.required' => translation('Password is required'),
+            'password.confirmed' => translation('Password does not match'),
+            'password.min' => translation('Password is too short'),
+            'phone.required' => translation('Phone is required'),
+            'phone.phone' => translation('Incorrect phone number'),
+            'phone.unique' => translation('Phone is already used'),
+            'email.required' => translation('Email is required'),
+            'email.email' => translation('Incorrect email'),
+            'email.unique' => translation('Email is already used'),
         ];
     }
 }

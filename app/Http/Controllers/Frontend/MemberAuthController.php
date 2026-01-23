@@ -5,7 +5,12 @@ namespace App\Http\Controllers\Frontend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MemberLoginRequest;
+use App\Http\Requests\MemberRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\ValidationException;
 
 class MemberAuthController extends Controller
 {
@@ -21,15 +26,8 @@ class MemberAuthController extends Controller
         return view('frontend.auth.register');
     }
 
-    public function memberRegister(Request $request)
+    public function memberRegister(MemberRequest $request)
     {
-        $request->validate([
-            'name' => 'required|max:150',
-            'email' => 'required|email|unique:users,email|max:200',
-            'password' => 'required|min:6|confirmed|max:200',
-            'phone' => 'phone:BD|unique:users,phone|max:20',
-        ]);
-
         try {
             $user = new User();
             $user->name = $request['name'];
@@ -45,6 +43,56 @@ class MemberAuthController extends Controller
             toastNotification('error', 'Registration failed', 'Error');
             return redirect()->back();
         }
+    }
+
+
+    public function loginAttempt(MemberLoginRequest $request): RedirectResponse
+    {
+        // Find user by email or phone
+        $user = User::where(function ($query) use ($request) {
+            $query->where('email', $request->username)
+                ->orWhere('phone', $request->username);
+        })
+            ->where('type', config('settings.user_type.member'))
+            ->first();
+
+        // Check if user exists
+        if (!$user) {
+            throw ValidationException::withMessages([
+                'login_error' => 'No account found with this email/phone'
+            ]);
+        }
+
+        // Check if user is active
+        if ($user->status != config('settings.general_status.active')) {
+            throw ValidationException::withMessages([
+                'login_error' => 'Your account is not active. Please contact administration'
+            ]);
+        }
+
+        // Verify password manually
+        if (!Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'login_error' => 'Invalid password'
+            ]);
+        }
+
+        // Login the user
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        toastNotification('success', 'Login Successfully', 'Success');
+        return redirect()->route('member.dashboard');
+    }
+
+
+    public function memberLogout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        toastNotification('success', 'Logout Successfully', 'Success');
+        return to_route('member.login');
     }
 
     public function forgotPasswordPage()

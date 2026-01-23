@@ -199,12 +199,12 @@ Route::prefix('admin')->group(function () {
          * Member Module
          */
         Route::group(['prefix' => 'members'], function () {
-            Route::get('/', [MemberController::class, 'memberList'])->name('members.list')->middleware(['can:Manage Members']);
-            Route::post('delete', [MemberController::class, 'memberDelete'])->name('members.delete')->middleware(['can:Delete Members'])->middleware('demo');
-            Route::post('reset/password', [MemberController::class, 'memberPasswordReset'])->name('members.password.reset')->middleware(['can:Edit Members'])->middleware('demo');
+            Route::get('/', [MemberController::class, 'memberList'])->name('members.list');
+            Route::post('delete', [MemberController::class, 'memberDelete'])->name('members.delete');
+            Route::post('reset/password', [MemberController::class, 'memberPasswordReset'])->name('members.password.reset');
             Route::post('edit', [MemberController::class, 'memberEdit'])->name('members.edit');
-            Route::post('update', [MemberController::class, 'memberUpdate'])->name('members.update')->middleware(['can:Edit Members'])->middleware('demo');
-            Route::post('store', [MemberController::class, 'memberStore'])->name('members.store')->middleware(['can:Create Members'])->middleware('demo');
+            Route::post('update', [MemberController::class, 'memberUpdate'])->name('members.update');
+            Route::post('store', [MemberController::class, 'memberStore'])->name('members.store');
         });
 
         /**

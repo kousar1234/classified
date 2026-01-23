@@ -8,17 +8,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'homePage'])->name('home');
 
 //Auth Routes
-Route::get('/member/login', [MemberAuthController::class, 'memberLoginPage'])->name('member.login');
-Route::post('/member/login', [MemberAuthController::class, 'memberLogin'])->name('member.login.submit');
-Route::get('/member/register', [MemberAuthController::class, 'memberRegisterPage'])->name('member.register');
-Route::post('/member/register', [MemberAuthController::class, 'memberRegister'])->name('member.register.submit');
-Route::get('/member/logout', [MemberAuthController::class, 'memberLogout'])->name('member.logout');
-Route::get('forgot-password', [MemberAuthController::class, 'forgotPasswordPage'])->name('member.forgot.password');
-Route::post('forgot-password', [MemberAuthController::class, 'forgotPassword'])->name('member.forgot.password.submit');
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/member/login', [MemberAuthController::class, 'memberLoginPage'])->name('member.login');
+    Route::post('/member/login', [MemberAuthController::class, 'loginAttempt'])->name('member.login.attempt');
+    Route::get('/member/register', [MemberAuthController::class, 'memberRegisterPage'])->name('member.register');
+    Route::post('/member/register', [MemberAuthController::class, 'memberRegister'])->name('member.register.submit');
+
+    Route::get('forgot-password', [MemberAuthController::class, 'forgotPasswordPage'])->name('member.forgot.password');
+    Route::post('forgot-password', [MemberAuthController::class, 'forgotPassword'])->name('member.forgot.password.submit');
+});
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/member/logout', [MemberAuthController::class, 'memberLogout'])->name('member.logout');
+    Route::get('/member/dashboard', [MemberAuthController::class, 'memberDashboard'])->name('member.dashboard');
+});
 
 //Ad Routes
 Route::get('/post/ad', [AdController::class, 'addPostPage'])->name('ad.post.page');
 Route::get('listings/{category_slug?}', [AdController::class, 'adListingPage'])->name('ad.listing.page');
 Route::get('/ad/details/{slug}', [AdController::class, 'adDetailsPage'])->name('ad.details.page');
 
-require __DIR__.'/admin.php';
+require __DIR__ . '/admin.php';
