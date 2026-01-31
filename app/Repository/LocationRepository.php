@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Country;
 use App\Models\CityTranslation;
 use App\Models\StateTranslation;
-
+use Illuminate\Http\Request;
 
 class LocationRepository
 {
@@ -42,7 +42,7 @@ class LocationRepository
     /**
      * Will store new country
      * 
-     * @param Array $data
+     * @param Request $data
      * @return bool
      */
     public function storeCountryData($data)
@@ -71,23 +71,17 @@ class LocationRepository
     /**
      * will update country
      * 
-     * @param Array $request
+     * @param Request $request
      * @return bool
      */
     public function updateCountry($request)
     {
         try {
             DB::beginTransaction();
-            if ($request['lang'] != null && $request['lang'] != getDefaultLang()) {
-                $country_translation = CountryTranslation::firstOrNew(['country_id' => $request['id'], 'lang' => $request['lang']]);
-                $country_translation->name = $request['name'];
-                $country_translation->save();
-            } else {
-                $country = Country::findOrFail($request['id']);
-                $country->name = $request['name'];
-                $country->code = $request['code'];
-                $country->save();
-            }
+            $country = Country::findOrFail($request['id']);
+            $country->name = $request['name'];
+            $country->code = $request['code'];
+            $country->save();
 
             DB::commit();
             return true;
@@ -126,7 +120,7 @@ class LocationRepository
     /**
      * Will applied country bulk action
      * 
-     * @param Array $request
+     * @param Request $request
      * @return bool
      */
     public function countryBulkAction($request)
@@ -223,7 +217,7 @@ class LocationRepository
     /**
      * Store new State
      * 
-     * @param Array $request
+     * @param Request $request
      * @return bool
      */
     public function storeState($request)
@@ -305,24 +299,18 @@ class LocationRepository
     /**
      * will update state
      * 
-     * @param Array $request
+     * @param Request $request
      * @return bool
      */
     public function updateState($request)
     {
         try {
             DB::beginTransaction();
-            if ($request['lang'] != null && $request['lang'] != getDefaultLang()) {
-                $state_translation = StateTranslation::firstOrNew(['state_id' => $request['id'], 'lang' => $request['lang']]);
-                $state_translation->name = $request['name'];
-                $state_translation->save();
-            } else {
-                $state = State::findOrFail($request['id']);
-                $state->name = $request['name'];
-                $state->code = $request['code'];
-                $state->country_id = $request['country'];
-                $state->save();
-            }
+            $state = State::findOrFail($request['id']);
+            $state->name = $request['name'];
+            $state->code = $request['code'];
+            $state->country_id = $request['country'];
+            $state->save();
 
             DB::commit();
             return true;
@@ -337,7 +325,7 @@ class LocationRepository
     /**
      * Will applied states bulk action
      * 
-     * @param Array $request
+     * @param Request $request
      * @return bool
      */
     public function statesBulkAction($request)
@@ -387,7 +375,7 @@ class LocationRepository
     /**
      * Will return cities
      * 
-     * @return Collections
+     * @return City
      */
     public function cities()
     {
@@ -415,7 +403,7 @@ class LocationRepository
     /**
      * Store new city
      * 
-     * @param Array $request
+     * @param Request $request
      * @return bool
      */
     public function storeCity($request)
@@ -439,11 +427,9 @@ class LocationRepository
     }
     /**
      * will delete city
-     * 
-     * @param Int $id
      * @return bool
      */
-    public function deleteCity($id)
+    public function deleteCity(int $id)
     {
         try {
             DB::beginTransaction();
@@ -461,11 +447,9 @@ class LocationRepository
     }
     /**
      * Change city's status
-     * 
-     * @param Int $id
      * @return bool
      */
-    public function changeCityStatus($id)
+    public function changeCityStatus(int $id)
     {
         try {
             DB::beginTransaction();
@@ -485,34 +469,26 @@ class LocationRepository
     }
     /**
      * Will return city details
-     * 
-     * @param Int $id
-     * @return Collection
+     * @return City
      */
-    public function cityDetails($id)
+    public function cityDetails(int $id)
     {
         return City::findOrFail($id);
     }
     /**
      * will update city
      * 
-     * @param Array $request
+     * @param Request $request
      * @return bool
      */
     public function updateCity($request)
     {
         try {
             DB::beginTransaction();
-            if ($request['lang'] != null && $request['lang'] != getDefaultLang()) {
-                $city_translation = CityTranslation::firstOrNew(['city_id' => $request['id'], 'lang' => $request['lang']]);
-                $city_translation->name = $request['name'];
-                $city_translation->save();
-            } else {
-                $city = City::findOrFail($request['id']);
-                $city->name = $request['name'];
-                $city->state_id = $request['state'];
-                $city->save();
-            }
+            $city = City::findOrFail($request['id']);
+            $city->name = $request['name'];
+            $city->state_id = $request['state'];
+            $city->save();
             DB::commit();
             return true;
         } catch (\Exception $e) {
@@ -527,7 +503,7 @@ class LocationRepository
     /**
      * Will applied cities bulk action
      * 
-     * @param Array $request
+     * @param Request $request
      * @return bool
      */
     public function citiesBulkAction($request)

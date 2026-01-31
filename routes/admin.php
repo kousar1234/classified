@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\UtilityController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\LanguageController;
+use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\UserAuthController;
 use App\Http\Controllers\Backend\ConditionController;
 use App\Http\Controllers\Backend\ContactUsController;
@@ -291,6 +292,45 @@ Route::prefix('admin')->group(function () {
                 Route::post('options/edit', [CustomFieldController::class, 'customFieldOptionEdit'])->name('classified.ads.custom.field.options.edit');
                 Route::post('options/update', [CustomFieldController::class, 'customFieldOptionUpdate'])->name('classified.ads.custom.field.options.update');
                 Route::post('options/bulk-action', [CustomFieldController::class, 'customFieldOptionBulkAction'])->name('classified.ads.custom.field.options.bulk.action');
+            });
+        });
+
+        /**
+         * Location Modules
+         */
+        Route::group(['middleware' => 'auth', 'prefix' => 'location'], function () {
+            //Country
+            Route::group(['prefix' => 'country'], function () {
+                Route::get('', [LocationController::class, 'countries'])->name('classified.locations.country.list')->middleware(['can:Manage Countries']);
+                Route::get('add/new', [LocationController::class, 'addNewCountry'])->name('classified.locations.country.add')->middleware(['can:Create Countries']);
+                Route::post('store/new', [LocationController::class, 'storeNewCountry'])->name('classified.locations.country.store')->middleware(['can:Create Countries', 'demo']);
+                Route::get('edit/{id}', [LocationController::class, 'editCountry'])->name('classified.locations.country.edit')->middleware(['can:Edit Countries']);
+                Route::post('update', [LocationController::class, 'updateCountry'])->name('classified.locations.country.update')->middleware(['can:Edit Countries', 'demo']);
+                Route::post('delete', [LocationController::class, 'deleteCountry'])->name('classified.locations.country.delete')->middleware(['can:Delete Countries', 'demo']);
+                Route::post('bulk-action', [LocationController::class, 'countryBulkActions'])->name('classified.locations.country.bulk.action')->middleware(['can:Manage Countries', 'demo']);
+                Route::post('status/update', [LocationController::class, 'countryStatusChange'])->name('classified.locations.country..status.update')->middleware(['can:Edit Countries', 'demo']);
+            });
+            //States
+            Route::group(['prefix' => 'state'], function () {
+                Route::get('', [LocationController::class, 'states'])->name('classified.locations.state.list')->middleware('can:Manage States');
+                Route::get('add/new', [LocationController::class, 'addNewState'])->name('classified.locations.state.add')->middleware(['can:Create States']);
+                Route::post('store/new', [LocationController::class, 'storeNewState'])->name('classified.locations.state.store')->middleware(['can:Create States', 'demo']);
+                Route::get('edit/{id}', [LocationController::class, 'editState'])->name('classified.locations.state.edit')->middleware(['can:Edit States']);
+                Route::post('update', [LocationController::class, 'updateState'])->name('classified.locations.state.update')->middleware(['can:Edit States', 'demo']);
+                Route::post('delete', [LocationController::class, 'deleteState'])->name('classified.locations.state.delete')->middleware(['can:Delete States', 'demo']);
+                Route::post('bulk-action', [LocationController::class, 'stateBulkActions'])->name('classified.locations.state.bulk.action')->middleware(['can:Manage States', 'demo']);
+                Route::post('status/update', [LocationController::class, 'stateStatusChange'])->name('classified.locations.state.status.update')->middleware(['can:Edit States', 'demo']);
+            });
+            //Cities
+            Route::group(['prefix' => 'city'], function () {
+                Route::get('', [LocationController::class, 'cities'])->name('classified.locations.city.list')->middleware(['can:Manage Cities']);
+                Route::get('add/new', [LocationController::class, 'addNewCity'])->name('classified.locations.city.add')->middleware(['can:Create Cities']);
+                Route::post('store/new', [LocationController::class, 'storeNewCity'])->name('classified.locations.city.store')->middleware(['can:Create Cities', 'demo']);
+                Route::get('edit/{id}', [LocationController::class, 'editCity'])->name('classified.locations.city.edit')->middleware(['can:Edit Cities']);
+                Route::post('update', [LocationController::class, 'updateCity'])->name('classified.locations.city.update')->middleware(['can:Edit Cities', 'demo']);
+                Route::post('delete', [LocationController::class, 'deleteCity'])->name('classified.locations.city.delete')->middleware(['can:Delete Cities', 'demo']);
+                Route::post('bulk-action', [LocationController::class, 'cityBulkActions'])->name('classified.locations.city.bulk.action')->middleware(['can:Manage Cities', 'demo']);
+                Route::post('status/update', [LocationController::class, 'cityStatusChange'])->name('classified.locations.city.status.update')->middleware(['can:Edit Cities', 'demo']);
             });
         });
     });

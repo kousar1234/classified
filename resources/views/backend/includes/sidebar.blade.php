@@ -116,6 +116,41 @@
                     </ul>
                 </li>
 
+                <!--Locations Module-->
+                <li
+                    class="nav-item {{ Request::routeIs(['classified.locations.country.list', 'classified.locations.state.list', 'classified.locations.city.list']) ? 'menu-open ' : '' }}">
+                    <a href="#"
+                        class="nav-link {{ Request::routeIs(['classified.locations.country.list', 'classified.locations.state.list', 'classified.locations.city.list']) ? 'active ' : '' }}">
+                        <i class="nav-icon fas fa-map-marker-alt"></i>
+                        <p>
+                            {{ translation('Locations') }}
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('classified.locations.country.list') }}"
+                                class="nav-link {{ Request::routeIs(['classified.locations.country.list']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ translation('Countries') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('classified.locations.state.list') }}"
+                                class="nav-link {{ Request::routeIs(['classified.locations.state.list']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ translation('States') }}</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('classified.locations.city.list') }}"
+                                class="nav-link {{ Request::routeIs(['classified.locations.city.list']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>{{ translation('Cities') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!--Media Module-->
                 @can('Manage Media')
                     <li class="nav-item">
