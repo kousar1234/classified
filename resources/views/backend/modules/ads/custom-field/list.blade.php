@@ -16,6 +16,11 @@
 @section('page-title')
     Listing Custom Fields
 @endsection
+@section('page-style')
+    <link rel="stylesheet" href="{{ asset('public/web-assets/backend/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('public/web-assets/backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+@endsection
 @section('page-content')
     <x-admin-page-header title="Listing Custom Fields" :links="$links" />
     <section class="content">
@@ -57,15 +62,14 @@
                                                         {{ $field->category?->title }}
                                                     </a>
                                                 @else
-                                                    @if (auth()->user()->can('Manage Custom Field'))
-                                                        <a href="#" data-id="{{ $field->id }}"
-                                                            class="attatch-category"><i class="icofont-plus-circle"></i>
-                                                            {{ translation('Add to a category') }}
-                                                        </a>
-                                                    @endif
+                                                    <a href="#" data-id="{{ $field->id }}"
+                                                        class="attatch-category"><i class="icofont-plus-circle"></i>
+                                                        {{ translation('Add to a category') }}
+                                                    </a>
                                                 @endif
                                             </td>
                                             <td>
+
                                                 @if ($field->has_options() == config('settings.general_status.active'))
                                                     <a
                                                         href="{{ route('classified.ads.custom.field.options', ['id' => $field->id]) }}">
@@ -270,12 +274,60 @@
             </div>
         </div>
         <!--End  Delete Modal-->
+        <!--Assign category-->
+        <div id="category-modal" class="category-modal modal fade show" aria-modal="true">
+            <div class="modal-dialog modal-md modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title h6">{{ translation('Category') }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="assign-category-form">
+                            <input type="hidden" id="selected-field-id" name="id">
+                            <div class="form-row">
+                                <div class="form-group col-lg-12">
+                                    <label class="font-14 bold black w-100">{{ translation('Select category') }} </label>
+                                    <select class="category-options form-control w-100" name="category">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row d-flex justify-content-between">
+                                <button class="btn btn-primary assign-category">{{ translation('Save') }}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Assign Category-->
     </section>
 @endsection
 @section('page-script')
+    <script src="{{ asset('public/web-assets/backend/plugins/select2/js/select2.full.min.js') }}"></script>
     <script>
         (function($) {
             "use strict";
+            $('.category-options').select2({
+                theme: "bootstrap4",
+                placeholder: '{{ translation('Select a category') }}',
+                closeOnSelect: true,
+                ajax: {
+                    url: '{{ route('classified.ads.categories.options') }}',
+                    dataType: 'json',
+                    method: "GET",
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            term: params.term || '',
+                            page: params.page || 1
+                        }
+                    },
+                    cache: true
+                }
+            });
 
             //Create new 
             $('#item-adding-form').submit(function(e) {
@@ -344,6 +396,47 @@
             });
 
 
+            //Open Category Modal
+            $('.attatch-category').on('click', function(e) {
+                e.preventDefault();
+                var id = $(this).data('id');
+                $("#selected-field-id").val(id);
+                $("#category-modal").modal("show");
+            });
+
+            //Assign category
+            $(document).on('click', '.assign-category', function(e) {
+                $(document).find('.invalid-input').remove();
+                e.preventDefault();
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    type: "POST",
+                    data: $("#assign-category-form").serialize(),
+                    url: '{{ route('classified.ads.custom.field.assign.category') }}',
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success('{{ translation('Category  assigned successfully') }}');
+                            location.reload();
+                        } else {
+                            toastr.error('{{ translation('Category  assign failed') }}');
+                        }
+                    },
+                    error: function(response) {
+                        if (response.status === 422) {
+                            $.each(response.responseJSON.errors, function(field_name, error) {
+                                $(document).find('[name=' + field_name + ']').closest(
+                                    '.theme-input-style').after(
+                                    '<div class="invalid-input d-flex">' + error +
+                                    '</div>')
+                            })
+                        } else {
+                            toastr.error('{{ translation('Category  assign failed') }}');
+                        }
+                    }
+                });
+            });
             //update category
             $(document).on('submit', '#editForm', function(e) {
                 e.preventDefault();
