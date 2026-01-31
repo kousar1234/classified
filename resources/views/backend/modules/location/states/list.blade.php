@@ -13,7 +13,7 @@
                         <h4 class="font-20">{{ translation('States') }}</h4>
                         <div class="d-flex flex-wrap">
                             @if (auth()->user()->can('Create States'))
-                                <a href="{{ route('plugin.location.state.add') }}"
+                                <a href="{{ route('classified.locations.state.add') }}"
                                     class="btn long">{{ translation('Add New State') }}
                                 </a>
                             @endif
@@ -22,7 +22,7 @@
                 </div>
                 <div class="px-2 filter-area d-flex align-items-center">
                     <!--Filter area-->
-                    <form method="get" action="{{ route('plugin.location.state.list') }}">
+                    <form method="get" action="{{ route('classified.locations.state.list') }}">
                         <select class="form-control mb-2" name="per_page">
                             <option value="">{{ translation('Per page') }}</option>
                             <option value="10" @selected(request()->has('per_page') && request()->get('per_page') == '10')>10</option>
@@ -37,7 +37,7 @@
                     </form>
 
                     @if (request()->has('search_key'))
-                        <a class="btn long btn-danger" href="{{ route('plugin.location.state.list') }}">
+                        <a class="btn long btn-danger" href="{{ route('classified.locations.state.list') }}">
                             {{ translation('Clear Filter') }}
                         </a>
                     @endif
@@ -112,7 +112,7 @@
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @if (auth()->user()->can('Edit States'))
                                                         <a
-                                                            href="{{ route('plugin.location.state.edit', ['id' => $state->id, 'lang' => getDefaultLang()]) }}">
+                                                            href="{{ route('classified.locations.state.edit', ['id' => $state->id, 'lang' => getDefaultLang()]) }}">
                                                             {{ translation('Edit') }}
                                                         </a>
                                                     @endif
@@ -152,7 +152,7 @@
                 </div>
                 <div class="modal-body text-center">
                     <p class="mt-1">{{ translation('Are you sure to delete this') }}?</p>
-                    <form method="POST" action="{{ route('plugin.location.state.delete') }}">
+                    <form method="POST" action="{{ route('classified.locations.state.delete') }}">
                         @csrf
                         <input type="hidden" id="delete-state-id" name="id">
                         <button type="button" class="btn long btn-danger mt-2"
@@ -178,7 +178,7 @@
                 e.preventDefault();
                 let $this = $(this);
                 let id = $this.data('state');
-                $.post('{{ route('plugin.location.state.status.update') }}', {
+                $.post('{{ route('classified.locations.state.status.update') }}', {
                     _token: '{{ csrf_token() }}',
                     id: id
                 }, function(data) {
@@ -221,7 +221,7 @@
                         selected_items.push($(this).val());
                     });
                     if (selected_items.length > 0) {
-                        $.post('{{ route('plugin.location.state.bulk.action') }}', {
+                        $.post('{{ route('classified.locations.state.bulk.action') }}', {
                             _token: '{{ csrf_token() }}',
                             items: selected_items,
                             action: action

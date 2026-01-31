@@ -10,7 +10,7 @@
                     <h4>{{ translation('New Country') }}</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('plugin.location.country.store') }}" method="POST">
+                    <form action="{{ route('classified.locations.country.store') }}" method="POST">
                         @csrf
                         <div class="form-row mb-20">
                             <div class="col-sm-4">

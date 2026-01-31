@@ -13,7 +13,7 @@
                         <h4 class="font-20">{{ translation('Countries') }}</h4>
                         <div class="d-flex flex-wrap">
                             @if (auth()->user()->can('Create Countries'))
-                                <a href="{{ route('plugin.location.country.add') }}"
+                                <a href="{{ route('classified.locations.country.add') }}"
                                     class="btn long">{{ translation('Add New Country') }}
                                 </a>
                             @endif
@@ -22,7 +22,7 @@
                 </div>
                 <div class="px-2 filter-area d-flex align-items-center">
                     <!--Filter area-->
-                    <form method="get" action="{{ route('plugin.location.country.list') }}">
+                    <form method="get" action="{{ route('classified.locations.country.list') }}">
                         <select class="form-control mb-2" name="per_page">
                             <option value="">{{ translation('Per page') }}</option>
                             <option value="10" @selected(request()->has('per_page') && request()->get('per_page') == '10')>10</option>
@@ -37,7 +37,7 @@
                     </form>
 
                     @if (request()->has('search_key'))
-                        <a class="btn long btn-danger" href="{{ route('plugin.location.country.list') }}">
+                        <a class="btn long btn-danger" href="{{ route('classified.locations.country.list') }}">
                             {{ translation('Clear Filter') }}
                         </a>
                     @endif
@@ -106,7 +106,7 @@
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @if (auth()->user()->can('Edit Countries'))
                                                         <a
-                                                            href="{{ route('plugin.location.country.edit', ['id' => $country->id, 'lang' => getDefaultLang()]) }}">
+                                                            href="{{ route('classified.locations.country.edit', ['id' => $country->id, 'lang' => getDefaultLang()]) }}">
                                                             {{ translation('Edit') }}
                                                         </a>
                                                     @endif
@@ -129,9 +129,11 @@
                             @endif
                         </tbody>
                     </table>
-                    <div class="pgination px-3">
-                        {!! $countries->withQueryString()->onEachSide(1)->links('pagination::bootstrap-5-custom') !!}
-                    </div>
+                    @if ($countries->hasPages())
+                        <div class="p-3">
+                            {{ $countries->withQueryString()->onEachSide(1)->links('pagination::bootstrap-5') }}
+                        </div>
+                    @endif
                 </div>
             </div>
 
@@ -146,7 +148,7 @@
                 </div>
                 <div class="modal-body text-center">
                     <p class="mt-1">{{ translation('Are you sure to delete this') }}?</p>
-                    <form method="POST" action="{{ route('plugin.location.country.delete') }}">
+                    <form method="POST" action="{{ route('classified.locations.country.delete') }}">
                         @csrf
                         <input type="hidden" id="delete-country-id" name="id">
                         <button type="button" class="btn long btn-danger mt-2"
@@ -172,7 +174,7 @@
                 e.preventDefault();
                 let $this = $(this);
                 let id = $this.data('country');
-                $.post('{{ route('plugin.location.country..status.update') }}', {
+                $.post('{{ route('classified.locations.country..status.update') }}', {
                     _token: '{{ csrf_token() }}',
                     id: id
                 }, function(data) {
@@ -214,7 +216,7 @@
                         selected_items.push($(this).val());
                     });
                     if (selected_items.length > 0) {
-                        $.post('{{ route('plugin.location.country.bulk.action') }}', {
+                        $.post('{{ route('classified.locations.country.bulk.action') }}', {
                             _token: '{{ csrf_token() }}',
                             items: selected_items,
                             action: action

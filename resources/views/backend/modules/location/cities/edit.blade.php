@@ -26,7 +26,7 @@
                         @foreach (getAllLanguages() as $key => $language)
                             <li class="nav-item">
                                 <a class="nav-link @if ($language->code == $lang) active border-0 @else bg-light @endif py-3"
-                                    href="{{ route('plugin.location.city.edit', ['id' => $city_details->id, 'lang' => $language->code]) }}">
+                                    href="{{ route('classified.locations.city.edit', ['id' => $city_details->id, 'lang' => $language->code]) }}">
                                     <img src="{{ asset('/public/web-assets/backend/img/flags') . '/' . $language->code . '.png' }}"
                                         width="20px">
                                     <span>{{ $language->name }}</span>
@@ -35,7 +35,7 @@
                         @endforeach
                     </ul>
                     <!--End Language Switcher--->
-                    <form action="{{ route('plugin.location.city.update') }}" method="POST">
+                    <form action="{{ route('classified.locations.city.update') }}" method="POST">
                         @csrf
                         <div class="form-row mb-20">
                             <div class="col-sm-4">

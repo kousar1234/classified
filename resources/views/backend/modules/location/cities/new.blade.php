@@ -13,7 +13,7 @@
                     <h4 class="font-20">{{ translation('New City') }}</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('plugin.location.city.store') }}" method="POST">
+                    <form action="{{ route('classified.locations.city.store') }}" method="POST">
                         @csrf
                         <div class="form-row mb-20">
                             <div class="col-sm-4">

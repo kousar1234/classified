@@ -301,7 +301,7 @@ Route::prefix('admin')->group(function () {
         Route::group(['middleware' => 'auth', 'prefix' => 'location'], function () {
             //Country
             Route::group(['prefix' => 'country'], function () {
-                Route::get('', [LocationController::class, 'countries'])->name('classified.locations.country.list')->middleware(['can:Manage Countries']);
+                Route::get('', [LocationController::class, 'countries'])->name('classified.locations.country.list');
                 Route::get('add/new', [LocationController::class, 'addNewCountry'])->name('classified.locations.country.add')->middleware(['can:Create Countries']);
                 Route::post('store/new', [LocationController::class, 'storeNewCountry'])->name('classified.locations.country.store')->middleware(['can:Create Countries', 'demo']);
                 Route::get('edit/{id}', [LocationController::class, 'editCountry'])->name('classified.locations.country.edit')->middleware(['can:Edit Countries']);

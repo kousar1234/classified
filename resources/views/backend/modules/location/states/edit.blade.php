@@ -23,7 +23,7 @@
                     @foreach (getAllLanguages() as $key => $language)
                         <li class="nav-item">
                             <a class="nav-link @if ($language->code == $lang) active border-0 @else bg-light @endif py-3"
-                                href="{{ route('plugin.location.state.edit', ['id' => $stateDetails->id, 'lang' => $language->code]) }}">
+                                href="{{ route('classified.locations.state.edit', ['id' => $stateDetails->id, 'lang' => $language->code]) }}">
                                 <img src="{{ asset('/public/web-assets/backend/img/flags') . '/' . $language->code . '.png' }}"
                                     width="20px">
                                 <span>{{ $language->name }}</span>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="card-body">
 
-                    <form action="{{ route('plugin.location.state.update') }}" method="POST">
+                    <form action="{{ route('classified.locations.state.update') }}" method="POST">
                         @csrf
                         <div class="form-row mb-20">
                             <div class="col-sm-4">

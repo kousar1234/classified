@@ -42,7 +42,7 @@ class LocationController extends Controller
         } else {
             toastNotification('error', 'Country added failed', 'Error');
         }
-        return to_route('plugin.location.country.list');
+        return to_route('classified.locations.country.list');
     }
     /**
      * Will redirect edit country page
@@ -65,7 +65,7 @@ class LocationController extends Controller
         $res = $this->location_repository->updateCountry($request);
         if ($res == true) {
             toastNotification('success', translation('Country updated successfully'), 'Success');
-            return redirect()->route('plugin.location.country.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
+            return redirect()->route('classified.locations.country.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
         } else {
             toastNotification('error', translation('Country update failed'), 'Failed');
             return redirect()->back();
@@ -83,7 +83,7 @@ class LocationController extends Controller
         } else {
             toastNotification('error', 'Country delete failed', 'Error');
         }
-        return to_route('plugin.location.country.list');
+        return to_route('classified.locations.country.list');
     }
     /**
      * Change language status
@@ -147,7 +147,7 @@ class LocationController extends Controller
         $res = $this->location_repository->storeState($request->validated());
         if ($res == true) {
             toastNotification('success', translation('State added successfully'), 'Success');
-            return redirect()->route('plugin.location.state.list');
+            return redirect()->route('classified.locations.state.list');
         } else {
             toastNotification('error', translation('Action failed'), 'Failed');
             return redirect()->back();
@@ -162,7 +162,7 @@ class LocationController extends Controller
         $res = $this->location_repository->deleteState($request->id);
         if ($res == true) {
             toastNotification('success', translation('State deleted successfully'), 'Success');
-            return redirect()->route('plugin.location.state.list');
+            return redirect()->route('classified.locations.state.list');
         } else {
             toastNotification('error', translation('Action failed'), 'Failed');
             return redirect()->back();
@@ -207,7 +207,7 @@ class LocationController extends Controller
         $res = $this->location_repository->updateState($request);
         if ($res == true) {
             toastNotification('success', translation('State updated successfully'), 'Success');
-            return redirect()->route('plugin.location.state.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
+            return redirect()->route('classified.locations.state.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
         } else {
             toastNotification('error', translation('Action failed'), 'Failed');
             return redirect()->back();
@@ -259,7 +259,7 @@ class LocationController extends Controller
         $res = $this->location_repository->storeCity($request->validated());
         if ($res == true) {
             toastNotification('success', translation('City added successfully'), 'Success');
-            return redirect()->route('plugin.location.city.list');
+            return redirect()->route('classified.locations.city.list');
         } else {
             toastNotification('error', translation('Action failed'), 'Failed');
             return redirect()->back();
@@ -273,7 +273,7 @@ class LocationController extends Controller
         $res = $this->location_repository->deleteCity($request->id);
         if ($res == true) {
             toastNotification('success', translation('City deleted successfully'), 'Success');
-            return redirect()->route('plugin.location.city.list');
+            return redirect()->route('classified.locations.city.list');
         } else {
             toastNotification('error', translation('Action failed'), 'Failed');
             return redirect()->back();
@@ -318,7 +318,7 @@ class LocationController extends Controller
         $res = $this->location_repository->updateCity($request);
         if ($res == true) {
             toastNotification('success', translation('City updated successfully'), 'Success');
-            return redirect()->route('plugin.location.city.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
+            return redirect()->route('classified.locations.city.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
         } else {
             toastNotification('error', translation('Action failed'), 'Failed');
             return redirect()->back();

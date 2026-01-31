@@ -13,7 +13,7 @@
                     <h4 class="font-20">{{ translation('New State') }}</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('plugin.location.state.store') }}" method="POST">
+                    <form action="{{ route('classified.locations.state.store') }}" method="POST">
                         @csrf
                         <div class="form-row mb-20">
                             <div class="col-sm-4">
