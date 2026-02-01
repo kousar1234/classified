@@ -218,34 +218,28 @@ class LocationController extends Controller
     {
         return view('backend.modules.location.cities.list')->with(
             [
-                'cities' => $this->location_repository->citiesList($request)
+                'cities' => $this->location_repository->citiesList($request, [1, 0]),
+                'countries' => $this->location_repository->countries([config('settings.general_status.active')]),
             ]
         );
     }
-    /**
-     * Will redirect new city page
-     */
-    public function addNewCity(): View
-    {
-        return view('backend.modules.location.cities.new')->with(
-            [
-                'states' => $this->location_repository->states([config('settings.general_status.active')])
-            ]
-        );
-    }
+
     /**
      * Will store new city information
      */
-    public function storeNewCity(CityRequest $request): RedirectResponse
+    public function storeNewCity(CityRequest $request): JsonResponse
     {
         $res = $this->location_repository->storeCity($request->validated());
         if ($res == true) {
-            toastNotification('success', translation('City added successfully'), 'Success');
-            return redirect()->route('classified.locations.city.list');
-        } else {
-            toastNotification('error', translation('Action failed'), 'Failed');
-            return redirect()->back();
+            return response()->json([
+                'success' => true,
+                'message' => translation('City added successfully'),
+            ]);
         }
+        return response()->json([
+            'success' => false,
+            'message' => translation('Action failed'),
+        ]);
     }
     /**
      * Will delete city
@@ -255,68 +249,45 @@ class LocationController extends Controller
         $res = $this->location_repository->deleteCity($request->id);
         if ($res == true) {
             toastNotification('success', translation('City deleted successfully'), 'Success');
-            return redirect()->route('classified.locations.city.list');
-        } else {
-            toastNotification('error', translation('Action failed'), 'Failed');
-            return redirect()->back();
+            return to_route('classified.locations.city.list');
         }
+        toastNotification('error', translation('Action failed'), 'Error');
+        return to_route('classified.locations.city.list');
     }
-    /**
-     * Will change city's status
-     */
-    public function cityStatusChange(Request $request): JsonResponse
-    {
-        $res = $this->location_repository->changeCityStatus($request->id);
-        if ($res == true) {
-            toastNotification('success', translation('Status updated successfully'), 'Success');
-            return response()->json([
-                'success' => true,
-            ]);
-        } else {
-            toastNotification('error', translation('Action failed'), 'Failed');
-            return response()->json([
-                'success' => false,
-            ]);
-        }
-    }
+
     /**
      * Will redirect edit city page
      * 
      */
-    public function editCity(Int $id): View
+    public function editCity(Request $request): JsonResponse
     {
-        return view('backend.modules.location.cities.edit')->with(
+        $city = $this->location_repository->cityDetails($request->id);
+        return response()->json(
             [
-                'states' => $this->location_repository->states([config('settings.general_status.active')]),
-                'city_details' => $this->location_repository->cityDetails($id)
+                'success' => true,
+                'html' => view('backend.modules.location.cities.edit', [
+                    'countries' => $this->location_repository->countries(),
+                    'city' => $city,
+                    'states' => $this->location_repository->statesByCountry($city->state?->country_id),
+                ])->render(),
             ]
         );
     }
     /**
      * will update city
      */
-    public function updateCity(CityRequest $request): RedirectResponse
+    public function updateCity(CityRequest $request): JsonResponse
     {
         $res = $this->location_repository->updateCity($request);
         if ($res == true) {
-            toastNotification('success', translation('City updated successfully'), 'Success');
-            return redirect()->route('classified.locations.city.edit', ['id' => $request['id'], 'lang' => $request['lang']]);
-        } else {
-            toastNotification('error', translation('Action failed'), 'Failed');
-            return redirect()->back();
+            return response()->json([
+                'success' => true,
+                'message' => translation('City updated successfully'),
+            ]);
         }
-    }
-
-    /**
-     * Will fire cities bulk actions
-     */
-    public function cityBulkActions(Request $request): JsonResponse
-    {
-        $res = $this->location_repository->citiesBulkAction($request);
-        return response()->json(
-            [
-                'success' => $res,
-            ]
-        );
+        return response()->json([
+            'success' => false,
+            'message' => translation('Action failed'),
+        ]);
     }
 }

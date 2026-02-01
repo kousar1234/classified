@@ -317,14 +317,11 @@ Route::prefix('admin')->group(function () {
             });
             //Cities
             Route::group(['prefix' => 'city'], function () {
-                Route::get('', [LocationController::class, 'cities'])->name('classified.locations.city.list')->middleware(['can:Manage Cities']);
-                Route::get('add/new', [LocationController::class, 'addNewCity'])->name('classified.locations.city.add')->middleware(['can:Create Cities']);
-                Route::post('store/new', [LocationController::class, 'storeNewCity'])->name('classified.locations.city.store')->middleware(['can:Create Cities', 'demo']);
-                Route::get('edit/{id}', [LocationController::class, 'editCity'])->name('classified.locations.city.edit')->middleware(['can:Edit Cities']);
-                Route::post('update', [LocationController::class, 'updateCity'])->name('classified.locations.city.update')->middleware(['can:Edit Cities', 'demo']);
-                Route::post('delete', [LocationController::class, 'deleteCity'])->name('classified.locations.city.delete')->middleware(['can:Delete Cities', 'demo']);
-                Route::post('bulk-action', [LocationController::class, 'cityBulkActions'])->name('classified.locations.city.bulk.action')->middleware(['can:Manage Cities', 'demo']);
-                Route::post('status/update', [LocationController::class, 'cityStatusChange'])->name('classified.locations.city.status.update')->middleware(['can:Edit Cities', 'demo']);
+                Route::get('', [LocationController::class, 'cities'])->name('classified.locations.city.list');
+                Route::post('store/new', [LocationController::class, 'storeNewCity'])->name('classified.locations.city.store');
+                Route::post('edit', [LocationController::class, 'editCity'])->name('classified.locations.city.edit');
+                Route::post('update', [LocationController::class, 'updateCity'])->name('classified.locations.city.update');
+                Route::post('delete', [LocationController::class, 'deleteCity'])->name('classified.locations.city.delete');
             });
         });
     });
